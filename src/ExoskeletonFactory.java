@@ -17,4 +17,12 @@ public class ExoskeletonFactory {
             exoskeletons.add(exoskeleton);
         }
     }
+
+    public Exoskeleton getAnExoskeleton(int index) {
+        return exoskeletons.get(index);
+    }
+
+    public int getNumberOfExoskeletons() {
+        return exoskeletons.size();
+    }
 }

@@ -17,4 +17,12 @@ public class SpiritFactory {
             spirits.add(spirit);
         }
     }
+
+    public Spirit getASpirit(int index) {
+        return spirits.get(index);
+    }
+
+    public int getNumberOfSpirits() {
+        return spirits.size();
+    }
 }

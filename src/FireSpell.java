@@ -6,19 +6,23 @@ public class FireSpell extends Spell {
 
     @Override
     public void applySpell(Hero hero, Monster monster) {
-        updateManaCost(hero);
-        int noMoreOfAttribute = 0;
-
-        if (monster.getHitPoint() - getDamage() < 0) {
-            monster.setHitPoint(noMoreOfAttribute);
+        if (hero.getMana() < getManaCost()) {
+            System.out.println(hero.getName() + " ha not enough mana! Unable to cast " + getItemName());
         } else {
-            monster.setHitPoint(monster.getHitPoint() - getDamage());
-        }
+            updateManaCost(hero);
+            int noMoreOfAttribute = 0;
 
-        if (monster.getDefense() * Monster.skillRemainingAfterSpellFactor < 0) {
-            monster.setDefense(noMoreOfAttribute);
-        } else {
-            monster.setDefense((int) (monster.getDefense() * Monster.skillRemainingAfterSpellFactor));
+            if (monster.getHitPoint() - getDamage() < 0) {
+                monster.setHitPoint(noMoreOfAttribute);
+            } else {
+                monster.setHitPoint(monster.getHitPoint() - getDamage());
+            }
+
+            if (monster.getDefense() * Monster.skillRemainingAfterSpellFactor < 0) {
+                monster.setDefense(noMoreOfAttribute);
+            } else {
+                monster.setDefense((int) (monster.getDefense() * Monster.skillRemainingAfterSpellFactor));
+            }
         }
     }
 }

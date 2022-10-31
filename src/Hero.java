@@ -5,7 +5,7 @@ public class Hero extends NonPlayerCharacter {
     public static final double levelUpRate = 1.05;
     public static final double favouredSkillsLevelUpRate = 1.10;
     public static final int experienceLevelUpFactor = 10;
-    public static double manaLevelUpFactor = 1.1;
+    public static final double manaLevelUpFactor = 1.1;
     public static final int experienceGainedFactor = 2;
     public static final int hitPointFactor = 100;
     public static final double dodgeChanceFactor = 0.2;
@@ -21,7 +21,12 @@ public class Hero extends NonPlayerCharacter {
     private int money;
     private int experience;
     private int experienceGained;
+    private int numberOfTimesHeroDefeatedMonster;
     private Inventory inventory;
+
+    public Hero() {
+        super();
+    }
 
     public Hero(String name, String id, int mana, int strength, int agility, int dexterity, int money, int experience, Inventory inventory) {
         super(name, id);
@@ -34,6 +39,7 @@ public class Hero extends NonPlayerCharacter {
         this.inventory = inventory;
         this.hitPoints = experience * hitPointFactor;
         this.experienceGained = 0;
+        numberOfTimesHeroDefeatedMonster = 0;
     }
 
     public int getHitPoints() {
@@ -106,6 +112,19 @@ public class Hero extends NonPlayerCharacter {
 
     public void setExperienceGained(int experienceGained) {
         this.experienceGained = experienceGained;
+    }
+
+    public int getNumberOfTimesHeroDefeatedMonster() {
+        return numberOfTimesHeroDefeatedMonster;
+    }
+
+    public void setNumberOfTimesHeroDefeatedMonster(int numberOfTimesHeroDefeatedMonster) {
+        this.numberOfTimesHeroDefeatedMonster = numberOfTimesHeroDefeatedMonster;
+    }
+
+    // one-on-one battle, so if hero wins against a monster in a battle, increment this
+    public void updateNumberOfTimesHeroDefeatedMonster() {
+        numberOfTimesHeroDefeatedMonster++;
     }
 
     public void levelUpSkills() {
@@ -183,6 +202,22 @@ public class Hero extends NonPlayerCharacter {
     // During battle, if spells are used against a monster
     public void updateManaCost(int manaCost) {
         mana -= manaCost;
+    }
+
+    public boolean isUnconscious() {
+        if (hitPoints <= 0) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean canUseSpell() {
+        if (mana <= 0) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override

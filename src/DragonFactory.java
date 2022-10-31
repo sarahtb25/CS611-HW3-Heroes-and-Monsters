@@ -17,4 +17,12 @@ public class DragonFactory {
             dragons.add(dragon);
         }
     }
+
+    public Dragon getADragon(int index) {
+        return dragons.get(index);
+    }
+
+    public int getNumberOfDragons() {
+        return dragons.size();
+    }
 }

@@ -20,4 +20,12 @@ public class WarriorFactory {
             Warrior warrior = new Warrior(warriorNames.get(i), warriorIds.get(i), warriorMana.get(i), warriorStrength.get(i), warriorAgility.get(i), warriorDexterity.get(i), warriorMoney.get(i), warriorExperience.get(i), inventory);
         }
     }
+
+    public Warrior getAWarrior(int index) {
+        return warriors.get(index);
+    }
+
+    public int getNumberOfWarriors() {
+        return warriors.size();
+    }
 }

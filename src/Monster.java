@@ -9,6 +9,10 @@ public class Monster extends NonPlayerCharacter {
     private int defense;
     private int dodgeChance;
 
+    public Monster() {
+        super();
+    }
+
     public Monster(String name, String id, int level, int damage, int defense, int dodgeChance) {
         super(name, id);
         this.level = level;

@@ -20,4 +20,12 @@ public class SorcererFactory {
             Sorcerer sorcerer = new Sorcerer(sorcererNames.get(i), sorcererIds.get(i), sorcererMana.get(i), sorcererStrength.get(i), sorcererAgility.get(i), sorcererDexterity.get(i), sorcererMoney.get(i), sorcererExperience.get(i), inventory);
         }
     }
+
+    public Sorcerer getASorcerer(int index) {
+        return sorcerers.get(index);
+    }
+
+    public int getNumberOfSorcerers() {
+        return sorcerers.size();
+    }
 }

@@ -6,19 +6,23 @@ public class LightningSpell extends Spell{
 
     @Override
     public void applySpell(Hero hero, Monster monster) {
-        updateManaCost(hero);
-        int noMoreOfAttribute = 0;
-
-        if (monster.getHitPoint() - getDamage() < 0) {
-            monster.setHitPoint(noMoreOfAttribute);
+        if (hero.getMana() < getManaCost()) {
+            System.out.println(hero.getName() + " ha not enough mana! Unable to cast " + getItemName());
         } else {
-            monster.setHitPoint(monster.getHitPoint() - getDamage());
-        }
+            updateManaCost(hero);
+            int noMoreOfAttribute = 0;
 
-        if (monster.getDodgeChance() * Monster.skillRemainingAfterSpellFactor < 0) {
-            monster.setDodgeChance(noMoreOfAttribute);
-        } else {
-            monster.setDodgeChance((int) (monster.getDodgeChance() * Monster.skillRemainingAfterSpellFactor));
+            if (monster.getHitPoint() - getDamage() < 0) {
+                monster.setHitPoint(noMoreOfAttribute);
+            } else {
+                monster.setHitPoint(monster.getHitPoint() - getDamage());
+            }
+
+            if (monster.getDodgeChance() * Monster.skillRemainingAfterSpellFactor < 0) {
+                monster.setDodgeChance(noMoreOfAttribute);
+            } else {
+                monster.setDodgeChance((int) (monster.getDodgeChance() * Monster.skillRemainingAfterSpellFactor));
+            }
         }
     }
 }

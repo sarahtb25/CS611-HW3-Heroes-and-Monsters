@@ -20,4 +20,12 @@ public class PaladinFactory {
             Paladin paladin = new Paladin(paladinNames.get(i), paladinIds.get(i), paladinMana.get(i), paladinStrength.get(i), paladinAgility.get(i), paladinDexterity.get(i), paladinMoney.get(i), paladinExperience.get(i), inventory);
         }
     }
+
+    public Paladin getAPaladin(int index) {
+        return paladins.get(index);
+    }
+
+    public int getNumberOfPaladins() {
+        return paladins.size();
+    }
 }
