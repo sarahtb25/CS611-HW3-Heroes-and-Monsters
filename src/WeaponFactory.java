@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 // Represents all possible weapons
-public class WeaponFactory {
+public class WeaponFactory implements ItemFactory<Weapon> {
     public static final List<String> weaponNames = Arrays.asList("Sword", "Bow", "Scythe", "Axe", "TSwords", "Dagger");
     public static final List<String> weaponIds = Arrays.asList("B0", "B1", "B2", "B3", "B4", "B5");
     public static final List<Integer> weaponCosts = Arrays.asList(500, 300, 1000, 550, 1400, 200);
@@ -10,24 +11,27 @@ public class WeaponFactory {
     public static final List<Integer> weaponDamage = Arrays.asList(800, 500, 1100, 850, 1600, 250);
     public static final List<Integer> requiredHands = Arrays.asList(1, 2, 2, 1, 2, 1);
 
-    private List<Weapon> weapons;
+    private List<Weapon> weapons = new ArrayList<>();
 
     public WeaponFactory() {
+        generateItems();
+    }
+
+    @Override
+    public void generateItems() {
         for (int i = 0; i < weaponNames.size(); i++) {
             Weapon weapon = new Weapon(weaponNames.get(i), weaponIds.get(i), weaponCosts.get(i), weaponLevels.get(i), requiredHands.get(i), weaponDamage.get(i));
             weapons.add(weapon);
         }
     }
 
-    public List<Weapon> getWeapons() {
+    @Override
+    public List<Weapon> getItems() {
         return weapons;
     }
 
-    public void setWeapons(List<Weapon> weapons) {
-        this.weapons = weapons;
-    }
-
-    public void printWeapons() {
+    @Override
+    public void printItems() {
         System.out.println("---------------------------------------------------------------------------------------------");
         System.out.println("|                                   WEAPONS                                                 |");
         System.out.println("---------------------------------------------------------------------------------------------");
@@ -44,7 +48,8 @@ public class WeaponFactory {
         System.out.println("----------------------------------------------------------------------------------------------");
     }
 
-    public Weapon getWeaponFromId(String id) {
+    @Override
+    public Weapon getItemFromId(String id) {
         Weapon weaponWanted = new Weapon();
 
         for (Weapon weapon : weapons) {

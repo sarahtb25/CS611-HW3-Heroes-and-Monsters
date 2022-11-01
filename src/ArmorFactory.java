@@ -1,31 +1,35 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 // Represents all possible armors
-public class ArmorFactory {
+public class ArmorFactory implements ItemFactory<Armor> {
     public static final List<String> armorNames = Arrays.asList("Platinum_Shield", "Breastplate", "Full_Body_Armor", "Wizard_Shield", "Guardian_Angel");
     public static final List<String> armorIds = Arrays.asList("E0", "E1", "E2", "E3", "E4");
     public static final List<Integer> armorCosts = Arrays.asList(150, 350, 1000, 1200, 1000);
     public static final List<Integer> armorLevels = Arrays.asList(1, 3, 8, 10, 10);
     public static final List<Integer> armorDamageReduction = Arrays.asList(200, 600, 1100, 1500, 1000);
-    private List<Armor> armors;
+    private List<Armor> armors = new ArrayList<>();
 
     public ArmorFactory() {
+        generateItems();
+    }
+
+    @Override
+    public void generateItems() {
         for (int i = 0; i < armorNames.size(); i++) {
             Armor armor = new Armor(armorNames.get(i), armorIds.get(i), armorCosts.get(i), armorLevels.get(i), armorDamageReduction.get(i));
             armors.add(armor);
         }
     }
 
-    public List<Armor> getArmors() {
+    @Override
+    public List<Armor> getItems() {
         return armors;
     }
 
-    public void setArmors(List<Armor> armors) {
-        this.armors = armors;
-    }
-
-    public void printArmors() {
+    @Override
+    public void printItems() {
         System.out.println("---------------------------------------------------------------------------------------------");
         System.out.println("|                                   ARMORS                                                  |");
         System.out.println("---------------------------------------------------------------------------------------------");
@@ -42,7 +46,8 @@ public class ArmorFactory {
         System.out.println("----------------------------------------------------------------------------------------------");
     }
 
-    public Armor getArmorFromId(String id) {
+    @Override
+    public Armor getItemFromId(String id) {
         Armor armorWanted = new Armor();
 
         for (Armor armor : armors) {

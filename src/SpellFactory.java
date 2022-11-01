@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.List;
 
 // Represents all possible spells
-public class SpellFactory {
+public class SpellFactory implements ItemFactory<Spell> {
     public static final List<String> spellNames = Arrays.asList("Flame_Tornado", "Breath_of_Fire", "Heat_Wave", "Lava_Comet", "Hell_Storm", "Snow_Cannon", "Ice_Blade", "Frost_Blizzard", "Arctic_Storm", "Lightning_Dagger", "Thunder_Blast", "Electric_Arrows", "Spark_Needles");
     public static final List<String> spellIds = Arrays.asList("F0", "F1", "F2", "F3", "F4", "C0", "C1", "C2", "C3", "L0", "L1", "L2", "L3");
     public static final List<Integer> spellCosts = Arrays.asList(700, 350, 450, 800, 600, 500, 250, 750, 700, 400, 750, 550, 500);
@@ -13,6 +13,11 @@ public class SpellFactory {
     private List<Spell> spells;
 
     public SpellFactory() {
+        generateItems();
+    }
+
+    @Override
+    public void generateItems() {
         for (int i = 0; i < spellNames.size(); i++) {
             if (spellIds.get(i).contains("F")) {
                 FireSpell fireSpell = new FireSpell(spellNames.get(i), spellIds.get(i), spellCosts.get(i), spellLevels.get(i), spellNumberOfConsumptions.get(i), spellDamage.get(i), spellManaCost.get(i));
@@ -27,15 +32,13 @@ public class SpellFactory {
         }
     }
 
-    public List<Spell> getSpells() {
+    @Override
+    public List<Spell> getItems() {
         return spells;
     }
 
-    public void setSpells(List<Spell> spells) {
-        this.spells = spells;
-    }
-
-    public void printSpells() {
+    @Override
+    public void printItems() {
         System.out.println("---------------------------------------------------------------------------------------------");
         System.out.println("|                                   SPELLS                                                  |");
         System.out.println("---------------------------------------------------------------------------------------------");
@@ -62,7 +65,8 @@ public class SpellFactory {
         System.out.println("----------------------------------------------------------------------------------------------");
     }
 
-    public Spell getSpellFromId(String id) {
+    @Override
+    public Spell getItemFromId(String id) {
         Spell spellWanted = new Spell();
 
         for (Spell spell : spells) {

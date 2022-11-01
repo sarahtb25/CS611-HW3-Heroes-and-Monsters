@@ -19,14 +19,14 @@ public class GenerateMonsters {
             String typeOfMonster = new String [] {"Dragon", "Exoskeleton", "Spirit"}[index];
 
             if (typeOfMonster.equals("Dragon")) {
-                int indexOfDragon = (int) (Math.random() * df.getNumberOfDragons());
-                monster = df.getADragon(indexOfDragon);
+                int indexOfDragon = (int) (Math.random() * df.getNumberOfMonsters());
+                monster = df.getAMonster(indexOfDragon);
             } else if (typeOfMonster.equals("Exoskeleton")) {
-                int indexOfExoskeleton = (int) (Math.random() * ef.getNumberOfExoskeletons());
-                monster = ef.getAnExoskeleton(indexOfExoskeleton);
+                int indexOfExoskeleton = (int) (Math.random() * ef.getNumberOfMonsters());
+                monster = ef.getAMonster(indexOfExoskeleton);
             } else if (typeOfMonster.equals("Spirit")) {
-                int indexOfSpirit = (int) (Math.random() * sf.getNumberOfSpirits());
-                monster = sf.getASpirit(indexOfSpirit);
+                int indexOfSpirit = (int) (Math.random() * sf.getNumberOfMonsters());
+                monster = sf.getAMonster(indexOfSpirit);
             }
 
             monsters.addMonster(monster);

@@ -59,13 +59,13 @@ public class Market {
         System.out.println("|                                   MARKET                                                  |");
         System.out.println("---------------------------------------------------------------------------------------------");
         System.out.println("\n\n");
-        wf.printWeapons();
+        wf.printItems();
         System.out.println("\n\n");
-        af.printArmors();
+        af.printItems();
         System.out.println("\n\n");
-        pf.printPotions();
+        pf.printItems();
         System.out.println("\n\n");
-        sf.printSpells();
+        sf.printItems();
         System.out.println("\n\n");
     }
 
@@ -78,7 +78,7 @@ public class Market {
         int cost = 0;
 
         if (itemId.contains("B")) {
-            weapon = wf.getWeaponFromId(itemId);
+            weapon = wf.getItemFromId(itemId);
             cost = weapon.getCost();
             canBuy = hero.checkMoneyAndLevelToBuyItem(cost, weapon.getRequiredLevel());
 
@@ -86,7 +86,7 @@ public class Market {
                 hero.getInventory().addWeapon(weapon);
             }
         } else if (itemId.contains("E")) {
-            armor = af.getArmorFromId(itemId);
+            armor = af.getItemFromId(itemId);
             cost = armor.getCost();
             canBuy = hero.checkMoneyAndLevelToBuyItem(cost, armor.getRequiredLevel());
 
@@ -94,7 +94,7 @@ public class Market {
                 hero.getInventory().addArmor(armor);
             }
         } else if (itemId.contains("F") || itemId.contains("C") || itemId.contains("L")) {
-            spell = sf.getSpellFromId(itemId);
+            spell = sf.getItemFromId(itemId);
             cost = spell.getCost();
             canBuy = hero.checkMoneyAndLevelToBuyItem(cost, spell.getRequiredLevel());
 
@@ -102,7 +102,7 @@ public class Market {
                 hero.getInventory().addSpell(spell);
             }
         } else if (itemId.contains("P")) {
-            potion = pf.getPotionFromId(itemId);
+            potion = pf.getItemFromId(itemId);
             cost = potion.getCost();
             canBuy = hero.checkMoneyAndLevelToBuyItem(cost, potion.getRequiredLevel());
 
@@ -120,13 +120,13 @@ public class Market {
         int cost = 0;
 
         if (itemId.contains("B")) {
-            weapon = wf.getWeaponFromId(itemId);
+            weapon = wf.getItemFromId(itemId);
             cost = weapon.getCost();
 
             hero.getInventory().removeWeapon(weapon);
             hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
         } else if (itemId.contains("E")) {
-            armor = af.getArmorFromId(itemId);
+            armor = af.getItemFromId(itemId);
             cost = armor.getCost();
 
             hero.getInventory().removeArmor(armor);

@@ -19,14 +19,14 @@ public class GenerateHeroes {
             String typeOfHero = new String [] {"Warrior", "Sorcerer", "Paladin"}[index];
 
             if (typeOfHero.equals("Warrior")) {
-                int indexOfWarrior = (int) (Math.random() * wf.getNumberOfWarriors());
-                hero = wf.getAWarrior(indexOfWarrior);
+                int indexOfWarrior = (int) (Math.random() * wf.getNumberOfHeroes());
+                hero = wf.getAHero(indexOfWarrior);
             } else if (typeOfHero.equals("Sorcerer")) {
-                int indexOfSorcerer = (int) (Math.random() * sf.getNumberOfSorcerers());
-                hero = sf.getASorcerer(indexOfSorcerer);
+                int indexOfSorcerer = (int) (Math.random() * sf.getNumberOfHeroes());
+                hero = sf.getAHero(indexOfSorcerer);
             } else if (typeOfHero.equals("Paladin")) {
-                int indexOfPaladin = (int) (Math.random() * pf.getNumberOfPaladins());
-                hero = pf.getAPaladin(indexOfPaladin);
+                int indexOfPaladin = (int) (Math.random() * pf.getNumberOfHeroes());
+                hero = pf.getAHero(indexOfPaladin);
             }
 
             heroes.addHero(hero);
