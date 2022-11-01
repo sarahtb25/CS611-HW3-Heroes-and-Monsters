@@ -32,8 +32,8 @@ public class Spell extends ConsumableItem {
             System.out.println(hero.getName() + " has not enough mana! Unable to cast " + getItemName());
         } else {
             updateManaCost(hero);
+            consume();
         }
-        consume();
     }
 
     public void updateManaCost(Hero hero) {

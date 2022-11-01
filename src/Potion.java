@@ -29,13 +29,13 @@ public class Potion extends ConsumableItem {
         this.attributesAffected = attributesAffected;
     }
     
-    public void drinkPotion(Hero hero) {
+    public void applyPotion(Hero hero) {
         for (int i = 0; i < attributesAffected.size(); i++) {
-            if (attributesAffected.get(i) == "health") hero.setHitPoints(hero.getHitPoints() + attributeIncrease);
-            else if (attributesAffected.get(i) == "mana") hero.setMana(hero.getMana() + attributeIncrease);
-            else if (attributesAffected.get(i) == "strength") hero.setStrength(hero.getStrength() + attributeIncrease);
-            else if (attributesAffected.get(i) == "dexterity") hero.setDexterity(hero.getDexterity() + attributeIncrease);
-            else if (attributesAffected.get(i) == "agility") hero.setAgility(hero.getAgility() + attributeIncrease);
+            if (attributesAffected.get(i).equals("health")) hero.setHitPoints(hero.getHitPoints() + attributeIncrease);
+            else if (attributesAffected.get(i).equals("mana")) hero.setMana(hero.getMana() + attributeIncrease);
+            else if (attributesAffected.get(i).equals("strength")) hero.setStrength(hero.getStrength() + attributeIncrease);
+            else if (attributesAffected.get(i).equals("dexterity")) hero.setDexterity(hero.getDexterity() + attributeIncrease);
+            else if (attributesAffected.get(i).equals("agility")) hero.setAgility(hero.getAgility() + attributeIncrease);
         }
         consume();
     }

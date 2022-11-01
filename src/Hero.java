@@ -147,6 +147,23 @@ public class Hero extends NonPlayerCharacter {
     }
     public void wearAWeaponOrArmor(Item item) {
         currentlyEquippedItems.add(item);
+        removeItemFromInventory(item);
+    }
+
+    public void removeItemFromInventory(Item item) {
+        if (item instanceof Weapon) {
+            inventory.removeWeapon((Weapon) item);
+        } else if (item instanceof Armor) {
+            inventory.removeArmor((Armor) item);
+        }
+    }
+
+    public void addItemToInventory(Item item) {
+        if (item instanceof Weapon) {
+            inventory.addWeapon((Weapon) item);
+        } else if (item instanceof Armor) {
+            inventory.addArmor((Armor) item);
+        }
     }
 
     public void replaceAWeaponOrArmor(Item item) {
@@ -163,6 +180,15 @@ public class Hero extends NonPlayerCharacter {
 
     public void removeAWeaponOrArmorFromBody(Item item) {
         currentlyEquippedItems.remove(item);
+        addItemToInventory(item);
+    }
+
+    public void drinkPotion(Potion potion) {
+        potion.applyPotion(this);
+    }
+
+    public void useSpell(Spell spell, Monster monster) {
+        spell.applySpell(this, monster);
     }
 
     public int getNumberOfTimesHeroDefeatedMonster() {
