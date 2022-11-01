@@ -7,7 +7,7 @@ public class IceSpell extends Spell {
     @Override
     public void applySpell(Hero hero, Monster monster) {
         if (hero.getMana() < getManaCost()) {
-            System.out.println(hero.getName() + " ha not enough mana! Unable to cast " + getItemName());
+            System.out.println(hero.getName() + " has not enough mana! Unable to cast " + getItemName());
         } else {
             updateManaCost(hero);
             int noMoreOfAttribute = 0;
@@ -23,6 +23,7 @@ public class IceSpell extends Spell {
             } else {
                 monster.setDamage((int) (getDamage() * Monster.skillRemainingAfterSpellFactor));
             }
+            consume();
         }
     }
 }

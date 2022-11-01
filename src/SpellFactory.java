@@ -55,7 +55,7 @@ public class SpellFactory {
                 typeOfSpell = "Lightning";
             }
 
-            System.out.format("%7s %15s %14s %7s %10s %10s %25s %13s", spell.getId(), typeOfSpell, spell.getItemName(), spell.getCost(), spell.getManaCost(), spell.getRequiredLevel(), spell.getnumberOfConsumptions(), spell.getDamage());
+            System.out.format("%7s %15s %14s %7s %10s %10s %25s %13s", spell.getId(), typeOfSpell, spell.getItemName(), spell.getCost(), spell.getManaCost(), spell.getRequiredLevel(), spell.getNumberOfConsumptions(), spell.getDamage());
             System.out.println();
         }
 

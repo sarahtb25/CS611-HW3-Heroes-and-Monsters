@@ -71,6 +71,22 @@ public class Inventory {
         armors.remove(armor);
     }
 
+    public void removePotion() {
+        for (Potion potion : potions) {
+            if (potion.getNumberOfConsumptions() == 0) {
+                potions.remove(potion);
+            }
+        }
+    }
+
+    public void removeSpell() {
+        for (Spell spell : spells) {
+            if (spell.getNumberOfConsumptions() == 0) {
+                spells.remove(spell);
+            }
+        }
+    }
+
     @Override
     public String toString() {
         return  "------------\n" +

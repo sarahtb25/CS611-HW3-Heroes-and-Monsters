@@ -29,7 +29,7 @@ public class Potion extends ConsumableItem {
         this.attributesAffected = attributesAffected;
     }
     
-    public void impactOfPotion(Hero hero) {
+    public void drinkPotion(Hero hero) {
         for (int i = 0; i < attributesAffected.size(); i++) {
             if (attributesAffected.get(i) == "health") hero.setHitPoints(hero.getHitPoints() + attributeIncrease);
             else if (attributesAffected.get(i) == "mana") hero.setMana(hero.getMana() + attributeIncrease);
@@ -37,5 +37,6 @@ public class Potion extends ConsumableItem {
             else if (attributesAffected.get(i) == "dexterity") hero.setDexterity(hero.getDexterity() + attributeIncrease);
             else if (attributesAffected.get(i) == "agility") hero.setAgility(hero.getAgility() + attributeIncrease);
         }
+        consume();
     }
 }

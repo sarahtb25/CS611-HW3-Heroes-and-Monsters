@@ -11,11 +11,11 @@ public class ConsumableItem extends Item {
         this.numberOfConsumptions = numberOfConsumptions;
     }
 
-    public int getnumberOfConsumptions() {
+    public int getNumberOfConsumptions() {
         return numberOfConsumptions;
     }
 
-    public void setnumberOfConsumptions(int numberOfConsumptions) {
+    public void setNumberOfConsumptions(int numberOfConsumptions) {
         this.numberOfConsumptions = numberOfConsumptions;
     }
 
