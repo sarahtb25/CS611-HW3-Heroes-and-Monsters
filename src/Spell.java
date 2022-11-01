@@ -3,6 +3,8 @@ public class Spell extends ConsumableItem {
     private int damage;
     private int manaCost;
 
+    public Spell() {}
+
     public Spell(String itemName, String id, int cost, int requiredLevel, int numberOfConsumptions, int damage, int manaCost) {
         super(itemName, id, cost, requiredLevel, numberOfConsumptions);
         this.damage = damage;

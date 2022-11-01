@@ -1,3 +1,4 @@
+// This class generates monsters as needed for a cell
 public class GenerateMonsters {
     public static final DragonFactory df = new DragonFactory();
     public static final ExoskeletonFactory ef = new ExoskeletonFactory();

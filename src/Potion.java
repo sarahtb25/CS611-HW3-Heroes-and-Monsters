@@ -5,6 +5,8 @@ public class Potion extends ConsumableItem {
     private int attributeIncrease;
     private List<String> attributesAffected;
 
+    public Potion() {}
+
     public Potion(String itemName, String id, int cost, int requiredLevel, int numberOfConsumptions, int attributeIncrease, List<String> attributesAffected) {
         super(itemName, id, cost, requiredLevel, numberOfConsumptions);
         this.attributeIncrease = attributeIncrease;

@@ -26,4 +26,44 @@ public class Heroes {
     public void removeHero(Hero hero) {
         heroes.remove(hero);
     }
+
+    public boolean checkIfHeroExists(String id) {
+        for (Hero hero : heroes) {
+            if (hero.getId().equals(id)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Hero getHeroFromId(String id) {
+        Hero heroWanted = new Hero();
+
+        for (Hero hero : heroes) {
+            if (hero.getId().equals(id)) {
+                heroWanted = hero;
+                break;
+            }
+        }
+
+        return heroWanted;
+    }
+
+    public void printHeroes() {
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("|                                   HEROES                                                  |");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.printf("%5s %10s %10s %8s %8s %10s %10s %10s %10s", "ID", "NAME", "HITPOINT", "MANA", "MONEY", "EXPERIENCE", "STRENGTH", "AGILITY", "DEXTERITY");
+        System.out.println();
+        System.out.println("---------------------------------------------------------------------------------------------");
+
+        for(Hero hero : heroes) {
+            System.out.format("%7s %14s %7s %7s %7s %7s %7s %7s", hero.getId(), hero.getName(), hero.getHitPoints(), hero.getMana(), hero.getMoney(), hero.getExperience(), hero.getStrength(), hero.getAgility(), hero.getDexterity());
+            System.out.println();
+        }
+
+        System.out.println("----------------------------------------------------------------------------------------------");
+    }
 }

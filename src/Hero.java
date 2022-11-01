@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 // This class represents a hero
@@ -22,6 +23,7 @@ public class Hero extends NonPlayerCharacter {
     private int experience;
     private int experienceGained;
     private int numberOfTimesHeroDefeatedMonster;
+    private List<Item> currentlyEquippedItems = new ArrayList<>();
     private Inventory inventory;
 
     public Hero() {
@@ -112,6 +114,55 @@ public class Hero extends NonPlayerCharacter {
 
     public void setExperienceGained(int experienceGained) {
         this.experienceGained = experienceGained;
+    }
+
+    public List<Item> getCurrentlyEquippedItems() {
+        return currentlyEquippedItems;
+    }
+
+    public void setCurrentlyEquippedItems(List<Item> currentlyEquippedItems) {
+        this.currentlyEquippedItems = currentlyEquippedItems;
+    }
+
+    public boolean checkIfHeroWearingAnItemType(Item item) {
+        for (Item itemAlreadyOnHero : currentlyEquippedItems) {
+            if ((itemAlreadyOnHero instanceof Weapon && item instanceof Weapon) || (itemAlreadyOnHero instanceof Armor && item instanceof Armor)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public Item getItemWornByHero(Item item) {
+        Item itemWanted ;
+
+        for (Item itemAlreadyOnHero : currentlyEquippedItems) {
+            if ((itemAlreadyOnHero instanceof Weapon && item instanceof Weapon) || (itemAlreadyOnHero instanceof Armor && item instanceof Armor)) {
+                item =  itemAlreadyOnHero;
+            }
+        }
+
+        return item;
+    }
+    public void wearAWeaponOrArmor(Item item) {
+        currentlyEquippedItems.add(item);
+    }
+
+    public void replaceAWeaponOrArmor(Item item) {
+        boolean isWearing = checkIfHeroWearingAnItemType(item);
+
+        if (isWearing) {
+            Item itemAlreadyOnHero = getItemWornByHero(item);
+            removeAWeaponOrArmorFromBody(itemAlreadyOnHero);
+            wearAWeaponOrArmor(item);
+        } else {
+            wearAWeaponOrArmor(item);
+        }
+    }
+
+    public void removeAWeaponOrArmorFromBody(Item item) {
+        currentlyEquippedItems.remove(item);
     }
 
     public int getNumberOfTimesHeroDefeatedMonster() {
@@ -223,14 +274,15 @@ public class Hero extends NonPlayerCharacter {
     @Override
     public String toString() {
         return "Hero " + getName() + " :" +
-                "\n\thitPoints:"  + hitPoints +
-                "\n\tmana: " + mana +
-                "\n\tstrength: " + strength +
-                "\n\tagility: " + agility +
-                "\n\tdexterity: " + dexterity +
-                "\n\tmoney: " + money +
-                "\n\texperience: " + experience +
-                "\n\texperienceGained: " + experienceGained + "/" + experienceNeededToLevelUp() +
+                "\n\tHit Points:"  + hitPoints +
+                "\n\tMana: " + mana +
+                "\n\tStrength: " + strength +
+                "\n\tAgility: " + agility +
+                "\n\tDexterity: " + dexterity +
+                "\n\tMoney: " + money +
+                "\n\tExperience: " + experience +
+                "\n\tExperience Gained: " + experienceGained + "/" + experienceNeededToLevelUp() +
+                "\n\tCurrently Equipped Items: " + currentlyEquippedItems +
                 "\n\tinventory: " + inventory;
     }
 }

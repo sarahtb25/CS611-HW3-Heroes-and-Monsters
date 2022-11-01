@@ -34,4 +34,43 @@ public class SpellFactory {
     public void setSpells(List<Spell> spells) {
         this.spells = spells;
     }
+
+    public void printSpells() {
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("|                                   SPELLS                                                  |");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.printf("%5s %10s %10s %8s %10s %20s %25s %17s", "ID", "TYPE", "NAME", "COST", "MANA COST", "LEVEL", "NUMBER OF CONSUMPTIONS", "DAMAGE");
+        System.out.println();
+        System.out.println("---------------------------------------------------------------------------------------------");
+
+        for(Spell spell : spells) {
+            String typeOfSpell = "";
+
+            if (spell instanceof FireSpell) {
+                typeOfSpell = "Fire";
+            } else if (spell instanceof IceSpell) {
+                typeOfSpell = "Ice";
+            } else if (spell instanceof LightningSpell) {
+                typeOfSpell = "Lightning";
+            }
+
+            System.out.format("%7s %15s %14s %7s %10s %10s %25s %13s", spell.getId(), typeOfSpell, spell.getItemName(), spell.getCost(), spell.getManaCost(), spell.getRequiredLevel(), spell.getnumberOfConsumptions(), spell.getDamage());
+            System.out.println();
+        }
+
+        System.out.println("----------------------------------------------------------------------------------------------");
+    }
+
+    public Spell getSpellFromId(String id) {
+        Spell spellWanted = new Spell();
+
+        for (Spell spell : spells) {
+            if (spell.getId().equals(id)) {
+                spellWanted = spell;
+            }
+        }
+
+        return spellWanted;
+    }
 }

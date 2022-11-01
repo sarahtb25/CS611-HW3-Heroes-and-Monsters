@@ -2,6 +2,8 @@ public class Weapon extends Item {
     private int numberOfHandsRequired;
     private int damage;
 
+    public Weapon() {}
+
     public Weapon(String itemName, String id, int cost, int requiredLevel, int numberOfHandsRequired, int damage) {
         super(itemName, id, cost, requiredLevel);
         this.numberOfHandsRequired = numberOfHandsRequired;

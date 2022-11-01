@@ -24,4 +24,33 @@ public class ArmorFactory {
     public void setArmors(List<Armor> armors) {
         this.armors = armors;
     }
+
+    public void printArmors() {
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("|                                   ARMORS                                                  |");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.printf("%5s %10s %10s %8s %20s", "ID", "NAME", "COST", "LEVEL", "DAMAGE REDUCTION");
+        System.out.println();
+        System.out.println("---------------------------------------------------------------------------------------------");
+
+        for(Armor armor : armors) {
+            System.out.format("%7s %14s %7s %10s %25s %13s", armor.getId(), armor.getItemName(), armor.getCost(), armor.getRequiredLevel(), armor.getDamageReduction());
+            System.out.println();
+        }
+
+        System.out.println("----------------------------------------------------------------------------------------------");
+    }
+
+    public Armor getArmorFromId(String id) {
+        Armor armorWanted = new Armor();
+
+        for (Armor armor : armors) {
+            if (armor.getId().equals(id)) {
+                armorWanted = armor;
+            }
+        }
+
+        return armorWanted;
+    }
 }

@@ -5,6 +5,7 @@ public class Item {
     private int cost;
     private int requiredLevel;
 
+    public Item() {}
     public Item(String itemName, String id, int cost, int requiredLevel) {
         this.itemName = itemName;
         this.id = id;

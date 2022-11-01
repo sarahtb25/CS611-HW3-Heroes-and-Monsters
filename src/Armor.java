@@ -1,6 +1,8 @@
 public class Armor extends Item {
     private int damageReduction;
 
+    public Armor() {}
+
     public Armor(String itemName, String id, int cost, int requiredLevel, int damageReduction) {
         super(itemName, id, cost, requiredLevel);
         this.damageReduction = damageReduction;

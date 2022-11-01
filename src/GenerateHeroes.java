@@ -1,3 +1,4 @@
+// This class generates heroes according to the number of heroes wanted by player
 public class GenerateHeroes {
     public static final WarriorFactory wf = new WarriorFactory();
     public static final SorcererFactory sf = new SorcererFactory();

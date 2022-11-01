@@ -26,4 +26,33 @@ public class WeaponFactory {
     public void setWeapons(List<Weapon> weapons) {
         this.weapons = weapons;
     }
+
+    public void printWeapons() {
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("|                                   WEAPONS                                                 |");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.printf("%5s %10s %10s %8s %20s %17s", "ID", "NAME", "COST", "LEVEL", "HANDS", "DAMAGE");
+        System.out.println();
+        System.out.println("---------------------------------------------------------------------------------------------");
+
+        for(Weapon weapon : weapons) {
+            System.out.format("%7s %14s %7s %10s %25s %13s", weapon.getId(), weapon.getItemName(), weapon.getCost(), weapon.getRequiredLevel(), weapon.getNumberOfHandsRequired(), weapon.getDamage());
+            System.out.println();
+        }
+
+        System.out.println("----------------------------------------------------------------------------------------------");
+    }
+
+    public Weapon getWeaponFromId(String id) {
+        Weapon weaponWanted = new Weapon();
+
+        for (Weapon weapon : weapons) {
+            if (weapon.getId().equals(id)) {
+                weaponWanted = weapon;
+            }
+        }
+
+        return weaponWanted;
+    }
 }

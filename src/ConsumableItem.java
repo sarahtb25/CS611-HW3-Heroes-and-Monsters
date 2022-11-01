@@ -4,6 +4,8 @@
 public class ConsumableItem extends Item {
     private int numberOfConsumptions;
 
+    public ConsumableItem() {}
+
     public ConsumableItem(String itemName, String id, int cost, int requiredLevel, int numberOfConsumptions) {
         super(itemName, id, cost, requiredLevel);
         this.numberOfConsumptions = numberOfConsumptions;
