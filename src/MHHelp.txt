@@ -1,0 +1,60 @@
+---------------------------------------------------------------------------
+|                                   HELP                                  |
+---------------------------------------------------------------------------
+
+RULES:
+    1.
+
+There are 3 parts to the Monsters and Heroes game:
+    1. Map
+    2. Market
+    3. Battle
+
+************
+|   Map    |
+************
+
+Commands allowed on the map (Not case-sensitive):
+    1. W/w: Move up
+    2. A/a: Move left
+    3. S/s: Move down
+    4. D/d: Move right
+    5. Q/q: Quit game
+    6. I/i: Show information about the heroes
+    7. M/m: When in a place that has a Market, use M/m to go to the market
+    8. View Map: To view the map
+    9. <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory
+    10. <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0
+    11. Hero <Hero ID>: To view the e.g. Hero R0
+    12. Regenerate Map: To create a new map e.g. if you are stuck, or just
+                        don't like the map you have
+    13. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or
+                                                is not carrying/wearing e.g. R0 change B0
+
+***************
+|   Market    |
+***************
+
+Commands allowed in the market (Not case-sensitive):
+    1. View Market: To view the items in the market
+    2. <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0
+    3. <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0
+    4. View Heroes: To view all the heroes you have
+    5. <Hero ID>: To view the details of a hero
+    6. Q/q: To quit the game
+
+***************
+|   Battle    |
+***************
+
+A battle can occur in a common space. Depending on your luck, you may or may not have to
+fight monsters.
+
+Commands allowed in battle (Not case-sensitive):
+    1. Change <Weapon or Armor ID>: To update the weapon or armor a hero is or
+                                    is not carrying/wearing e.g. R0 change B0
+    2. Hit: To hit the monster with the weapon the hero is carrying
+    3. Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0
+    4. I/i: To view the details of the hero and the monster engaged in battle
+    5. Q/q: To quit the game
+

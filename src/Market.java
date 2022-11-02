@@ -17,12 +17,12 @@ public class Market {
         Hero hero;
 
         while(!userInput.equals("x") || !userInput.equals("q")) {
-            String instructions = "To Buy an item, enter Hero ID for a hero you have " +
-                    "Buy followed by the item ID e.g. R0 Buy B0.\n" +
-                    "To Sell an item, enter Hero ID for a hero you have " +
-                    "Sell followed by the item ID e.g. R0 Sell B0.\n" +
-                    "To view the items in the market, enter View Market.\n" +
-                    "To view the heroes you have, enter View Heroes.";
+            String instructions = "Possible Commands (Not case-sensitive):\n" +
+                    "1. View Market: To view the items in the market\n" +
+                    "2. <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0\n" +
+                    "3. <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0\n" +
+                    "4. View Heroes: To view all the heroes you have\n" +
+                    "5. <Hero ID>: To view the details of a hero";
 
             System.out.println(instructions);
             userInput = scan.next().trim().toLowerCase();
