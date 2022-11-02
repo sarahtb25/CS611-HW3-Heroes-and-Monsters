@@ -2,6 +2,10 @@
 public class MHPlayer extends Player {
     private Heroes heroes;
 
+    public MHPlayer(String name) {
+        super(name);
+    }
+
     public MHPlayer(String name, Heroes heroes) {
         super(name);
         this.heroes = heroes;

@@ -33,7 +33,7 @@ public class MHRoundHistory implements RoundHistory {
         Set<String> heroNames = roundScores.keySet();
 
         for (String heroName : heroNames) {
-            System.out.println("\tHero " + heroName + " defeated " + roundScores.get(heroName) + " time(s).");
+            System.out.println("\tHero " + heroName + " defeated " + roundScores.get(heroName) + " monster(s).");
         }
     }
 }
