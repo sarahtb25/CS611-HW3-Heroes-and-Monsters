@@ -37,6 +37,20 @@ public class Potion extends ConsumableItem {
             else if (attributesAffected.get(i).equals("dexterity")) hero.setDexterity(hero.getDexterity() + attributeIncrease);
             else if (attributesAffected.get(i).equals("agility")) hero.setAgility(hero.getAgility() + attributeIncrease);
         }
+        printPotionImpact(hero);
         consume();
+    }
+
+    public void printPotionImpact(Hero hero) {
+        String print = "Hero " + hero.getName() + " increased their ";
+
+        for (int i = 0; i < attributesAffected.size(); i++) {
+            print += attributesAffected.get(i) + ", ";
+        }
+
+        print.substring(0, print.length() - 1);
+        print += " by " + attributeIncrease + " points!";
+
+        System.out.println(print);
     }
 }

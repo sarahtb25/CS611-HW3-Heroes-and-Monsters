@@ -14,6 +14,8 @@ public class Hero extends NonPlayerCharacter {
     public static final double attackDamageWithSpell = 0.0001;
     public static final int levelUpMoneyFactor = 100;
     public static final int numMonsterPerBattle = 1;
+    public static final double revivalAlive = 1.1;
+    public static final double revivalUnconscious = 0.5;
     private int hitPoints;
     private int mana;
     private int strength;
@@ -183,12 +185,62 @@ public class Hero extends NonPlayerCharacter {
         addItemToInventory(item);
     }
 
+    public String hit(Monster monster) {
+        String response = "";
+        int damage = 0;
+        int noMore = 0;
+
+        for (Item item : currentlyEquippedItems) {
+            if (item instanceof Weapon) {
+                Weapon weapon = (Weapon) item;
+                damage = weapon.getDamage();
+            }
+        }
+
+        if (getAttackDamageWithWeapon(damage) < monster.calculateDodge()) {
+            response = "Monster " + monster.getName() + " managed to dodge Hero " + getName() + "'s attack!";
+        } else {
+            int damageReduceAmount = monster.getDefense();
+
+            if (damageReduceAmount < getAttackDamageWithWeapon(damage)) {
+                if (monster.getHitPoint() - damageReduceAmount <= 0) {
+                    monster.setHitPoint(noMore);
+                    response = "Monster " + monster.getName() + " has been defeated!";
+                } else {
+                    monster.setHitPoint(monster.getHitPoint() - damageReduceAmount);
+                    response = "Monster " + monster.getName() + " was hit by Hero " + getName() + " and lost " + damageReduceAmount + " hitpoints!";
+                }
+            } else {
+                response = "Monster " + monster.getName() + " has successfully defended against Hero " + getName() + "'s attack!";
+            }
+        }
+
+        return response;
+    }
+
+    public int defend() {
+        int damageReduceAmount = 0;
+
+        for (Item item : currentlyEquippedItems) {
+            if (item instanceof Armor) {
+                Armor armor = (Armor) item;
+                damageReduceAmount = armor.getDamageReduction();
+            }
+        }
+
+        return damageReduceAmount;
+    }
+
     public void drinkPotion(Potion potion) {
         potion.applyPotion(this);
     }
 
-    public void useSpell(Spell spell, Monster monster) {
-        spell.applySpell(this, monster);
+    public void castSpell(Spell spell, Monster monster) {
+        if (canUseSpell()) {
+            spell.applySpell(this, monster);
+        } else {
+            System.out.println(getName() + " has not enough mana! Unable to cast " + spell.getItemName());
+        }
     }
 
     public int getNumberOfTimesHeroDefeatedMonster() {
@@ -216,12 +268,13 @@ public class Hero extends NonPlayerCharacter {
         return exp_points;
     }
 
-    public void updateExperienceGained(int monsterLevel) {
+    // To be called after hero wins the battle
+    public void updateExperienceGained() {
         experienceGained += numMonsterPerBattle * experienceGainedFactor;
-        checkLevelUp(monsterLevel);
+        checkLevelUp();
     }
 
-    public void levelUp(int monsterLevel) {
+    public void levelUp() {
         hitPoints = hitPoints * hitPointFactor;
         mana = (int) (mana * manaLevelUpFactor);
         int prevExperience = experience;
@@ -231,15 +284,14 @@ public class Hero extends NonPlayerCharacter {
         }
 
         levelUpSkills();
-        updateMoneyAfterBattle(monsterLevel);
 
         System.out.println("Congratulations! Hero " + getName() + " has leveled up from " + prevExperience + " to " + experience + "!");
         System.out.println(this);
     }
 
-    public void checkLevelUp(int monsterLevel) {
+    public void checkLevelUp() {
         if (experienceGained >= experienceNeededToLevelUp()) {
-            levelUp(monsterLevel);
+            levelUp();
         }
     }
 
@@ -251,10 +303,11 @@ public class Hero extends NonPlayerCharacter {
         return ((strength + weapon_damage) * attackDamageWithWeapon);
     }
 
-    public double getAttackDamageWithSpell(int spell_base_damage) {
-        return (spell_base_damage + (dexterity * attackDamageWithSpell * spell_base_damage));
+    public int getAttackDamageWithSpell(int spell_base_damage) {
+        return (int) (spell_base_damage + (dexterity * attackDamageWithSpell * spell_base_damage));
     }
 
+    // To be called after hero wins the battle
     public void updateMoneyAfterBattle(int monsterLevel) {
         if (hitPoints > 0) {
             money += monsterLevel * levelUpMoneyFactor;
@@ -295,6 +348,17 @@ public class Hero extends NonPlayerCharacter {
         }
 
         return true;
+    }
+
+    // To be called if more heroes win the battle against the monsters i.e. monsters defeated >= (int) number of heroes/2
+    public void revival(int startingHP, int startingMana, int monsterLevel) {
+        if (isUnconscious()) {
+            setHitPoints((int) (startingHP * revivalUnconscious));
+            setMana((int) (startingMana * revivalUnconscious));
+        } else {
+            setHitPoints((int) (startingHP * revivalAlive));
+            setMana((int) (startingMana * revivalAlive));
+        }
     }
 
     @Override

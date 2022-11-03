@@ -5,25 +5,13 @@ public class IceSpell extends Spell {
     }
 
     @Override
-    public void applySpell(Hero hero, Monster monster) {
-        if (hero.getMana() < getManaCost()) {
-            System.out.println(hero.getName() + " has not enough mana! Unable to cast " + getItemName());
+    public void affectMonsterSkill(Monster monster) {
+        int noMoreOfAttribute = 0;
+
+        if (monster.getDamage() * Monster.skillRemainingAfterSpellFactor < 0) {
+            monster.setDamage(noMoreOfAttribute);
         } else {
-            updateManaCost(hero);
-            int noMoreOfAttribute = 0;
-
-            if (monster.getHitPoint() - getDamage() < 0) {
-                monster.setHitPoint(noMoreOfAttribute);
-            } else {
-                monster.setHitPoint(monster.getHitPoint() - getDamage());
-            }
-
-            if (monster.getDamage() * Monster.skillRemainingAfterSpellFactor < 0) {
-                monster.setDamage(noMoreOfAttribute);
-            } else {
-                monster.setDamage((int) (getDamage() * Monster.skillRemainingAfterSpellFactor));
-            }
-            consume();
+            monster.setDamage((int) (getDamage() * Monster.skillRemainingAfterSpellFactor));
         }
     }
 }

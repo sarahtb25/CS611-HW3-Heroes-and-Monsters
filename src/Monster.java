@@ -66,6 +66,32 @@ public class Monster extends NonPlayerCharacter {
         this.dodgeChance = dodgeChance;
     }
 
+    public String attack(Hero hero) {
+        String response = "";
+        int noMore = 0;
+
+        // Hero can dodge
+        if (hero.getDodgeChance() >= getDamage()) {
+            response = "Hero " + hero.getName() + " managed to dodge Monster " + getName() + "'s attack!";
+        } else {
+            int damageReduceAmount = hero.defend();
+
+            if (damageReduceAmount < getDamage()) {
+                if (hero.getHitPoints() - damageReduceAmount <= 0) {
+                    hero.setHitPoints(noMore);
+                    response = "Hero " + hero.getName() + " has fainted!";
+                } else {
+                    hero.setHitPoints(hero.getHitPoints() - damageReduceAmount);
+                    response = "Hero " + hero.getName() + " was hit by Monster " + getName() + " and lost " + damageReduceAmount + " hitpoints!";
+                }
+            } else {
+                response = "Hero " + hero.getName() + " has successfully defended against Monster " + getName() + "'s attack!";
+            }
+        }
+
+        return response;
+    }
+
     @Override
     public String toString() {
         return "Monster " + getName() + " :" +

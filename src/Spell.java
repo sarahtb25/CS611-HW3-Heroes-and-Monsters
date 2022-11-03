@@ -28,13 +28,24 @@ public class Spell extends ConsumableItem {
     }
 
     public void applySpell(Hero hero, Monster monster) {
-        if (hero.getMana() < manaCost) {
+        if (hero.getMana() < getManaCost()) {
             System.out.println(hero.getName() + " has not enough mana! Unable to cast " + getItemName());
         } else {
             updateManaCost(hero);
+            int noMoreOfAttribute = 0;
+
+            if (monster.getHitPoint() - hero.getAttackDamageWithSpell(getDamage()) < 0) {
+                monster.setHitPoint(noMoreOfAttribute);
+            } else {
+                monster.setHitPoint(monster.getHitPoint() - hero.getAttackDamageWithSpell(getDamage()));
+            }
+
+            affectMonsterSkill(monster);
             consume();
         }
     }
+
+    public void affectMonsterSkill(Monster monster) {}
 
     public void updateManaCost(Hero hero) {
         hero.setMana(hero.getMana() - manaCost);

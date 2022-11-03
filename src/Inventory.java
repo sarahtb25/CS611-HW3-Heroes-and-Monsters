@@ -87,6 +87,19 @@ public class Inventory {
         }
     }
 
+    public Spell getSpellFromId(String id) {
+        Spell spellWanted = new Spell();
+
+        for (Spell spell : spells) {
+            if (spell.getId().equals(id)) {
+                spellWanted = spell;
+                break;
+            }
+        }
+
+        return spellWanted;
+    }
+
     @Override
     public String toString() {
         return  "------------\n" +

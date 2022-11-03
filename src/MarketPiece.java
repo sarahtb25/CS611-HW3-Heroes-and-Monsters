@@ -1,6 +1,7 @@
 public class MarketPiece extends MHPiece {
     public static final String name = "Market";
     public static final String id = "M";
+    public static final String playerId = "X";
     private Market market = new Market();
     private MHPlayer player;
 
@@ -8,10 +9,26 @@ public class MarketPiece extends MHPiece {
         super(name, id);
     }
 
-    // To be used when a player decides to move their hero(es) into the market
-    public MarketPiece(String playerId, MHPlayer player) {
-        super(name, playerId);
-        this.player = player;
+    public void enterMarket(MHPlayer player) {
+        setId(playerId);
+        String userInput = getUserInput();
+
+        if (userInput.equals("x")) {
+            leaveMarket(userInput);
+        }
+    }
+
+    public boolean leaveMarket(String leaveOrQuit) {
+        System.out.println("Exiting Market");
+        setId(id);
+
+        // exiting market only, not the game
+        if (leaveOrQuit.equals("x")) {
+            return false;
+        }
+
+        // exiting game
+        return true;
     }
 
     public String getUserInput() {
