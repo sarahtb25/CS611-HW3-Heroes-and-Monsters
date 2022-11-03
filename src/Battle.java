@@ -3,6 +3,7 @@ import java.util.Scanner;
 // Represents a battle between a hero and a monster
 public class Battle {
     private Fighters fighters;
+    public static final MHHelp help = new MHHelp();
 
     public Battle(Fighters fighters) {
         this.fighters = fighters;
@@ -13,20 +14,12 @@ public class Battle {
     }
 
     // Print instructions
-    public void printInstructions() {
-        String instructions = "Commands allowed in battle (Not case-sensitive):\n" +
-                "    1. Change <Weapon or Armor ID>: To update the weapon or armor a hero is or\n" +
-                "                                    is not carrying/wearing e.g. R0 change B0\n" +
-                "    2. Hit: To hit the monster with the weapon the hero is carrying\n" +
-                "    3. Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0\n" +
-                "    4. I/i: To view the details of the hero and the monster engaged in battle\n" +
-                "    5. Q/q: To quit the game";
-
-        System.out.println(instructions);
+    public void printHelp() {
+        help.printHelpBattle();
     }
 
     public boolean checkUserResponse(String userResponse) {
-        return (userResponse.contains("change ") || userResponse.equals("hit") || userResponse.contains("cast ") || userResponse.equals("i") || userResponse.equals("q"));
+        return (userResponse.contains("change ") || userResponse.equals("hit") || userResponse.contains("cast ") || userResponse.equals("i") || userResponse.equals("q") || userResponse.equals("h"));
     }
 
     public String fight() {
@@ -40,7 +33,7 @@ public class Battle {
         while(hero.getHitPoints() > 0 || monster.getHitPoint() > 0 || !userResponseOrBattleWinner.equals("q")) {
             if (turn % 2 == 0) {
                 // Player's turn
-                printInstructions();
+                printHelp();
                 System.out.println("Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):");
                 userResponseOrBattleWinner = scan.next().trim().toLowerCase();
                 boolean isValid = checkUserResponse(userResponseOrBattleWinner);
@@ -90,6 +83,8 @@ public class Battle {
                     System.out.println(hero);
                     System.out.println();
                     System.out.println(monster);
+                } else if (userResponseOrBattleWinner.equals("h")) {
+                    printHelp();
                 } else if (userResponseOrBattleWinner.equals("q")) { // Quit the game
                     break;
                 }
@@ -105,6 +100,7 @@ public class Battle {
         if (!userResponseOrBattleWinner.equals("q")) {
             if (hero.getHitPoints() <= 0) {
                 userResponseOrBattleWinner = "hero";
+                updateHeroAfterBattle(hero, monster.getLevel());
             } else {
                 userResponseOrBattleWinner = "monster";
             }
@@ -112,5 +108,10 @@ public class Battle {
 
         // contains q if user quits the game, or hero if hero wins the game, or monster if monster wins the game
         return userResponseOrBattleWinner;
+    }
+
+    public void updateHeroAfterBattle(Hero hero, int monsterLevel) {
+        hero.updateExperienceGained();
+        hero.updateMoneyAfterBattle(monsterLevel);
     }
 }

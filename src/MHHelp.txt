@@ -22,13 +22,14 @@ Commands allowed on the map (Not case-sensitive):
     5. Q/q: Quit game
     6. I/i: Show information about the heroes
     7. M/m: When in a place that has a Market, use M/m to go to the market
-    8. View Map: To view the map
-    9. <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory
-    10. <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0
-    11. Hero <Hero ID>: To view the e.g. Hero R0
-    12. Regenerate Map: To create a new map e.g. if you are stuck, or just
+    8. H/h: To view possible commands while using the map
+    9. View Map: To view the map
+    10. <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory
+    11. <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0
+    12. Hero <Hero ID>: To view the e.g. Hero R0
+    13. Regenerate Map: To create a new map e.g. if you are stuck, or just
                         don't like the map you have
-    13. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or
+    14. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or
                                                 is not carrying/wearing e.g. R0 change B0
 
 ***************
@@ -42,6 +43,7 @@ Commands allowed in the market (Not case-sensitive):
     4. View Heroes: To view all the heroes you have
     5. <Hero ID>: To view the details of a hero
     6. Q/q: To quit the game
+    7. H/h: To view possible commands for Market
 
 ***************
 |   Battle    |
@@ -57,4 +59,5 @@ Commands allowed in battle (Not case-sensitive):
     3. Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0
     4. I/i: To view the details of the hero and the monster engaged in battle
     5. Q/q: To quit the game
+    6. H/h: Help
 

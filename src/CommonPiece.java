@@ -3,7 +3,7 @@ import java.util.Random;
 public class CommonPiece extends MHPiece {
     public static final String name = "Common";
     public static final String id = "C";
-    public static final String playerId = "X";
+    public static final String playerId = "C*";
     private int numberOfHeroes = 0;
     private Monsters monsters = new Monsters();
 

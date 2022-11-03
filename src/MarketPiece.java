@@ -1,7 +1,7 @@
 public class MarketPiece extends MHPiece {
     public static final String name = "Market";
     public static final String id = "M";
-    public static final String playerId = "X";
+    public static final String playerId = "M*";
     private Market market = new Market();
     private MHPlayer player;
 
@@ -9,8 +9,11 @@ public class MarketPiece extends MHPiece {
         super(name, id);
     }
 
-    public void enterMarket(MHPlayer player) {
+    public void beforeEnteringMarket() {
         setId(playerId);
+    }
+
+    public void enterMarket(MHPlayer player) {
         String userInput = getUserInput();
 
         if (userInput.equals("x")) {

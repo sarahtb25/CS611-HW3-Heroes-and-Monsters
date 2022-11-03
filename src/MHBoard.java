@@ -41,4 +41,47 @@ public class MHBoard extends Board {
     public MHCell[][] getMHBoard() {
         return (MHCell[][]) getBoard();
     }
+
+    public MHCell getMHBoardCell(int row, int column) {
+        return getMHBoard()[row][column];
+    }
+
+    /* When player first starts playing, place the player in a random cell
+    that is either a common space or has a market
+     */
+    public MHCell getRandomMHBoardCell() {
+        MHCell cellWanted;
+
+        do {
+            int rowIndex = (int) (Math.random() * (numberOfRowsAndCols - 1));
+            int columnIndex = (int) (Math.random() * (numberOfRowsAndCols - 1));
+            cellWanted = getMHBoard()[rowIndex][columnIndex];
+        } while(!(cellWanted.getPiece() instanceof MarketPiece));
+
+        return cellWanted;
+    }
+
+    @Override
+    public void printBoard() {
+        int rows = numberOfRowsAndCols + 1;
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < numberOfRowsAndCols; j++) {
+                System.out.print("+-----");
+            }
+            System.out.println("+");
+
+            if (i < numberOfRowsAndCols) {
+                for (int k = 0; k < numberOfRowsAndCols; k++) {
+                    String pieceId = getBoard()[i][k].getPiece().getId();
+                    if (pieceId.length() == 2) {
+                        System.out.print("| " + pieceId + " ");
+                    } else {
+                        System.out.print("| " + pieceId + "  ");
+                    }
+                }
+                System.out.println("|");
+            }
+        }
+    }
 }
