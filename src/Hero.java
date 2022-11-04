@@ -351,7 +351,7 @@ public class Hero extends NonPlayerCharacter {
     }
 
     // To be called if more heroes win the battle against the monsters i.e. monsters defeated >= (int) number of heroes/2
-    public void revival(int startingHP, int startingMana, int monsterLevel) {
+    public void revive(int startingHP, int startingMana, int monsterLevel) {
         if (isUnconscious()) {
             setHitPoints((int) (startingHP * revivalUnconscious));
             setMana((int) (startingMana * revivalUnconscious));

@@ -27,6 +27,10 @@ public class MHRoundHistory implements RoundHistory {
         this.roundScores = roundScores;
     }
 
+    public void addHeroScoreToRoundHistory(String name, int score) {
+        roundScores.put(name, score);
+    }
+
     @Override
     public void printRoundScores() {
         System.out.println("There were " + numberOfBattles + " battles.");

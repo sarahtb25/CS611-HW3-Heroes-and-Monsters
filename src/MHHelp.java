@@ -27,7 +27,8 @@ public class MHHelp implements Help {
                     "    3. Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0\n" +
                     "    4. I/i: To view the details of the hero and the monster engaged in battle\n" +
                     "    5. Q/q: To quit the game\n" +
-                    "    6. H/h: To view possible commands for battle";
+                    "    6. H/h: To view possible commands for battle\n" +
+                    "    7. R/r: To view the rules of Monsters and Heroes\n";
 
         System.out.println(help);
     }
@@ -44,7 +45,8 @@ public class MHHelp implements Help {
                 "    4. View Heroes: To view all the heroes you have\n" +
                 "    5. <Hero ID>: To view the details of a hero\n" +
                 "    6. Q/q: To quit the game\n" +
-                "    7. H/h: To view possible commands for Market";
+                "    7. H/h: To view possible commands for Market\n" +
+                "    8. R/r: To view the rules of Monsters and Heroes\n";
 
         System.out.println(help);
     }
@@ -63,15 +65,20 @@ public class MHHelp implements Help {
                 "    6. I/i: Show information about the heroes\n" +
                 "    7. M/m: When in a place that has a Market, use M/m to go to the market\n" +
                 "    8. H/h: To view possible commands while using the map\n" +
-                "    9. View Map: To view the map\n" +
-                "    10. <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory\n" +
-                "    11. <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0\n" +
-                "    12. Hero <Hero ID>: To view the e.g. Hero R0\n" +
-                "    13. Regenerate Map: To create a new map e.g. if you are stuck, or just\n" +
+                "    9. R/r: To view the rules of Monsters and Heroes\n" +
+                "    10. View Map: To view the map\n" +
+                "    11. <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory\n" +
+                "    12. <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0\n" +
+                "    13. Hero <Hero ID>: To view the e.g. Hero R0\n" +
+                "    14. Regenerate Map: To create a new map e.g. if you are stuck, or just\n" +
                 "                        don't like the map you have\n" +
-                "    14. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or\n" +
-                "                                                is not carrying/wearing e.g. R0 change B0";
+                "    15. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or\n" +
+                "                                                is not carrying/wearing e.g. R0 change B0\n";
 
         System.out.println(help);
+    }
+
+    public void printRules() {
+
     }
 }

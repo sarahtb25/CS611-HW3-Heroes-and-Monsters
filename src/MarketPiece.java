@@ -3,7 +3,6 @@ public class MarketPiece extends MHPiece {
     public static final String id = "M";
     public static final String playerId = "M*";
     private Market market = new Market();
-    private MHPlayer player;
 
     public MarketPiece() {
         super(name, id);
@@ -13,12 +12,16 @@ public class MarketPiece extends MHPiece {
         setId(playerId);
     }
 
-    public void enterMarket(MHPlayer player) {
-        String userInput = getUserInput();
+    public boolean market(MHPlayer player) {
+        String userInput = getUserInput(player);
+        boolean quit = false;
 
         if (userInput.equals("x")) {
-            leaveMarket(userInput);
+            quit = leaveMarket(userInput);
         }
+
+        // if true, exit game
+        return quit;
     }
 
     public boolean leaveMarket(String leaveOrQuit) {
@@ -34,7 +37,7 @@ public class MarketPiece extends MHPiece {
         return true;
     }
 
-    public String getUserInput() {
+    public String getUserInput(MHPlayer player) {
         // x (to exit market) or q (to quit the game)
         String userInput = market.getUserInput(player);
 

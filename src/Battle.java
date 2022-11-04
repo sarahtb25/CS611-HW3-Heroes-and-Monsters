@@ -18,8 +18,12 @@ public class Battle {
         help.printHelpBattle();
     }
 
+    public void printRules() {
+        help.printRules();
+    }
+
     public boolean checkUserResponse(String userResponse) {
-        return (userResponse.contains("change ") || userResponse.equals("hit") || userResponse.contains("cast ") || userResponse.equals("i") || userResponse.equals("q") || userResponse.equals("h"));
+        return (userResponse.contains("change ") || userResponse.equals("hit") || userResponse.contains("cast ") || userResponse.equals("i") || userResponse.equals("r") || userResponse.equals("q") || userResponse.equals("h"));
     }
 
     public String fight() {
@@ -87,6 +91,8 @@ public class Battle {
                     printHelp();
                 } else if (userResponseOrBattleWinner.equals("q")) { // Quit the game
                     break;
+                } else if (userResponseOrBattleWinner.equals("r")) {
+                    printRules();
                 }
             } else {
                 // Monster's turn
@@ -100,6 +106,7 @@ public class Battle {
         if (!userResponseOrBattleWinner.equals("q")) {
             if (hero.getHitPoints() <= 0) {
                 userResponseOrBattleWinner = "hero";
+                hero.setNumberOfTimesHeroDefeatedMonster(hero.getNumberOfTimesHeroDefeatedMonster() + 1);
                 updateHeroAfterBattle(hero, monster.getLevel());
             } else {
                 userResponseOrBattleWinner = "monster";

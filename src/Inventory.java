@@ -100,6 +100,85 @@ public class Inventory {
         return spellWanted;
     }
 
+    public Potion getPotionFromId(String id) {
+        Potion potionWanted = new Potion();
+
+        for (Potion potion : potions) {
+            if (potion.getId().equals(id)) {
+                potionWanted = potion;
+                break;
+            }
+        }
+
+        return potionWanted;
+    }
+
+    public Weapon getWeaponFromId(String id) {
+        Weapon weaponWanted = new Weapon();
+
+        for (Weapon weapon : weapons) {
+            if (weapon.getId().equals(id)) {
+                weaponWanted = weapon;
+                break;
+            }
+        }
+
+        return weaponWanted;
+    }
+
+    public Armor getArmorFromId(String id) {
+        Armor armorWanted = new Armor();
+
+        for (Armor armor : armors) {
+            if (armor.getId().equals(id)) {
+                armorWanted = armor;
+                break;
+            }
+        }
+
+        return armorWanted;
+    }
+
+    public boolean checkIfPotionExists(String potionId) {
+        for (Potion potion : potions) {
+            if (potion.getId().equals(potionId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean checkIfSpellExists(String spellId) {
+        for (Spell spell : spells) {
+            if (spell.getId().equals(spellId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean checkIfWeaponExists(String weaponId) {
+        for (Weapon weapon : weapons) {
+            if (weapon.getId().equals(weaponId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean checkIfArmorExists(String armorId) {
+        for (Armor armor : armors) {
+            if (armor.getId().equals(armorId)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     @Override
     public String toString() {
         return  "------------\n" +

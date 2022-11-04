@@ -49,7 +49,7 @@ public class MHBoard extends Board {
     /* When player first starts playing, place the player in a random cell
     that is either a common space or has a market
      */
-    public MHCell getRandomMHBoardCell() {
+    public MHCell getRandomMarketCell() {
         MHCell cellWanted;
 
         do {
@@ -83,5 +83,25 @@ public class MHBoard extends Board {
                 System.out.println("|");
             }
         }
+    }
+
+    public int[] getRowAndColumnIndex() {
+        int[] rowAndColumnIndex = {-1, -1};
+
+        for (int i = 0; i < numberOfRowsAndCols; i++) {
+            for (int j = 0; j < numberOfRowsAndCols; j++) {
+                if (rowAndColumnIndex[0] != -1 && rowAndColumnIndex[1] != -1) {
+                    break;
+                } else {
+                    if (getMHBoardCell(i, j).getPiece().getId().contains("*")) {
+                        rowAndColumnIndex[0] = i;
+                        rowAndColumnIndex[j] = j;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return rowAndColumnIndex;
     }
 }

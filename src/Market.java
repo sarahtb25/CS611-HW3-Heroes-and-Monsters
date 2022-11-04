@@ -14,6 +14,11 @@ public class Market {
     public void printHelp() {
         help.printHelpMarket();
     }
+
+    public void printRules() {
+        help.printRules();
+    }
+
     public String getUserInput(MHPlayer player) {
         String userInput = "";
         Scanner scan = new Scanner(System.in);
@@ -47,6 +52,8 @@ public class Market {
                 player.getHeroes().printHeroes();
             } else if (userInput.equals("h")) {
                 printHelp();
+            } else if (userInput.equals("r")) {
+                printRules();
             } else if (!userInput.equals("x") || !userInput.equals("q")){
                 System.out.println("Invalid Input!");
             }
