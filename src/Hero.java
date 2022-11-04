@@ -25,7 +25,7 @@ public class Hero extends NonPlayerCharacter {
     private int experience;
     private int experienceGained;
     private int numberOfTimesHeroDefeatedMonster;
-    private List<Item> currentlyEquippedItems = new ArrayList<>();
+    private List<EquippableItem> currentlyEquippedItems = new ArrayList<>();
     private Inventory inventory;
 
     public Hero() {
@@ -118,16 +118,16 @@ public class Hero extends NonPlayerCharacter {
         this.experienceGained = experienceGained;
     }
 
-    public List<Item> getCurrentlyEquippedItems() {
+    public List<EquippableItem> getCurrentlyEquippedItems() {
         return currentlyEquippedItems;
     }
 
-    public void setCurrentlyEquippedItems(List<Item> currentlyEquippedItems) {
+    public void setCurrentlyEquippedItems(List<EquippableItem> currentlyEquippedItems) {
         this.currentlyEquippedItems = currentlyEquippedItems;
     }
 
-    public boolean checkIfHeroWearingAnItemType(Item item) {
-        for (Item itemAlreadyOnHero : currentlyEquippedItems) {
+    public boolean checkIfHeroWearingAnItemType(EquippableItem item) {
+        for (EquippableItem itemAlreadyOnHero : currentlyEquippedItems) {
             if ((itemAlreadyOnHero instanceof Weapon && item instanceof Weapon) || (itemAlreadyOnHero instanceof Armor && item instanceof Armor)) {
                 return true;
             }
@@ -136,10 +136,8 @@ public class Hero extends NonPlayerCharacter {
         return false;
     }
 
-    public Item getItemWornByHero(Item item) {
-        Item itemWanted ;
-
-        for (Item itemAlreadyOnHero : currentlyEquippedItems) {
+    public EquippableItem getItemWornByHero(EquippableItem item) {
+        for (EquippableItem itemAlreadyOnHero : currentlyEquippedItems) {
             if ((itemAlreadyOnHero instanceof Weapon && item instanceof Weapon) || (itemAlreadyOnHero instanceof Armor && item instanceof Armor)) {
                 item =  itemAlreadyOnHero;
             }
@@ -147,12 +145,12 @@ public class Hero extends NonPlayerCharacter {
 
         return item;
     }
-    public void wearAWeaponOrArmor(Item item) {
+    public void wearAWeaponOrArmor(EquippableItem item) {
         currentlyEquippedItems.add(item);
         removeItemFromInventory(item);
     }
 
-    public void removeItemFromInventory(Item item) {
+    public void removeItemFromInventory(EquippableItem item) {
         if (item instanceof Weapon) {
             inventory.removeWeapon((Weapon) item);
         } else if (item instanceof Armor) {
@@ -160,7 +158,7 @@ public class Hero extends NonPlayerCharacter {
         }
     }
 
-    public void addItemToInventory(Item item) {
+    public void addItemToInventory(EquippableItem item) {
         if (item instanceof Weapon) {
             inventory.addWeapon((Weapon) item);
         } else if (item instanceof Armor) {
@@ -168,11 +166,11 @@ public class Hero extends NonPlayerCharacter {
         }
     }
 
-    public void replaceAWeaponOrArmor(Item item) {
+    public void replaceAWeaponOrArmor(EquippableItem item) {
         boolean isWearing = checkIfHeroWearingAnItemType(item);
 
         if (isWearing) {
-            Item itemAlreadyOnHero = getItemWornByHero(item);
+            EquippableItem itemAlreadyOnHero = getItemWornByHero(item);
             removeAWeaponOrArmorFromBody(itemAlreadyOnHero);
             wearAWeaponOrArmor(item);
         } else {
@@ -180,7 +178,7 @@ public class Hero extends NonPlayerCharacter {
         }
     }
 
-    public void removeAWeaponOrArmorFromBody(Item item) {
+    public void removeAWeaponOrArmorFromBody(EquippableItem item) {
         currentlyEquippedItems.remove(item);
         addItemToInventory(item);
     }
@@ -190,7 +188,7 @@ public class Hero extends NonPlayerCharacter {
         int damage = 0;
         int noMore = 0;
 
-        for (Item item : currentlyEquippedItems) {
+        for (EquippableItem item : currentlyEquippedItems) {
             if (item instanceof Weapon) {
                 Weapon weapon = (Weapon) item;
                 damage = weapon.getDamage();
@@ -221,7 +219,7 @@ public class Hero extends NonPlayerCharacter {
     public int defend() {
         int damageReduceAmount = 0;
 
-        for (Item item : currentlyEquippedItems) {
+        for (EquippableItem item : currentlyEquippedItems) {
             if (item instanceof Armor) {
                 Armor armor = (Armor) item;
                 damageReduceAmount = armor.getDamageReduction();

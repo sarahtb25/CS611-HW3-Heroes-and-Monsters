@@ -1,4 +1,4 @@
-public class Weapon extends Item {
+public class Weapon extends EquippableItem {
     private int numberOfHandsRequired;
     private int damage;
 

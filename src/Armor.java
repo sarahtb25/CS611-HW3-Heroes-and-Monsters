@@ -1,4 +1,4 @@
-public class Armor extends Item {
+public class Armor extends EquippableItem {
     private int damageReduction;
 
     public Armor() {}

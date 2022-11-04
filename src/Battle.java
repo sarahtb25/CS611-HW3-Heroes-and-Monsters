@@ -49,7 +49,7 @@ public class Battle {
                 }
 
                 if(userResponseOrBattleWinner.contains("change ")) {
-                    Item item = new Item();
+                    EquippableItem item = new EquippableItem();
                     WeaponFactory wf = new WeaponFactory();
                     ArmorFactory af = new ArmorFactory();
 
@@ -73,9 +73,9 @@ public class Battle {
                     }
                 } else if (userResponseOrBattleWinner.contains("cast ")) {
                     String spellId = userResponseOrBattleWinner.split(" ")[1];
-                    Spell spell = hero.getInventory().getSpellFromId(spellId);
-
-                    if (!spell.getItemName().equals(null)) {
+                    boolean spellExists = hero.getInventory().checkIfSpellExists(spellId);
+                    if (spellExists) {
+                        Spell spell = hero.getInventory().getSpellFromId(spellId);
                         hero.castSpell(spell, monster);
                     } else {
                         System.out.println("Spell does not exist in " + hero.getName() + "'s inventory! You just lost a turn :(");
