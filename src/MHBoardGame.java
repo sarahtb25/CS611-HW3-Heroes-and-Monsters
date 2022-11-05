@@ -25,6 +25,7 @@ public class MHBoardGame extends BoardGame {
         String playerName = scan.next();
         player = new MHPlayer(playerName);
     }
+
     public void getNumberOfHeroes() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please input the number of heroes (minimum " + minHero + " and maximum " + maxHero + "):");
@@ -163,7 +164,7 @@ public class MHBoardGame extends BoardGame {
 
     // M/m
     public void goToMarket() {
-        boolean quit = false;
+        boolean quit;
         int[] rowAndColumnIndex = board.getRowAndColumnIndex();
         MHCell cell = board.getMHBoardCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
 
@@ -177,6 +178,14 @@ public class MHBoardGame extends BoardGame {
         }
     }
 
+    public void printOverallHelp() {
+        help.printHelp();
+    }
+
+    public void printIntroduction() {
+        help.printIntroduction();
+    }
+
     // H/h
     public void printHelp() {
         help.printHelpMap();
@@ -184,6 +193,10 @@ public class MHBoardGame extends BoardGame {
 
     // R/r
     public void printRules() {
+        help.printRulesMap();
+    }
+
+    public void printOverallRules() {
         help.printRules();
     }
 
@@ -260,9 +273,12 @@ public class MHBoardGame extends BoardGame {
     public void playGame() {
         Scanner scan = new Scanner(System.in);
         String userInput = "";
-        boolean isValid = false;
+        boolean isValid;
 
         while (userInput.equals("y")) {
+            printIntroduction();
+            printOverallRules();
+            printOverallHelp();
             initializeGame();
             MHCell cell = board.getRandomMarketCell();
             MHRoundHistory roundHistory = new MHRoundHistory();

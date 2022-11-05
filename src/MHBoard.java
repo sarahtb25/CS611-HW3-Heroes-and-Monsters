@@ -83,6 +83,7 @@ public class MHBoard extends Board {
                 System.out.println("|");
             }
         }
+        System.out.println("*: You are here\t\tI: Invalid Area\t\tM: Market\t\tC: Common Area");
     }
 
     public int[] getRowAndColumnIndex() {

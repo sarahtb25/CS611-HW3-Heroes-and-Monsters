@@ -81,7 +81,7 @@ public class CommonPiece extends MHPiece {
                if ((double) numberOfHeroesWin >= (double) numberOfHeroes / 2) {
                    for (int i = 0; i < numberOfHeroes; i++) {
                        Hero hero = player.getHeroes().getHeroFromId(heroesAlive.getHeroes().get(i).getId());
-                       hero.revive(startingHP.get(i), startingMana.get(i), monsterLevel.get(i));
+                       hero.revive(startingHP.get(i), startingMana.get(i));
                    }
                }
            }

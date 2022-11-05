@@ -2,17 +2,9 @@
 |                                   HELP                                  |
 ---------------------------------------------------------------------------
 
-RULES:
-    1.
-
-There are 3 parts to the Monsters and Heroes game:
-    1. Map
-    2. Market
-    3. Battle
-
-************
-|   Map    |
-************
+****************
+|   Map Help   |
+****************
 
 Commands allowed on the map (Not case-sensitive):
     1. W/w: Move up
@@ -23,18 +15,18 @@ Commands allowed on the map (Not case-sensitive):
     6. I/i: Show information about the heroes
     7. M/m: When in a place that has a Market, use M/m to go to the market
     8. H/h: To view possible commands while using the map
-    9. View Map: To view the map
-    10. <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory
-    11. <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0
-    12. Hero <Hero ID>: To view the e.g. Hero R0
-    13. Regenerate Map: To create a new map e.g. if you are stuck, or just
-                        don't like the map you have
-    14. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or
-                                                is not carrying/wearing e.g. R0 change B0
+    9. R/r: To view the rules of the map
+    10. View Map: To view the map
+    11. <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory
+    12. <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0
+    13. Hero <Hero ID>: To view the e.g. Hero R0
+    14. Regenerate Map: To create a new map e.g. if you are stuck, or just don't like the map you have
+    15. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing
+    e.g. R0 change B0
 
-***************
-|   Market    |
-***************
+********************
+|   Market Help    |
+********************
 
 Commands allowed in the market (Not case-sensitive):
     1. View Market: To view the items in the market
@@ -44,10 +36,11 @@ Commands allowed in the market (Not case-sensitive):
     5. <Hero ID>: To view the details of a hero
     6. Q/q: To quit the game
     7. H/h: To view possible commands for Market
+    8. R/r: To view the rules of the market
 
-***************
-|   Battle    |
-***************
+********************
+|   Battle Help    |
+********************
 
 A battle can occur in a common space. Depending on your luck, you may or may not have to
 fight monsters.
@@ -59,5 +52,227 @@ Commands allowed in battle (Not case-sensitive):
     3. Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0
     4. I/i: To view the details of the hero and the monster engaged in battle
     5. Q/q: To quit the game
-    6. H/h: Help
+    6. H/h: To view possible commands for battle
+    7. R/r: To view the rules of battle
 
+
+
+RULES:
+*****************
+|   Map Rules   |
+*****************
+
+1. The map contains three types of spaces:
+   (a) Inaccessible spaces, which the heroes cannot enter
+   (b) Market spaces, where items can be bought or sold
+   (c) Common spaces, where battles can occur
+       - There is a chance that your heroes will engage in a battle in this space with the monsters
+       - Battles are always 1-on-1
+       - You will only know if there will be a battle once you enter a Common space
+       - Only heroes who are alive i.e. have hit points > 0 will have to battle a monster
+       - The monsters the heroes will have to fight will be completely random, and does not depend on the hero's level
+2. You can provide the following commands (Not case-sensitive):
+   (1) W/w: Move up
+   (2) A/a: Move left
+   (3) S/s: Move down
+   (4) D/d: Move right
+   (5) Q/q: Quit game
+   (6) I/i: Show information about the heroes
+   (7) M/m: When in a place that has a Market, use M/m to go to the market
+   (8) H/h: To view possible commands while using the map
+   (9) R/r: To view the rules of the map
+   (10) View Map: To view the map
+   (11) <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory
+   (12) <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0
+   (13) Hero <Hero ID>: To view the e.g. Hero R0
+   (14) Regenerate Map: To create a new map e.g. if you are stuck, or just don't like the map you have
+   (15) <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing
+        e.g. R0 change B0
+
+
+********************
+|   Market Rules   |
+********************
+
+1.  The heroes can buy and sell items at any market. Items that are sold at every market are:
+    (1) Armors
+    (2) Potions
+    (3) Spells
+    (4) Weapons
+2.  Each hero has a private wallet (their gold amount) and does not share money with the other heroes.
+    Likewise, each hero has their own inventory of items that they do not share with their fellow heroes.
+3.  A hero can sell an item that is not consumable i.e. potions and spells cannot be sold.
+
+    Money earned by hero after a successful sale = 0.5 * the item's cost
+
+    The item will be removed from the player's inventory.
+4.  A successful purchase will reduce the amount of money the hero has, and the item will be transferred to
+    the hero’s inventory.
+5.  All items have a name, a price, and a level. A hero cannot buy:
+    (1) an item that costs more than the money they have, or
+    (2) an item that is a higher level than they are.
+6.  You can provide the following commands (Not case-sensitive):
+    (1) View Market: To view the items in the market
+    (2) <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0
+    (3) <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0
+    (4) View Heroes: To view all the heroes you have
+    (5) <Hero ID>: To view the details of a hero
+    (6) Q/q: To quit the game
+    (7) H/h: To view possible commands for Market
+    (8) R/r: To view the rules of the market
+
+----------------
+|  Item Types  |
+----------------
+
+1.  Armor: Armor reduces the incoming damage from a monster’s attack. A piece of armor has
+    a name, a price, a level, and a damage reduction value. When equipped, armor will reduce
+    the damage taken by the hero by its damage reduction value. A hero can equip at most one
+    piece of armor at a time.
+2.  Potions: Potions can be used by a hero in order to increase one of their statistics by some
+    amount. Potions are multi-use items, and each potion can be consumed a different number of times.
+    Potions have a name, a price, a level, and an effect amount. Using the potion should
+    increase the given statistic by the effect amount. There are potions for increasing hit points, mana,
+    strength, dexterity, and agility.
+3.  Spells. A spell represents a magic attack performed by a hero. A spell has a name, a price, a
+    level, a damage value, a mana cost, and a spell type. A hero will require at least the mana
+    cost amount of mana to cast the spell. Therefore, if a hero has no mana, that hero cannot cast
+    any spells. The damage value is used along with the hero’s dexterity value to calculate the
+    damage dealt during a spell cast move in a battle.
+
+    Hero’s spell damage = spell_base_damage + (dexterity/10000) * spell_base_damage
+
+    After casting a spell, the mana cost is deducted from the hero’s mana.
+    Spells also have an additional effect besides their damage.
+
+    The types of spell and their effects are:
+    (1) Ice spell: reduces the amount of damage the target can cause
+    (2) Fire spell: reduces the defense of the target
+    (3) Lightning spell: reduces the dodge chance of the target
+
+4.  Weapons: A weapon is used by a hero to attack a monster. A weapon has a name, a price, a
+    level, a damage value, and the number of hands required to use it. A weapon must be
+    equipped by the hero before it can be used. The damage value is used to calculate the
+    damage dealt during an attack move in a battle.
+
+    Hero's attack damage with weapon= (hero's strength + weapon_damage) * 0.05
+
+
+********************
+|   Battle Rules   |
+********************
+
+1.  This is a turn-based battle, where the heroes make a move first, followed by the monster
+2.  The battle is 1-on-1 i.e. one hero vs one monster
+3.  The battle ends when
+    (1) the hero runs out of hit points, or
+    (2) the monster runs out of hit points
+4.  Possible commands to use in battle (Not case-sensitive):
+    (1) Change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing e.g. R0 change B0
+    (2) Hit: To hit the monster with the weapon the hero is carrying
+    (3) Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0
+    (4) I/i: To view the details of the hero and the monster engaged in battle (Will not lose a turn)
+    (5) Q/q: To quit the game
+    (6) H/h: To view possible commands for battle (Will not lose a turn)
+    (7) R/r: To view the rules of battle (Will not lose a turn)
+5.  Commands that do not have (Will not lose a turn) means that if the item ID given does not exist,
+    the hero loses a turn.
+6.  The monsters will only attack the heroes, as they do not have items or spells to use.
+7.  Heroes have a dodge chance that will allow them to occasionally avoid taking damage from a monster’s attack.
+    If the dodge chance >= monster's attack, then the monster's attack is dodged. Otherwise, the hero gets the full
+    brunt of the monster's attack - defence provided by the hero's armor (if any).
+
+    Hero's dodge chance = hero's agility * 0.2
+
+8.  Similarly, monsters also have a dodge chance that will allow them to occasionally avoid taking damage from
+    a hero’s attack. If the dodge chance >= hero's attack, then the hero's attack is dodged. Otherwise, the monster
+    gets the full brunt of the hero's attack - monster's defence.
+
+    Monster's dodge points = monster's dodge chance * 0.1
+
+9.  When a monster is unable to dodge the hero's spell, the monster faces a loss in skill. The skill affected
+    depends on the type of spell used.
+    The types of spell and their effects are:
+    (1) Ice spell: reduces the amount of damage the monster can cause
+    (2) Fire spell: reduces the defense of the monster
+    (3) Lightning spell: reduces the dodge chance of the monster
+
+    Skill left after getting hit by spell = (damage or defence or dodge chance, depending on type of spell) * 0.9
+
+10. If a hero wins the battle, the hero gains 10% of their starting hit point and mana. They also get money and
+    experience points.
+
+    Money gained = Monster level * 100
+    Experience gained = 2 * number of monster in battle, which is 1
+
+11. Heroes are able to level up. Once they level up, their hit points, mana and experience level increases.
+    When a hero levels up all of their skills increase by 5% and their favored skills increase by an extra 5%.
+
+    Experience points needed to level up = Hero's current level * 10
+    Hero's hit point = hero's current level * 100
+    Hero's mana after level up = Hero's mana before level up * 1.1
+    Hero's experience level after level up = Hero's experience level before level up + 1
+
+12. After all the heroes who were able to battle have battled a monster, if the number of heroes who won is more
+    than the number of monsters, then heroes who fainted in battle are revived. They gain back 50% of
+    their starting hit points and their mana. However, they do not get any gold or experience.
+
+--------------
+|   Heroes   |
+--------------
+
+1. A hero has several attributes:
+   (1) A name
+   (2) A level with an amount of experience points
+   (3) HP (hit points, the hero’s in battle)
+   (4) MP (mana or magic points, for casting spells)
+   (5) A strength value
+   (6) A dexterity value
+   (7) An agility value
+   (8) An amount of gold
+   (9) An inventory of items
+   (10) The weapon and/or armor they have on them
+
+2.  A hero has a level, representing how strong (or not) that hero is. Experience points determine the hero’s level.
+    A hero levels up after accumulating enough experience points. A hero’s skills increase when the hero levels up.
+    A hero never loses experience. It accumulates over the course of the game.
+3.  HP (hot point): HP is the hero’s current health. The initial HP value is determined by hero’s level.
+
+    Hero's hit points = Hero's current level * 100
+
+    When a hero levels up, they have their HP set according to the same formula.
+
+4.  MP: MP (or mana) is used to cast spells.
+5.  Strength: A hero’s strength increases the amount of damage they deal when using a weapon.
+6.  Dexterity: A hero’s dexterity increases the amount of damage they deal when casting a spell.
+7.  Agility: A hero’s agility increases their chance to dodge a monster’s attack.
+8.  Money: Money is for use in the market.
+9.  Inventory. A hero has a collection of items that they have bought during the game. At the
+    start of the game, the inventory is empty. There is no maximum size of the inventory.
+10. There are three types of heroes, each with their own balance of skills:
+    (1) Warriors are favored on strength and agility.
+    (2) Sorcerers are favored on dexterity and agility.
+    (3) Paladins are favored on strength and dexterity.
+
+----------------
+|   Monsters   |
+----------------
+
+1.  A monster has several attributes:
+    (1) A name
+    (2) A level
+    (3) HP
+    (4) A base damage value
+    (5) A defense value
+    (6) A dodge ability
+
+2.  Base damage. This is a monster’s attack damage.
+3.  Defense. Monsters don’t wear armor, relying on their natural hides and carapaces to
+    protect them from the heroes’ attacks. This value reduces the amount of damage a monster
+    takes from a hero’s attack or spell.
+4.  Dodge ability. This represents how well a monster can avoid a hero’s attack. It functions in a
+    similar way to the hero’s agility.
+5.  There are three kinds of monsters, each with a favored attribute:
+    (1) Dragons have increased base damage.
+    (2) Exoskeletons have increased defense.
+    (3) Spirits have increased dodge ability.

@@ -76,13 +76,15 @@ public class Monster extends NonPlayerCharacter {
         } else {
             int damageReduceAmount = hero.defend();
 
-            if (damageReduceAmount < getDamage()) {
-                if (hero.getHitPoints() - damageReduceAmount <= 0) {
+            if (damageReduceAmount < damage) {
+                int reduceHitPoints = damage - damageReduceAmount;
+
+                if (hero.getHitPoints() - reduceHitPoints <= 0) {
                     hero.setHitPoints(noMore);
-                    response = "Hero " + hero.getName() + " has fainted!";
+                    response = "Hero " + hero.getName() + " has been defeated!";
                 } else {
-                    hero.setHitPoints(hero.getHitPoints() - damageReduceAmount);
-                    response = "Hero " + hero.getName() + " was hit by Monster " + getName() + " and lost " + damageReduceAmount + " hitpoints!";
+                    hero.setHitPoints(hero.getHitPoints() - reduceHitPoints);
+                    response = "Hero " + hero.getName() + " was hit by Monster " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
                 }
             } else {
                 response = "Hero " + hero.getName() + " has successfully defended against Monster " + getName() + "'s attack!";

@@ -16,7 +16,7 @@ public class Market {
     }
 
     public void printRules() {
-        help.printRules();
+        help.printRulesMarket();
     }
 
     public String getUserInput(MHPlayer player) {
@@ -123,22 +123,32 @@ public class Market {
     }
 
     public void sellItem(Hero hero, String itemId) {
-        Weapon weapon;
-        Armor armor;
-        int cost = 0;
+        int cost;
 
         if (itemId.contains("B")) {
-            weapon = wf.getItemFromId(itemId);
-            cost = weapon.getCost();
+            boolean weaponExists = hero.getInventory().checkIfWeaponExists(itemId);
 
-            hero.getInventory().removeWeapon(weapon);
-            hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
+            if (weaponExists) {
+                Weapon weapon = hero.getInventory().getWeaponFromId(itemId);
+                cost = weapon.getCost();
+
+                hero.getInventory().removeWeapon(weapon);
+                hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
+            } else {
+                System.out.println("Hero " + hero.getName() + " does not have weapon " + itemId + "!");
+            }
         } else if (itemId.contains("E")) {
-            armor = af.getItemFromId(itemId);
-            cost = armor.getCost();
+            boolean armorExists = hero.getInventory().checkIfArmorExists(itemId);
 
-            hero.getInventory().removeArmor(armor);
-            hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
+            if (armorExists) {
+                Armor armor = hero.getInventory().getArmorFromId(itemId);
+                cost = armor.getCost();
+
+                hero.getInventory().removeArmor(armor);
+                hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
+            } else {
+                System.out.println("Hero " + hero.getName() + " does not have armor " + itemId + "!");
+            }
         } else {
             System.out.println("Potions and Spells are consumable items, which cannot be sold once bought!");
         }

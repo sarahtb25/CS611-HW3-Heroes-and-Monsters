@@ -19,7 +19,7 @@ public class Battle {
     }
 
     public void printRules() {
-        help.printRules();
+        help.printRulesBattle();
     }
 
     public boolean checkUserResponse(String userResponse) {
@@ -76,7 +76,8 @@ public class Battle {
                     boolean spellExists = hero.getInventory().checkIfSpellExists(spellId);
                     if (spellExists) {
                         Spell spell = hero.getInventory().getSpellFromId(spellId);
-                        hero.castSpell(spell, monster);
+                        response = hero.castSpell(spell, monster);
+                        System.out.println(response);
                     } else {
                         System.out.println("Spell does not exist in " + hero.getName() + "'s inventory! You just lost a turn :(");
                     }
@@ -87,12 +88,15 @@ public class Battle {
                     System.out.println(hero);
                     System.out.println();
                     System.out.println(monster);
+                    turn--; // Ensure when increment happens, it is still hero's turn
                 } else if (userResponseOrBattleWinner.equals("h")) {
                     printHelp();
+                    turn--; // Ensure when increment happens, it is still hero's turn
                 } else if (userResponseOrBattleWinner.equals("q")) { // Quit the game
                     break;
                 } else if (userResponseOrBattleWinner.equals("r")) {
                     printRules();
+                    turn--; // Ensure when increment happens, it is still hero's turn
                 }
             } else {
                 // Monster's turn
@@ -106,7 +110,7 @@ public class Battle {
         if (!userResponseOrBattleWinner.equals("q")) {
             if (hero.getHitPoints() <= 0) {
                 userResponseOrBattleWinner = "hero";
-                hero.setNumberOfTimesHeroDefeatedMonster(hero.getNumberOfTimesHeroDefeatedMonster() + 1);
+                hero.updateNumberOfTimesHeroDefeatedMonster();
                 updateHeroAfterBattle(hero, monster.getLevel());
             } else {
                 userResponseOrBattleWinner = "monster";

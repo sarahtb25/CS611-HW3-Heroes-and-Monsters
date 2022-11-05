@@ -27,27 +27,42 @@ public class Spell extends ConsumableItem {
         this.manaCost = manaCost;
     }
 
-    public void applySpell(Hero hero, Monster monster) {
-        if (hero.getMana() < getManaCost()) {
-            System.out.println(hero.getName() + " has not enough mana! Unable to cast " + getItemName());
-        } else {
-            updateManaCost(hero);
-            int noMoreOfAttribute = 0;
+    public String applySpell(Hero hero, Monster monster) {
+        String response = "";
 
-            if (monster.getHitPoint() - hero.getAttackDamageWithSpell(getDamage()) < 0) {
-                monster.setHitPoint(noMoreOfAttribute);
+        updateManaCost(hero);
+        int noMoreOfAttribute = 0;
+
+        if (hero.getAttackDamageWithSpell(damage) <= monster.calculateDodge()) {
+            response = "Monster " + monster.getName() + " managed to dodge Hero " + hero.getName() + "'s spell!";
+        } else {
+            int damageReduceAmount = monster.getDefense();
+
+            if (damageReduceAmount < hero.getAttackDamageWithSpell(damage)) {
+                int reduceHitPoints = (int) (hero.getAttackDamageWithSpell(damage) - damageReduceAmount);
+
+                if (monster.getHitPoint() - reduceHitPoints <= 0) {
+                    monster.setHitPoint(noMoreOfAttribute);
+                    response = "Monster " + monster.getName() + " has been defeated!";
+                } else {
+                    monster.setHitPoint(monster.getHitPoint() - reduceHitPoints);
+                    response = "Monster " + monster.getName() + " was hit by Hero " + hero.getName() + " and lost " + reduceHitPoints + " hitpoints!";
+                }
             } else {
-                monster.setHitPoint(monster.getHitPoint() - hero.getAttackDamageWithSpell(getDamage()));
+                response = "Monster " + monster.getName() + " has successfully defended against Hero " + hero.getName() + "'s spell!";
             }
 
             affectMonsterSkill(monster);
-            consume();
         }
+
+            consume();
+
+        return response;
     }
 
     public void affectMonsterSkill(Monster monster) {}
 
     public void updateManaCost(Hero hero) {
-        hero.setMana(hero.getMana() - manaCost);
+        hero.updateManaCost(manaCost);
     }
 }

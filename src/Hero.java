@@ -128,7 +128,7 @@ public class Hero extends NonPlayerCharacter {
 
     public boolean checkIfHeroWearingAnItemType(EquippableItem item) {
         for (EquippableItem itemAlreadyOnHero : currentlyEquippedItems) {
-            if ((itemAlreadyOnHero instanceof Weapon && item instanceof Weapon) || (itemAlreadyOnHero instanceof Armor && item instanceof Armor)) {
+            if ((itemAlreadyOnHero.getClass().equals(item.getClass()))) {
                 return true;
             }
         }
@@ -138,7 +138,7 @@ public class Hero extends NonPlayerCharacter {
 
     public EquippableItem getItemWornByHero(EquippableItem item) {
         for (EquippableItem itemAlreadyOnHero : currentlyEquippedItems) {
-            if ((itemAlreadyOnHero instanceof Weapon && item instanceof Weapon) || (itemAlreadyOnHero instanceof Armor && item instanceof Armor)) {
+            if ((itemAlreadyOnHero.getClass().equals(item.getClass()))) {
                 item =  itemAlreadyOnHero;
             }
         }
@@ -195,18 +195,20 @@ public class Hero extends NonPlayerCharacter {
             }
         }
 
-        if (getAttackDamageWithWeapon(damage) < monster.calculateDodge()) {
+        if (getAttackDamageWithWeapon(damage) <= monster.calculateDodge()) {
             response = "Monster " + monster.getName() + " managed to dodge Hero " + getName() + "'s attack!";
         } else {
             int damageReduceAmount = monster.getDefense();
 
             if (damageReduceAmount < getAttackDamageWithWeapon(damage)) {
-                if (monster.getHitPoint() - damageReduceAmount <= 0) {
+                int reduceHitPoints = (int) (getAttackDamageWithWeapon(damage) - damageReduceAmount);
+
+                if (monster.getHitPoint() - reduceHitPoints <= 0) {
                     monster.setHitPoint(noMore);
                     response = "Monster " + monster.getName() + " has been defeated!";
                 } else {
-                    monster.setHitPoint(monster.getHitPoint() - damageReduceAmount);
-                    response = "Monster " + monster.getName() + " was hit by Hero " + getName() + " and lost " + damageReduceAmount + " hitpoints!";
+                    monster.setHitPoint(monster.getHitPoint() - reduceHitPoints);
+                    response = "Monster " + monster.getName() + " was hit by Hero " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
                 }
             } else {
                 response = "Monster " + monster.getName() + " has successfully defended against Hero " + getName() + "'s attack!";
@@ -233,12 +235,16 @@ public class Hero extends NonPlayerCharacter {
         potion.applyPotion(this);
     }
 
-    public void castSpell(Spell spell, Monster monster) {
-        if (canUseSpell()) {
-            spell.applySpell(this, monster);
+    public String castSpell(Spell spell, Monster monster) {
+        String response = "";
+
+        if (canUseSpell() && mana >= spell.getManaCost()) {
+            response = spell.applySpell(this, monster);
         } else {
-            System.out.println(getName() + " has not enough mana! Unable to cast " + spell.getItemName());
+            response = getName() + " has not enough mana! Unable to cast " + spell.getItemName();
         }
+
+        return response;
     }
 
     public int getNumberOfTimesHeroDefeatedMonster() {
@@ -261,9 +267,7 @@ public class Hero extends NonPlayerCharacter {
     }
 
     public int experienceNeededToLevelUp() {
-        int exp_points = experience * experienceLevelUpFactor;
-
-        return exp_points;
+        return experience * experienceLevelUpFactor;
     }
 
     // To be called after hero wins the battle
@@ -349,7 +353,7 @@ public class Hero extends NonPlayerCharacter {
     }
 
     // To be called if more heroes win the battle against the monsters i.e. monsters defeated >= (int) number of heroes/2
-    public void revive(int startingHP, int startingMana, int monsterLevel) {
+    public void revive(int startingHP, int startingMana) {
         if (isUnconscious()) {
             setHitPoints((int) (startingHP * revivalUnconscious));
             setMana((int) (startingMana * revivalUnconscious));
