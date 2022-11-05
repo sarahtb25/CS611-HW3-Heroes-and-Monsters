@@ -27,6 +27,28 @@ public class Heroes {
         heroes.remove(hero);
     }
 
+    public int getTotalNumberOfMonstersDefeated() {
+        int totalNumberOfHeroesDefeated = 0;
+
+        for (Hero hero : heroes) {
+            totalNumberOfHeroesDefeated += hero.getNumberOfTimesHeroDefeatedMonster();
+        }
+
+        return totalNumberOfHeroesDefeated;
+    }
+
+    public int getNumberOfHeroesAlive() {
+        int numberOfHeroesAlive = 0;
+
+        for (Hero hero : heroes) {
+            if (hero.getHitPoints() <= 0) {
+                numberOfHeroesAlive++;
+            }
+        }
+
+        return numberOfHeroesAlive;
+    }
+
     public boolean checkIfHeroExists(String id) {
         for (Hero hero : heroes) {
             if (hero.getId().equals(id)) {

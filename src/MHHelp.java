@@ -2,7 +2,24 @@
 public class MHHelp implements Help {
     @Override
     public void printIntroduction() {
+        String introduction = "#########################################################################\n" +
+                "|                          MONSTERS AND HEROES                          |\n" +
+                "#########################################################################\n" +
+                "\n" +
+                "A long time ago, the villagers of Lockwood were living a peaceful when one day, their village was overtaken by\n" +
+                "monsters. The monsters were tyrants and destroyed their village. With nowhere to go, they retreated into the pockets of\n" +
+                "magical forest that stood even after the monsters' attacked. The forest gave them protection, with its magic hiding the\n" +
+                "villagers from the monsters. The invalid areas in the map represent the pockets of magical forest, which keeps out\n" +
+                "everything and everyone. However, they are not safe. The monsters have been slowly weakening the magical forest,\n" +
+                "with the aim of eradicating every single villager.\n" +
+                "\n" +
+                "Will you rise up to the challenge and help the villagers of Lockwood free themselves from the monsters' tyranny? Will\n" +
+                "you help protect the magical forest from its slow death? If you and your heroes defeat all 100 monsters,\n" +
+                "you will succeed.\n" +
+                "\n" +
+                "Good luck!";
 
+        System.out.println(introduction);
     }
 
     @Override
@@ -98,31 +115,34 @@ public class MHHelp implements Help {
                 "|   Map Rules   |\n" +
                 "*****************\n" +
                 "\n" +
-                "1. The map contains three types of spaces:\n" +
-                "   (a) Inaccessible spaces, which the heroes cannot enter\n" +
-                "   (b) Market spaces, where items can be bought or sold\n" +
-                "   (c) Common spaces, where battles can occur\n" +
-                "       - There is a chance that your heroes will engage in a battle in this space with the monsters\n" +
-                "       - Battles are always 1-on-1\n" +
-                "       - You will only know if there will be a battle once you enter a Common space\n" +
-                "       - Only heroes who are alive i.e. have hit points > 0 will have to battle a monster\n" +
-                "       - The monsters the heroes will have to fight will be completely random, and does not depend on the hero's level\n" +
-                "2. You can provide the following commands (Not case-sensitive):\n" +
-                "   (1) W/w: Move up\n" +
-                "   (2) A/a: Move left\n" +
-                "   (3) S/s: Move down\n" +
-                "   (4) D/d: Move right\n" +
-                "   (5) Q/q: Quit game\n" +
-                "   (6) I/i: Show information about the heroes\n" +
-                "   (7) M/m: When in a place that has a Market, use M/m to go to the market\n" +
-                "   (8) H/h: To view possible commands while using the map\n" +
-                "   (9) R/r: To view the rules of the map\n" +
-                "   (10) View Map: To view the map\n" +
-                "   (11) <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory\n" +
-                "   (12) <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0\n" +
-                "   (13) Hero <Hero ID>: To view the e.g. Hero R0\n" +
-                "   (14) Regenerate Map: To create a new map e.g. if you are stuck, or just don't like the map you have\n" +
-                "   (15) <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing\n" +
+                "1.  The map contains three types of spaces:\n" +
+                "    (a) Inaccessible spaces, which the heroes cannot enter\n" +
+                "    (b) Market spaces, where items can be bought or sold\n" +
+                "    (c) Common spaces, where battles can occur\n" +
+                "        - There is a chance that your heroes will engage in a battle in this space with the monsters\n" +
+                "        - Battles are always 1-on-1\n" +
+                "        - You will only know if there will be a battle once you enter a Common space\n" +
+                "        - Only heroes who are alive i.e. have hit points > 0 will have to battle a monster\n" +
+                "        - The monsters the heroes will have to fight will be completely random, and does not depend on the hero's level\n" +
+                "2.  The game ends if:\n" +
+                "    (1) all heroes are unconscious, or\n" +
+                "    (2) all the heroes were able to defeat 100 monsters\n" +
+                "3.  You can provide the following commands (Not case-sensitive):\n" +
+                "    (1) W/w: Move up\n" +
+                "    (2) A/a: Move left\n" +
+                "    (3) S/s: Move down\n" +
+                "    (4) D/d: Move right\n" +
+                "    (5) Q/q: Quit game\n" +
+                "    (6) I/i: Show information about the heroes\n" +
+                "    (7) M/m: When in a place that has a Market, use M/m to go to the market\n" +
+                "    (8) H/h: To view possible commands while using the map\n" +
+                "    (9) R/r: To view the rules of the map\n" +
+                "    (10) View Map: To view the map\n" +
+                "    (11) <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory\n" +
+                "    (12) <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0\n" +
+                "    (13) Hero <Hero ID>: To view the e.g. Hero R0\n" +
+                "    (14) Regenerate Map: To create a new map e.g. if you are stuck, or just don't like the map you have\n" +
+                "    (15) <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing\n" +
                 "        e.g. R0 change B0";
 
         System.out.println(rules);

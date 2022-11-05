@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 // Represents the Monsters and Heroes game
 public class MHBoardGame extends BoardGame {
+    public static final int numberOfMonstersToDefeat = 100;
     public static final int minHero = 1;
     public static final int maxHero = 3;
     public static final MHHelp help = new MHHelp();
@@ -341,27 +342,31 @@ public class MHBoardGame extends BoardGame {
             }
 
             showScore();
-            System.out.println("Would you like to play another game? Y/N");
-            userInput = scan.next().trim().toLowerCase();
 
-            if (userInput.equals("n")) {
+            if (heroes.getTotalNumberOfMonstersDefeated() >= numberOfMonstersToDefeat) {
+                System.out.println("Congratulations! You have freed the villagers of Lockwood from the monsters' tyranny!");
                 quit();
+            } else {
+                System.out.println("You have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N");
+                userInput = scan.next().trim().toLowerCase();
+
+                if (userInput.equals("n")) {
+                    quit();
+                }
             }
         }
     }
 
+
+
     @Override
     public boolean checkGameStatus() {
-        int numberOfHeroesAlive = 0;
+        int numberOfHeroesAlive = heroes.getNumberOfHeroesAlive();
+        int totalNumberOfHeroesDefeated = heroes.getTotalNumberOfMonstersDefeated();
 
-        for (Hero hero : heroes.getHeroes()) {
-            if (hero.getHitPoints() <= 0) {
-                numberOfHeroesAlive++;
-            }
-        }
 
         // All heroes are still alive, the game is not over yet
-        if (numberOfHeroesAlive == heroes.getHeroes().size()) {
+        if (numberOfHeroesAlive == heroes.getHeroes().size() && totalNumberOfHeroesDefeated < numberOfMonstersToDefeat) {
             return false;
         }
 
