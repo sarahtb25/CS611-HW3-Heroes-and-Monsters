@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 // Represents the Monsters and Heroes game
@@ -65,6 +66,11 @@ public class MHBoardGame extends BoardGame {
     // Regenerate map
     public void regenerateMap() {
         board = new MHBoard();
+        Cell cell = board.getRandomMarketCell();
+        MarketPiece marketPiece = (MarketPiece) cell.getPiece();
+        marketPiece.beforeEnteringMarket();
+
+        printMap();
     }
 
     // View map
@@ -84,102 +90,208 @@ public class MHBoardGame extends BoardGame {
         heroes.printHeroes();
     }
 
-    public void enterCell(int row, int column) {
-        Cell cell = board.getMHBoardCell(row, column);
+//    public void leaveCell(int row, int column) {
+//        Cell cell = board.getMHBoardCell(row, column);
+//
+//        if (cell.getPiece() instanceof CommonPiece) {
+//            CommonPiece commonPiece = (CommonPiece) cell.getPiece();
+//            if (cell.getPiece().getId().equals("C*")) {
+//                commonPiece.leaveCommon();
+//            }
+//        } else if (cell.getPiece() instanceof MarketPiece) {
+//            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
+//            if (cell.getPiece().getId().equals("M*")) {
+//                marketPiece.leaveMarket();
+//            }
+//        }
+//    }
+//
+//    public boolean checkIfCanEnterCell(int row, int column) {
+//        boolean canEnter = false;
+//
+//        Cell cell = board.getMHBoardCell(row, column);
+//
+//        if (cell.getPiece() instanceof CommonPiece) {
+//            if (cell.getPiece().getId().equals("C")) {
+//                canEnter = true;
+//            }
+//        } else if (cell.getPiece() instanceof MarketPiece) {
+//            if (cell.getPiece().getId().equals("M")) {
+//                canEnter = true;
+//            }
+//        } else if (cell.getPiece().getId().equals("I")) {
+//            System.out.println("You are not allowed to come to an invalid area!");
+//        }
+//
+//        return canEnter;
+//    }
+//
+//    public void enterCell(int row, int column) {
+//        Cell cell = board.getMHBoardCell(row, column);
+//
+//        if (cell.getPiece() instanceof CommonPiece) {
+//            CommonPiece commonPiece = (CommonPiece) cell.getPiece();
+//            if (cell.getPiece().getId().equals("C")) {
+//                boolean hasQuit = commonPiece.enterCommon(player);
+//
+//                if (commonPiece.isHaveBattle()) {
+//                    numberOfBattles++;
+//                }
+//
+//                printMap();
+//
+//                if (hasQuit) {
+//                    quit();
+//                }
+//            }
+//        } else if (cell.getPiece() instanceof MarketPiece) {
+//            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
+//            if (cell.getPiece().getId().equals("M")) {
+//                marketPiece.beforeEnteringMarket();
+//            }
+//        }
+//    }
+//
+//    // W/w
+//    public void moveUp() {
+//        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
+//
+//        if (rowAndColumnIndex[0] - 1 >= 0) {
+//            rowAndColumnIndex[0] -= 1;
+//            boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//
+//            if (canEnter) {
+//                enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//                // leave previous cell
+//                leaveCell((rowAndColumnIndex[0] + 1), rowAndColumnIndex[1]);
+//            }
+//        } else {
+//            System.out.println("You cannot go outside the map!");
+//        }
+//    }
+//
+//    // A/a
+//    public void moveLeft() {
+//        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
+//
+//        if (rowAndColumnIndex[1] - 1 >= 0) {
+//            rowAndColumnIndex[1] -= 1;
+//            boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//
+//            if (canEnter) {
+//                enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//                // leave previous cell
+//                leaveCell(rowAndColumnIndex[0], (rowAndColumnIndex[1] + 1));
+//            }
+//        } else {
+//            System.out.println("You cannot go outside the map!");
+//        }
+//    }
+//
+//    // S/s
+//    public void moveDown() {
+//        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
+//        leaveCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//
+//        if (rowAndColumnIndex[0] + 1 < MHBoard.numberOfRowsAndCols) {
+//            rowAndColumnIndex[0] += 1;
+//            boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//
+//            if (canEnter) {
+//                enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//                // leave previous cell
+//                leaveCell((rowAndColumnIndex[0] - 1), rowAndColumnIndex[1]);
+//            }
+//        } else {
+//            System.out.println("You cannot go outside the map!");
+//        }
+//    }
+//
+//    // D/d
+//    public void moveRight() {
+//        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
+//
+//        if (rowAndColumnIndex[1] + 1 < MHBoard.numberOfRowsAndCols) {
+//            rowAndColumnIndex[1] += 1;
+//            boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//
+//            if (canEnter) {
+//                enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//                // leave previous cell
+//                leaveCell(rowAndColumnIndex[0], (rowAndColumnIndex[1] - 1));
+//            }
+//        } else {
+//            System.out.println("You cannot go outside the map!");
+//        }
+//    }
+//
+//    // M/m
+//    public void goToMarket() {
+//        boolean quit;
+//        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
+//        Cell cell = board.getMHBoardCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//
+//        if (cell.getPiece() instanceof MarketPiece) {
+//            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
+//            quit = marketPiece.market(player);
+//            printMap();
+//
+//            if (quit) {
+//                quit();
+//            }
+//        }
+//    }
 
-        if (cell.getPiece() instanceof CommonPiece) {
-            CommonPiece commonPiece = (CommonPiece) cell.getPiece();
-            if (cell.getPiece().getId().equals("C")) {
-                boolean hasQuit = commonPiece.enterCommon(player);
+    public void goToMarket() {
+        boolean quit = board.goToMarket(player);
 
-                if (commonPiece.isHaveBattle()) {
-                    numberOfBattles++;
-                }
+        printMap();
 
-                printMap();
-
-                if (hasQuit) {
-                    quit();
-                }
-            } else if (cell.getPiece().getId().equals("C*")) {
-                commonPiece.leaveCommon();
-            }
-        } else if (cell.getPiece() instanceof MarketPiece) {
-            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
-            if (cell.getPiece().getId().equals("M")) {
-                marketPiece.beforeEnteringMarket();
-                printMap();
-            } else if (cell.getPiece().getId().equals("M*")) {
-                marketPiece.leaveMarket();
-            }
-        } else if (cell.getPiece().getId().equals("I")) {
-            System.out.println("You are not allowed to come to an invalid area!");
+        if (quit) {
+            quit();
         }
     }
 
-    // A/a
-    public void moveLeft() {
-        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
-
-        if (rowAndColumnIndex[1] - 1 >= 0) {
-            rowAndColumnIndex[1] -= 1;
-            enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
-        } else {
-            System.out.println("You cannot go outside the map!");
+    public void checkQuitANdHaveBattleCondition(List<Boolean> hasQuitAndBattle) {
+        if (hasQuitAndBattle.get(1)) {
+            numberOfBattles++;
         }
-    }
 
-    // D/d
-    public void moveRight() {
-        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
-
-        if (rowAndColumnIndex[1] + 1 < MHBoard.numberOfRowsAndCols) {
-            rowAndColumnIndex[1] += 1;
-            enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
-        } else {
-            System.out.println("You cannot go outside the map!");
+        if (hasQuitAndBattle.get(0)) {
+            quit();
         }
     }
 
     // W/w
     public void moveUp() {
-        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
+        List<Boolean> hasQuitAndBattle = board.moveUp(player);
+        printMap();
 
-        if (rowAndColumnIndex[0] - 1 >= 0) {
-            rowAndColumnIndex[0] -= 1;
-            enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
-        } else {
-            System.out.println("You cannot go outside the map!");
-        }
+        checkQuitANdHaveBattleCondition(hasQuitAndBattle);
+    }
+
+    // A/a
+    public void moveLeft() {
+        List<Boolean> hasQuitAndBattle = board.moveLeft(player);
+        printMap();
+
+        checkQuitANdHaveBattleCondition(hasQuitAndBattle);
     }
 
     // S/s
     public void moveDown() {
-        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
+        List<Boolean> hasQuitAndBattle = board.moveDown(player);
+        printMap();
 
-        if (rowAndColumnIndex[0] + 1 < MHBoard.numberOfRowsAndCols) {
-            rowAndColumnIndex[0] += 1;
-            enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
-        } else {
-            System.out.println("You cannot go outside the map!");
-        }
+        checkQuitANdHaveBattleCondition(hasQuitAndBattle);
     }
 
-    // M/m
-    public void goToMarket() {
-        boolean quit;
-        int[] rowAndColumnIndex = board.getRowAndColumnIndex();
-        Cell cell = board.getMHBoardCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+    // D/d
+    public void moveRight() {
+        List<Boolean> hasQuitAndBattle = board.moveRight(player);
+        printMap();
 
-        if (cell.getPiece() instanceof MarketPiece) {
-            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
-            quit = marketPiece.market(player);
-            printMap();
-
-            if (quit) {
-                quit();
-            }
-        }
+        checkQuitANdHaveBattleCondition(hasQuitAndBattle);
     }
 
     public void printOverallHelp() {
@@ -323,18 +435,19 @@ public class MHBoardGame extends BoardGame {
                  } else if (userInput.equals("regenerate map")) {
                      regenerateMap();
                  } else if (userInput.contains(" inventory")) {
-                     String heroId = userInput.split(" ")[0];
+                     String heroId = userInput.split(" ")[0].toUpperCase();
                      viewHeroInventory(heroId);
+                     System.out.println();
                  } else if (userInput.contains(" drink ")) {
-                     String heroId = userInput.split(" ")[0];
-                     String potionId = userInput.split(" ")[2];
+                     String heroId = userInput.split(" ")[0].toUpperCase();
+                     String potionId = userInput.split(" ")[2].toUpperCase();
                      drinkPotion(heroId, potionId);
                  } else if (userInput.contains("hero ")) {
-                     String heroId = userInput.split(" ")[1];
+                     String heroId = userInput.split(" ")[1].toUpperCase();
                      printHeroInformation(heroId);
                  } else if (userInput.contains(" change ")) {
-                     String heroId = userInput.split(" ")[0];
-                     String itemId = userInput.split(" ")[2];
+                     String heroId = userInput.split(" ")[0].toUpperCase();
+                     String itemId = userInput.split(" ")[2].toUpperCase();
                      changeWeaponOrArmor(heroId, itemId);
                  }
             }

@@ -23,4 +23,10 @@ public class Fighters {
     public void setMonster(Monster monster) {
         this.monster = monster;
     }
+
+    public void printFightersInformation() {
+        hero.printHero();
+        System.out.println("\n\n");
+        System.out.println(monster);
+    }
 }

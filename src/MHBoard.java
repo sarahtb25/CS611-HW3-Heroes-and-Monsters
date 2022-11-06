@@ -1,3 +1,7 @@
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 public class MHBoard extends Board {
@@ -70,6 +74,7 @@ public class MHBoard extends Board {
     public void printBoard() {
         int rows = numberOfRowsAndCols + 1;
         Cell[][] board = getMHBoard();
+        System.out.println("\n");
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < numberOfRowsAndCols; j++) {
@@ -111,5 +116,160 @@ public class MHBoard extends Board {
         }
 
         return rowAndColumnIndex;
+    }
+
+    public void leaveCell(int row, int column) {
+        Cell cell = getMHBoardCell(row, column);
+
+        if (cell.getPiece() instanceof CommonPiece) {
+            CommonPiece commonPiece = (CommonPiece) cell.getPiece();
+            if (cell.getPiece().getId().equals("C*")) {
+                commonPiece.leaveCommon();
+            }
+        } else if (cell.getPiece() instanceof MarketPiece) {
+            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
+            if (cell.getPiece().getId().equals("M*")) {
+                marketPiece.leaveMarket();
+            }
+        }
+    }
+
+    public boolean checkIfCanEnterCell(int row, int column) {
+        boolean canEnter = false;
+
+        Cell cell = getMHBoardCell(row, column);
+
+        if (cell.getPiece() instanceof CommonPiece) {
+            if (cell.getPiece().getId().equals("C")) {
+                canEnter = true;
+            }
+        } else if (cell.getPiece() instanceof MarketPiece) {
+            if (cell.getPiece().getId().equals("M")) {
+                canEnter = true;
+            }
+        } else if (cell.getPiece().getId().equals("I")) {
+            System.out.println("You are not allowed to come to an invalid area!");
+        }
+
+        return canEnter;
+    }
+
+    public List<Boolean> enterCell(int row, int column, MHPlayer player) {
+        List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
+
+        Cell cell = getMHBoardCell(row, column);
+
+        if (cell.getPiece() instanceof CommonPiece) {
+            CommonPiece commonPiece = (CommonPiece) cell.getPiece();
+            if (cell.getPiece().getId().equals("C")) {
+                hasQuitAndBattle.set(0, commonPiece.enterCommon(player));
+                hasQuitAndBattle.set(1, commonPiece.isHaveBattle());
+            }
+        } else if (cell.getPiece() instanceof MarketPiece) {
+            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
+            if (cell.getPiece().getId().equals("M")) {
+                marketPiece.beforeEnteringMarket();
+            }
+        }
+
+        return hasQuitAndBattle;
+    }
+
+    // W/w
+    public List<Boolean> moveUp(MHPlayer player) {
+        List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
+        int[] rowAndColumnIndex = getRowAndColumnIndex();
+
+        if (rowAndColumnIndex[0] - 1 >= 0) {
+            rowAndColumnIndex[0] -= 1;
+            boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//            System.out.println("Can Go UP? " + canEnter);
+            if (canEnter) {
+                hasQuitAndBattle = enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1], player);
+                // leave previous cell
+                leaveCell((rowAndColumnIndex[0] + 1), rowAndColumnIndex[1]);
+            }
+        } else {
+            System.out.println("You cannot go outside the map!");
+        }
+
+        return hasQuitAndBattle;
+    }
+
+    // A/a
+    public List<Boolean> moveLeft(MHPlayer player) {
+        List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
+        int[] rowAndColumnIndex = getRowAndColumnIndex();
+
+        if (rowAndColumnIndex[1] - 1 >= 0) {
+            rowAndColumnIndex[1] -= 1;
+            boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//            System.out.println("Can Go LEFT? " + canEnter);
+            if (canEnter) {
+                hasQuitAndBattle = enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1], player);
+                // leave previous cell
+                leaveCell(rowAndColumnIndex[0], (rowAndColumnIndex[1] + 1));
+            }
+        } else {
+            System.out.println("You cannot go outside the map!");
+        }
+
+        return hasQuitAndBattle;
+    }
+
+    // S/s
+    public List<Boolean> moveDown(MHPlayer player) {
+        List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
+        int[] rowAndColumnIndex = getRowAndColumnIndex();
+        leaveCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+
+        if (rowAndColumnIndex[0] + 1 < numberOfRowsAndCols) {
+            rowAndColumnIndex[0] += 1;
+            boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//            System.out.println("Can Go DOWN? " + canEnter);
+            if (canEnter) {
+                hasQuitAndBattle = enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1], player);
+                // leave previous cell
+                leaveCell((rowAndColumnIndex[0] - 1), rowAndColumnIndex[1]);
+            }
+        } else {
+            System.out.println("You cannot go outside the map!");
+        }
+
+        return hasQuitAndBattle;
+    }
+
+    // D/d
+    public List<Boolean> moveRight(MHPlayer player) {
+        List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
+        int[] rowAndColumnIndex = getRowAndColumnIndex();
+
+        if (rowAndColumnIndex[1] + 1 < numberOfRowsAndCols) {
+            rowAndColumnIndex[1] += 1;
+            boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+//            System.out.println("Can Go RIGHT? " + canEnter);
+            if (canEnter) {
+                hasQuitAndBattle = enterCell(rowAndColumnIndex[0], rowAndColumnIndex[1], player);
+                // leave previous cell
+                leaveCell(rowAndColumnIndex[0], (rowAndColumnIndex[1] - 1));
+            }
+        } else {
+            System.out.println("You cannot go outside the map!");
+        }
+
+        return hasQuitAndBattle;
+    }
+
+    // M/m
+    public boolean goToMarket(MHPlayer player) {
+        boolean quit = false;
+        int[] rowAndColumnIndex = getRowAndColumnIndex();
+        Cell cell = getMHBoardCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+
+        if (cell.getPiece() instanceof MarketPiece) {
+            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
+            quit = marketPiece.market(player);
+        }
+        return quit;
     }
 }

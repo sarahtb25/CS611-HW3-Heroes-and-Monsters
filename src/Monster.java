@@ -77,7 +77,7 @@ public class Monster extends NonPlayerCharacter {
 
         // Hero can dodge
         if (hero.getDodgeChance() >= getDamage()) {
-            response = "Hero " + hero.getName() + " managed to dodge Monster " + getName() + "'s attack!";
+            response = "\nHero " + hero.getName() + " managed to dodge Monster " + getName() + "'s attack!";
         } else {
             int damageReduceAmount = hero.defend();
 
@@ -86,13 +86,13 @@ public class Monster extends NonPlayerCharacter {
 
                 if (hero.getHitPoints() - reduceHitPoints <= 0) {
                     hero.setHitPoints(noMore);
-                    response = "Hero " + hero.getName() + " has been defeated!";
+                    response = "\nHero " + hero.getName() + " has been defeated!";
                 } else {
                     hero.setHitPoints(hero.getHitPoints() - reduceHitPoints);
-                    response = "Hero " + hero.getName() + " was hit by Monster " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
+                    response = "\nHero " + hero.getName() + " was hit by Monster " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
                 }
             } else {
-                response = "Hero " + hero.getName() + " has successfully defended against Monster " + getName() + "'s attack!";
+                response = "\nHero " + hero.getName() + " has successfully defended against Monster " + getName() + "'s attack!";
             }
         }
 
@@ -102,9 +102,10 @@ public class Monster extends NonPlayerCharacter {
     @Override
     public String toString() {
         return "Monster " + getName() + " :" +
-                "\n\tlevel: " + level +
-                "\n\tdamage: " + damage +
-                "\n\tdefense: " + defense +
-                "\n\tdodgeChance: " + dodgeChance;
+                "\n\tHit Points: " + hitPoint +
+                "\n\tLevel: " + level +
+                "\n\tDamage: " + damage +
+                "\n\tDefense: " + defense +
+                "\n\tDodgeChance: " + dodgeChance;
     }
 }

@@ -67,7 +67,6 @@ public class Market {
                     System.out.println("You do not have Hero " + heroId.toUpperCase() + "!");
                 }
             } else if (!userInput.equals("x") && !userInput.equals("q")){
-                System.out.println(userInput);
                 System.out.println("\nInvalid Input!");
             }
         }
@@ -95,8 +94,8 @@ public class Market {
         Armor armor;
         Potion potion;
         Spell spell;
-        boolean canBuy = false;
-        int cost = 0;
+        boolean canBuy;
+        int cost;
 
         if (itemId.contains("B")) {
             weapon = wf.getItemFromId(itemId);

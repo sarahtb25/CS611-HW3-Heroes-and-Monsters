@@ -148,6 +148,7 @@ public class Inventory {
     }
 
     public boolean checkIfPotionExists(String potionId) {
+        removePotion();
         for (Potion potion : potions) {
             if (potion.getId().equals(potionId)) {
                 return true;
@@ -158,6 +159,7 @@ public class Inventory {
     }
 
     public boolean checkIfSpellExists(String spellId) {
+        removeSpell();
         for (Spell spell : spells) {
             if (spell.getId().equals(spellId)) {
                 return true;

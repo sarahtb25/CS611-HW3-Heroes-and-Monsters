@@ -31,80 +31,82 @@ public class Battle {
         String userResponseOrBattleWinner = "";
         String response = "";
         int turn = 0;
+        boolean isValid;
         Hero hero = fighters.getHero();
         Monster monster = fighters.getMonster();
 
-        while(hero.getHitPoints() > 0 || monster.getHitPoint() > 0 || !userResponseOrBattleWinner.equals("q")) {
-            if (turn % 2 == 0) {
-                // Player's turn
-                printHelp();
-                System.out.println("Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):");
-                userResponseOrBattleWinner = scan.next().trim().toLowerCase();
-                boolean isValid = checkUserResponse(userResponseOrBattleWinner);
+        printHelp();
+        System.out.println("\n");
+        fighters.printFightersInformation();
 
-                while(!isValid) {
-                    System.out.println("Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):");
-                    userResponseOrBattleWinner = scan.next().trim().toLowerCase();
-                    isValid = checkUserResponse(userResponseOrBattleWinner);
-                }
+        while(!userResponseOrBattleWinner.equals("q")) {
+            if (hero.getHitPoints() > 0 && monster.getHitPoint() > 0) {
+                if (turn % 2 == 0) {
+                    // Player's turn
+                    do {
+                        System.out.println("\nPlease enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):");
+                        userResponseOrBattleWinner = scan.next().trim().toLowerCase();
+                        isValid = checkUserResponse(userResponseOrBattleWinner);
+                    } while (!isValid);
 
-                if(userResponseOrBattleWinner.contains("change ")) {
-                    EquippableItem item = new EquippableItem();
-                    WeaponFactory wf = new WeaponFactory();
-                    ArmorFactory af = new ArmorFactory();
+                    if (userResponseOrBattleWinner.contains("change ")) {
+                        EquippableItem item = new EquippableItem();
+                        WeaponFactory wf = new WeaponFactory();
+                        ArmorFactory af = new ArmorFactory();
 
-                    String itemId = userResponseOrBattleWinner.split(" ")[1].toUpperCase();
-                    if (itemId.contains("B") || itemId.contains("E")) {
-                        if (itemId.contains("B")) {
-                            item = wf.getItemFromId(itemId);
-                        } else if (itemId.contains("E")) {
-                            item = af.getItemFromId(itemId);
-                        }
+                        String itemId = userResponseOrBattleWinner.split(" ")[1].toUpperCase();
+                        if (itemId.contains("B") || itemId.contains("E")) {
+                            if (itemId.contains("B")) {
+                                item = wf.getItemFromId(itemId);
+                            } else if (itemId.contains("E")) {
+                                item = af.getItemFromId(itemId);
+                            }
 
-                        if (!item.getItemName().equals(null)) {
-                            hero.replaceAWeaponOrArmor(item);
-                            System.out.println("You are currently armed with:");
-                            System.out.println(hero.getCurrentlyEquippedItems());
+                            if (!item.getItemName().equals(null)) {
+                                hero.replaceAWeaponOrArmor(item);
+                                System.out.println("\nYou are currently armed with:");
+                                hero.printCurrentlyEquippedItems();
+                            } else {
+                                System.out.println("\nWeapon or armor with the ID does not exist! You just lost a turn :(");
+                            }
                         } else {
-                            System.out.println("Weapon or armor with the ID does not exist! You just lost a turn :(");
+                            System.out.println("\nWrong item ID used! B<number> for weapon and E<number> for armor! You just lost a turn :(");
                         }
-                    } else {
-                        System.out.println("Wrong item ID used! B<number> for weapon and E<number> for armor! You just lost a turn :(");
-                    }
-                } else if (userResponseOrBattleWinner.contains("cast ")) {
-                    String spellId = userResponseOrBattleWinner.split(" ")[1];
-                    boolean spellExists = hero.getInventory().checkIfSpellExists(spellId);
-                    if (spellExists) {
-                        Spell spell = hero.getInventory().getSpellFromId(spellId);
-                        response = hero.castSpell(spell, monster);
+                    } else if (userResponseOrBattleWinner.contains("cast ")) {
+                        String spellId = userResponseOrBattleWinner.split(" ")[1];
+                        boolean spellExists = hero.getInventory().checkIfSpellExists(spellId);
+                        if (spellExists) {
+                            Spell spell = hero.getInventory().getSpellFromId(spellId);
+                            response = hero.castSpell(spell, monster);
+                            System.out.println(response);
+                        } else {
+                            System.out.println("\nSpell does not exist in " + hero.getName() + "'s inventory! You just lost a turn :(");
+                        }
+                    } else if (userResponseOrBattleWinner.equals("hit")) {
+                        response = hero.hit(monster);
                         System.out.println(response);
-                    } else {
-                        System.out.println("Spell does not exist in " + hero.getName() + "'s inventory! You just lost a turn :(");
+                    } else if (userResponseOrBattleWinner.equals("i")) {
+                        fighters.printFightersInformation();
+                        turn--; // Ensure when increment happens, it is still hero's turn
+                    } else if (userResponseOrBattleWinner.equals("h")) {
+                        printHelp();
+                        turn--; // Ensure when increment happens, it is still hero's turn
+                    } else if (userResponseOrBattleWinner.equals("q")) { // Quit the game
+                        break;
+                    } else if (userResponseOrBattleWinner.equals("r")) {
+                        printRules();
+                        turn--; // Ensure when increment happens, it is still hero's turn
                     }
-                } else if (userResponseOrBattleWinner.equals("hit")) {
-                    response = hero.hit(monster);
-                    System.out.println(response);
-                } else if (userResponseOrBattleWinner.equals("i")) {
-                    hero.printHero();
-                    System.out.println();
-                    System.out.println(monster);
-                    turn--; // Ensure when increment happens, it is still hero's turn
-                } else if (userResponseOrBattleWinner.equals("h")) {
-                    printHelp();
-                    turn--; // Ensure when increment happens, it is still hero's turn
-                } else if (userResponseOrBattleWinner.equals("q")) { // Quit the game
-                    break;
-                } else if (userResponseOrBattleWinner.equals("r")) {
-                    printRules();
-                    turn--; // Ensure when increment happens, it is still hero's turn
+                } else {
+                    // Monster's turn
+                    response = monster.attack(hero);
+                    System.out.println("\n" + response);
                 }
-            } else {
-                // Monster's turn
-                response = monster.attack(hero);
-                System.out.println(response);
-            }
 
-            turn++;
+                turn++;
+            } else {
+                break;
+            }
         }
 
         if (!userResponseOrBattleWinner.equals("q")) {

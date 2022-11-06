@@ -35,7 +35,7 @@ public class MHHelp implements Help {
     }
 
     public void printHelpBattle() {
-        String help = "********************\n" +
+        String help = "\n********************\n" +
                 "|   Battle Help    |\n" +
                 "********************\n" +
                     "\n" +
@@ -56,7 +56,7 @@ public class MHHelp implements Help {
     }
 
     public void printHelpMarket() {
-        String help = "********************\n" +
+        String help = "\n********************\n" +
                 "|   Market Help    |\n" +
                 "********************\n" +
                 "\n" +
@@ -75,7 +75,7 @@ public class MHHelp implements Help {
     }
 
     public void printHelpMap() {
-        String help = "****************\n" +
+        String help = "\n****************\n" +
                 "|   Map Help   |\n" +
                 "****************\n" +
                 "\n" +
@@ -112,7 +112,7 @@ public class MHHelp implements Help {
     }
 
     public void printRulesMap() {
-        String rules = "*****************\n" +
+        String rules = "\n*****************\n" +
                 "|   Map Rules   |\n" +
                 "*****************\n" +
                 "\n" +
@@ -150,7 +150,7 @@ public class MHHelp implements Help {
     }
 
     public void printRulesBattle() {
-        String rules = "********************\n" +
+        String rules = "\n********************\n" +
                 "|   Battle Rules   |\n" +
                 "********************\n" +
                 "\n" +
@@ -273,7 +273,7 @@ public class MHHelp implements Help {
     }
 
     public void printRulesMarket() {
-        String rules = "********************\n" +
+        String rules = "\n********************\n" +
                 "|   Market Rules   |\n" +
                 "********************\n" +
                 "\n" +

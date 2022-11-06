@@ -203,24 +203,28 @@ public class Hero extends NonPlayerCharacter {
             }
         }
 
-        if (getAttackDamageWithWeapon(damage) <= monster.calculateDodge()) {
-            response = "Monster " + monster.getName() + " managed to dodge Hero " + getName() + "'s attack!";
-        } else {
-            int damageReduceAmount = monster.getDefense();
-
-            if (damageReduceAmount < getAttackDamageWithWeapon(damage)) {
-                int reduceHitPoints = (int) (getAttackDamageWithWeapon(damage) - damageReduceAmount);
-
-                if (monster.getHitPoint() - reduceHitPoints <= 0) {
-                    monster.setHitPoint(noMore);
-                    response = "Monster " + monster.getName() + " has been defeated!";
-                } else {
-                    monster.setHitPoint(monster.getHitPoint() - reduceHitPoints);
-                    response = "Monster " + monster.getName() + " was hit by Hero " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
-                }
+        if (damage > 0) {
+            if (getAttackDamageWithWeapon(damage) <= monster.calculateDodge()) {
+                response = "\nMonster " + monster.getName() + " managed to dodge Hero " + getName() + "'s attack!";
             } else {
-                response = "Monster " + monster.getName() + " has successfully defended against Hero " + getName() + "'s attack!";
+                int damageReduceAmount = monster.getDefense();
+
+                if (damageReduceAmount < getAttackDamageWithWeapon(damage)) {
+                    int reduceHitPoints = (int) (getAttackDamageWithWeapon(damage) - damageReduceAmount);
+
+                    if (monster.getHitPoint() - reduceHitPoints <= 0) {
+                        monster.setHitPoint(noMore);
+                        response = "\nMonster " + monster.getName() + " has been defeated!";
+                    } else {
+                        monster.setHitPoint(monster.getHitPoint() - reduceHitPoints);
+                        response = "\nMonster " + monster.getName() + " was hit by Hero " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
+                    }
+                } else {
+                    response = "\nMonster " + monster.getName() + " has successfully defended against Hero " + getName() + "'s attack!";
+                }
             }
+        } else {
+            response = "\n Hero is not equipped with a weapon!";
         }
 
         return response;
@@ -249,7 +253,7 @@ public class Hero extends NonPlayerCharacter {
         if (canUseSpell() && mana >= spell.getManaCost()) {
             response = spell.applySpell(this, monster);
         } else {
-            response = getName() + " has not enough mana! Unable to cast " + spell.getItemName();
+            response = "\n" + getName() + " has not enough mana! Unable to cast " + spell.getItemName();
         }
 
         return response;

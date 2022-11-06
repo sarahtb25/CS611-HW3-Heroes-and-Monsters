@@ -47,7 +47,7 @@ public class CommonPiece extends MHPiece {
         List<Integer> monsterLevel = new ArrayList<>();
 
         boolean haveMonster = haveMonsters();
-
+//        System.out.println("\nHave Monsters? " + haveMonster);
        if (haveMonster) {
            haveBattle = true;
            checkNumberOfHeroesStillAlive(player);

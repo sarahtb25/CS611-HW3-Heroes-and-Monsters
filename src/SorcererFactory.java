@@ -10,7 +10,7 @@ public class SorcererFactory implements HeroFactory<Sorcerer> {
     public static final List<Integer> sorcererStrength = Arrays.asList(750, 800, 800, 800, 850, 700);
     public static final List<Integer> sorcererAgility = Arrays.asList(450, 500, 800, 700, 400, 400);
     public static final List<Integer> sorcererDexterity = Arrays.asList(500, 650, 800, 400, 600, 500);
-    public static final List<Integer> sorcererMoney = Arrays.asList(2500, 2500, 2500, 2500, 2500, 2500);
+    public static final List<Integer> sorcererMoney = Arrays.asList(9000, 5000, 8000, 7000, 6000, 5000);
     public static final List<Integer> sorcererExperience = Arrays.asList(9, 5, 8, 7, 6, 5);
     private List<Sorcerer> sorcerers = new ArrayList<>();
     private Inventory inventory = new Inventory(new ArrayList<Weapon>(), new ArrayList<Armor>(), new ArrayList<Potion>(), new ArrayList<Spell>());

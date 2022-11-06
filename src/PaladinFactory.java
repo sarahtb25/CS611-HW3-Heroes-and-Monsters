@@ -10,7 +10,7 @@ public class PaladinFactory implements HeroFactory<Paladin> {
     public static final List<Integer> paladinStrength = Arrays.asList(750, 750, 650, 600, 500, 400);
     public static final List<Integer> paladinAgility = Arrays.asList(650, 700, 600, 500, 500, 400);
     public static final List<Integer> paladinDexterity = Arrays.asList(700, 700, 350, 400, 500, 400);
-    public static final List<Integer> paladinMoney = Arrays.asList(2500, 2500, 2500, 2500, 2500, 2500);
+    public static final List<Integer> paladinMoney = Arrays.asList(7000, 7000, 4000, 5000, 5000, 8000);
     public static final List<Integer> paladinExperience = Arrays.asList(7, 7, 4, 5, 5, 8);
     private List<Paladin> paladins = new ArrayList<>();
     private Inventory inventory = new Inventory(new ArrayList<Weapon>(), new ArrayList<Armor>(), new ArrayList<Potion>(), new ArrayList<Spell>());
