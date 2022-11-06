@@ -6,9 +6,10 @@ import java.util.Set;
 public class MHRoundHistory implements RoundHistory {
     private int numberOfBattles;
     // Stores hero's name and number of times they defeated a monster
-    private HashMap<String, Integer> roundScores = new LinkedHashMap<>();
+    private HashMap<String, Integer> roundScores;
 
     public MHRoundHistory() {
+        roundScores = new LinkedHashMap<>();
     }
 
     public int getNumberOfBattles() {

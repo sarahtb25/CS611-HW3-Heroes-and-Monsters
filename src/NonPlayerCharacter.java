@@ -8,7 +8,8 @@ public class NonPlayerCharacter {
     private String id;
 
     public NonPlayerCharacter() {
-
+        name = " ";
+        id = " ";
     }
 
     public NonPlayerCharacter(String name, String id) {

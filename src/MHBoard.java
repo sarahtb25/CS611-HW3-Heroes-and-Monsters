@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class MHBoard extends Board {
     public static final int numberOfRowsAndCols = 8;
     public static final double proportionOfInvalid = 0.2; // 20% Invalid
@@ -7,7 +9,8 @@ public class MHBoard extends Board {
 
     public MHBoard() {
         super(numberOfRowsAndCols);
-        MHCell[][] board = getMHBoard();
+        Cell[][] board = getMHBoard();
+
         for (int i = 0; i < numberOfInvalid; i++) {
             int row = (int) (Math.random() * numberOfRowsAndCols);
             int col = (int) (Math.random() * numberOfRowsAndCols);
@@ -36,21 +39,23 @@ public class MHBoard extends Board {
                 }
             }
         }
+
+        setBoard(board);
     }
 
-    public MHCell[][] getMHBoard() {
-        return (MHCell[][]) getBoard();
+    public Cell[][] getMHBoard() {
+        return getBoard();
     }
 
-    public MHCell getMHBoardCell(int row, int column) {
+    public Cell getMHBoardCell(int row, int column) {
         return getMHBoard()[row][column];
     }
 
     /* When player first starts playing, place the player in a random cell
     that is either a common space or has a market
      */
-    public MHCell getRandomMarketCell() {
-        MHCell cellWanted;
+    public Cell getRandomMarketCell() {
+        Cell cellWanted;
 
         do {
             int rowIndex = (int) (Math.random() * (numberOfRowsAndCols - 1));
@@ -64,16 +69,18 @@ public class MHBoard extends Board {
     @Override
     public void printBoard() {
         int rows = numberOfRowsAndCols + 1;
+        Cell[][] board = getMHBoard();
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < numberOfRowsAndCols; j++) {
-                System.out.print("+-----");
+                System.out.print("+----");
             }
             System.out.println("+");
 
             if (i < numberOfRowsAndCols) {
                 for (int k = 0; k < numberOfRowsAndCols; k++) {
-                    String pieceId = getBoard()[i][k].getPiece().getId();
+                    String pieceId = board[i][k].getPiece().getId();
+
                     if (pieceId.length() == 2) {
                         System.out.print("| " + pieceId + " ");
                     } else {
@@ -96,7 +103,7 @@ public class MHBoard extends Board {
                 } else {
                     if (getMHBoardCell(i, j).getPiece().getId().contains("*")) {
                         rowAndColumnIndex[0] = i;
-                        rowAndColumnIndex[j] = j;
+                        rowAndColumnIndex[1] = j;
                         break;
                     }
                 }

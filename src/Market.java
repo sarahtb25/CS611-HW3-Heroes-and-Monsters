@@ -21,18 +21,20 @@ public class Market {
 
     public String getUserInput(MHPlayer player) {
         String userInput = "";
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in).useDelimiter("\n");
         String itemId = "", heroId = "";
         Hero hero;
 
-        while(!userInput.equals("x") || !userInput.equals("q")) {
-            printHelp();
+        printMarketMenu();
+        printHelp();
+
+        while(!userInput.equals("x") && !userInput.equals("q")) {
             System.out.println();
-            System.out.println("Please provide a command:");
+            System.out.println("\nPlease provide a valid market command:");
             userInput = scan.next().trim().toLowerCase();
 
             if (userInput.contains(" buy ") || userInput.contains(" sell ")) {
-                heroId = userInput.split(" ")[0];
+                heroId = userInput.split(" ")[0].toUpperCase();
                 itemId = userInput.split(" ")[2];
 
                 if (player.getHeroes().checkIfHeroExists(heroId)) {
@@ -54,8 +56,19 @@ public class Market {
                 printHelp();
             } else if (userInput.equals("r")) {
                 printRules();
-            } else if (!userInput.equals("x") || !userInput.equals("q")){
-                System.out.println("Invalid Input!");
+            } else if (userInput.contains("hero ")) {
+                heroId = userInput.split(" ")[1].toUpperCase();
+
+                if (player.getHeroes().checkIfHeroExists(heroId)) {
+                    hero = player.getHeroes().getHeroFromId(heroId);
+
+                    hero.printHero();
+                } else {
+                    System.out.println("You do not have Hero " + heroId.toUpperCase() + "!");
+                }
+            } else if (!userInput.equals("x") && !userInput.equals("q")){
+                System.out.println(userInput);
+                System.out.println("\nInvalid Input!");
             }
         }
 
@@ -63,9 +76,9 @@ public class Market {
     }
 
     public void printMarketMenu() {
-        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("#############################################################################################");
         System.out.println("|                                   MARKET                                                  |");
-        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("#############################################################################################");
         System.out.println("\n\n");
         wf.printItems();
         System.out.println("\n\n");
@@ -92,6 +105,9 @@ public class Market {
 
             if (canBuy) {
                 hero.getInventory().addWeapon(weapon);
+                hero.updateMoneyAfterBuyingItems(cost);
+            } else {
+                System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this weapon!");
             }
         } else if (itemId.contains("E")) {
             armor = af.getItemFromId(itemId);
@@ -100,6 +116,9 @@ public class Market {
 
             if (canBuy) {
                 hero.getInventory().addArmor(armor);
+                hero.updateMoneyAfterBuyingItems(cost);
+            } else {
+                System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this armor!");
             }
         } else if (itemId.contains("F") || itemId.contains("C") || itemId.contains("L")) {
             spell = sf.getItemFromId(itemId);
@@ -108,6 +127,9 @@ public class Market {
 
             if (canBuy) {
                 hero.getInventory().addSpell(spell);
+                hero.updateMoneyAfterBuyingItems(cost);
+            } else {
+                System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this spell!");
             }
         } else if (itemId.contains("P")) {
             potion = pf.getItemFromId(itemId);
@@ -116,10 +138,11 @@ public class Market {
 
             if (canBuy) {
                 hero.getInventory().addPotion(potion);
+                hero.updateMoneyAfterBuyingItems(cost);
+            } else {
+                System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this potion!");
             }
         }
-
-        hero.updateMoneyAfterBuyingItems(cost);
     }
 
     public void sellItem(Hero hero, String itemId) {

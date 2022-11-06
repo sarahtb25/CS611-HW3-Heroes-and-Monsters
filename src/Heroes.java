@@ -1,10 +1,11 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Heroes {
     private List<Hero> heroes; // min. 1 and max. 3 heroes, can use instanceof to get the type of hero
 
     public Heroes() {
-
+        heroes = new ArrayList<>();
     }
     public Heroes(List<Hero> heroes) {
         this.heroes = heroes;
@@ -41,7 +42,7 @@ public class Heroes {
         int numberOfHeroesAlive = 0;
 
         for (Hero hero : heroes) {
-            if (hero.getHitPoints() <= 0) {
+            if (hero.getHitPoints() > 0) {
                 numberOfHeroesAlive++;
             }
         }
@@ -73,19 +74,19 @@ public class Heroes {
     }
 
     public void printHeroes() {
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("|                                   HEROES                                                  |");
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.printf("%5s %10s %10s %8s %8s %10s %10s %10s %10s", "ID", "NAME", "HITPOINT", "MANA", "MONEY", "EXPERIENCE", "STRENGTH", "AGILITY", "DEXTERITY");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("|                                                                HEROES                                                              |");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%7s %21s %15s %15s %7s %8s %13s %13s %10s %12s", "ID", "NAME", "TYPE", "HITPOINT", "MANA", "MONEY", "EXPERIENCE", "STRENGTH", "AGILITY", "DEXTERITY");
         System.out.println();
-        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------");
 
         for(Hero hero : heroes) {
-            System.out.format("%7s %14s %7s %7s %7s %7s %7s %7s", hero.getId(), hero.getName(), hero.getHitPoints(), hero.getMana(), hero.getMoney(), hero.getExperience(), hero.getStrength(), hero.getAgility(), hero.getDexterity());
+            System.out.format("%7s %25s %13s %10s %10s %8s %9s %14s %11s %10s", hero.getId(), hero.getName(), hero.getClass().toString().split(" ", 2)[1], hero.getHitPoints(), hero.getMana(), hero.getMoney(), hero.getExperience(), hero.getStrength(), hero.getAgility(), hero.getDexterity());
             System.out.println();
         }
 
-        System.out.println("----------------------------------------------------------------------------------------------");
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------");
     }
 }

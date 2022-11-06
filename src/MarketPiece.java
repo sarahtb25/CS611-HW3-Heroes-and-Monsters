@@ -14,22 +14,20 @@ public class MarketPiece extends MHPiece {
 
     public boolean market(MHPlayer player) {
         String userInput = getUserInput(player);
-        boolean quit = false;
-
-        if (userInput.equals("x")) {
-            quit = leaveMarket(userInput);
-        }
 
         // if true, exit game
-        return quit;
+        return leaveOrQuitMarket(userInput);
     }
 
-    public boolean leaveMarket(String leaveOrQuit) {
-        System.out.println("Exiting Market");
+    public void leaveMarket() {
         setId(id);
+    }
+
+    public boolean leaveOrQuitMarket(String quit) {
+        System.out.println("Exiting Market...");
 
         // exiting market only, not the game
-        if (leaveOrQuit.equals("x")) {
+        if (quit.equals("x")) {
             return false;
         }
 
@@ -39,8 +37,6 @@ public class MarketPiece extends MHPiece {
 
     public String getUserInput(MHPlayer player) {
         // x (to exit market) or q (to quit the game)
-        String userInput = market.getUserInput(player);
-
-        return userInput;
+        return market.getUserInput(player);
     }
 }

@@ -27,7 +27,7 @@ public class Battle {
     }
 
     public String fight() {
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in).useDelimiter("\n");
         String userResponseOrBattleWinner = "";
         String response = "";
         int turn = 0;
@@ -85,7 +85,7 @@ public class Battle {
                     response = hero.hit(monster);
                     System.out.println(response);
                 } else if (userResponseOrBattleWinner.equals("i")) {
-                    System.out.println(hero);
+                    hero.printHero();
                     System.out.println();
                     System.out.println(monster);
                     turn--; // Ensure when increment happens, it is still hero's turn

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 // Represents monsters in a common piece
@@ -5,7 +6,7 @@ public class Monsters {
     private List<Monster> monsters;
 
     public Monsters() {
-
+        monsters = new ArrayList<>();
     }
 
     public Monsters(List<Monster> monsters) {

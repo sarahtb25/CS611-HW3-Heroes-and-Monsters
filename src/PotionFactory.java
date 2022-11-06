@@ -32,20 +32,20 @@ public class PotionFactory implements ItemFactory<Potion> {
 
     @Override
     public void printItems() {
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("|                                   POTIONS                                                 |");
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.printf("%5s %10s %10s %8s %10s %20s %17s", "ID", "NAME", "COST", "LEVEL", "NUMBER OF CONSUMPTIONS", "ATTRIBUTES INCREASE AMOUNT", "ATTRIBUTES AFFECTED");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("|                                                                     POTIONS                                                                              |");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%5s %15s %14s %10s %30s %30s %40s", "ID", "NAME", "COST", "LEVEL", "NUMBER OF CONSUMPTIONS", "ATTRIBUTES INCREASE AMOUNT", "ATTRIBUTES AFFECTED");
         System.out.println();
-        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         for(Potion potion : potions) {
-            System.out.format("%7s %14s %7s %10s %25s %13s %30s", potion.getId(), potion.getItemName(), potion.getCost(), potion.getRequiredLevel(), potion.getNumberOfConsumptions(), potion.getAttributeIncrease(), potion.getAttributesAffected());
+            System.out.format("%5s %20s %9s %8s %20s %30s %50s", potion.getId(), potion.getItemName(), potion.getCost(), potion.getRequiredLevel(), potion.getNumberOfConsumptions(), potion.getAttributeIncrease(), potion.getAttributesAffected().toString().replace("[","").replace("]",""));
             System.out.println();
         }
 
-        System.out.println("----------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
     @Override

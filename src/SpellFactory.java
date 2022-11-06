@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class SpellFactory implements ItemFactory<Spell> {
     public static final List<Integer> spellDamage = Arrays.asList(850, 450, 600, 1000, 950, 650, 450, 850, 800, 500, 950, 650, 600);
     public static final List<Integer> spellNumberOfConsumptions = Arrays.asList(4, 10, 7, 1, 5, 4, 6, 2, 1, 1, 4, 5, 2, 10, 7, 4, 2);
     public static final List<Integer> spellManaCost = Arrays.asList(300, 100, 150, 550, 600, 250, 100, 350, 300, 150, 400, 200, 200);
-    private List<Spell> spells;
+    private List<Spell> spells = new ArrayList<>();
 
     public SpellFactory() {
         generateItems();
@@ -39,13 +40,13 @@ public class SpellFactory implements ItemFactory<Spell> {
 
     @Override
     public void printItems() {
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("|                                   SPELLS                                                  |");
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.printf("%5s %10s %10s %8s %10s %20s %25s %17s", "ID", "TYPE", "NAME", "COST", "MANA COST", "LEVEL", "NUMBER OF CONSUMPTIONS", "DAMAGE");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("|                                                                    SPELLS                                                                      |");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("%7s %17s %18s %13s %14s %9s %29s %17s", "ID", "TYPE", "NAME", "COST", "MANA COST", "LEVEL", "NUMBER OF CONSUMPTIONS", "DAMAGE");
         System.out.println();
-        System.out.println("---------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
 
         for(Spell spell : spells) {
             String typeOfSpell = "";
@@ -58,11 +59,11 @@ public class SpellFactory implements ItemFactory<Spell> {
                 typeOfSpell = "Lightning";
             }
 
-            System.out.format("%7s %15s %14s %7s %10s %10s %25s %13s", spell.getId(), typeOfSpell, spell.getItemName(), spell.getCost(), spell.getManaCost(), spell.getRequiredLevel(), spell.getNumberOfConsumptions(), spell.getDamage());
+            System.out.format("%7s %15s %23s %9s %10s %12s %19s %27s", spell.getId(), typeOfSpell, spell.getItemName(), spell.getCost(), spell.getManaCost(), spell.getRequiredLevel(), spell.getNumberOfConsumptions(), spell.getDamage());
             System.out.println();
         }
 
-        System.out.println("----------------------------------------------------------------------------------------------");
+        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
     }
 
     @Override

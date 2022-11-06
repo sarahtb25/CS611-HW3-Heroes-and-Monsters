@@ -13,14 +13,14 @@ public class MHBoardGame extends BoardGame {
     private Heroes heroes;
     private MHPlayer player;
     private int numberOfBattles = 0;
-    private MHUtility utility = new MHUtility();
+    private final MHUtility utility = new MHUtility();
 
     public MHBoardGame() {
         super();
     }
 
     public void getPlayerName() {
-        Scanner scan = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in).useDelimiter("\n");
         System.out.println("Please enter player name:");
 
         String playerName = scan.next();
@@ -74,8 +74,8 @@ public class MHBoardGame extends BoardGame {
 
     // Q/q
     public void quit() {
-        // Check if user really want to leave the game
         statistics.printStatistics();
+        System.out.println("\nQuitting game...");
         System.exit(1);
     }
 
@@ -85,7 +85,7 @@ public class MHBoardGame extends BoardGame {
     }
 
     public void enterCell(int row, int column) {
-        MHCell cell = board.getMHBoardCell(row, column);
+        Cell cell = board.getMHBoardCell(row, column);
 
         if (cell.getPiece() instanceof CommonPiece) {
             CommonPiece commonPiece = (CommonPiece) cell.getPiece();
@@ -109,6 +109,8 @@ public class MHBoardGame extends BoardGame {
             if (cell.getPiece().getId().equals("M")) {
                 marketPiece.beforeEnteringMarket();
                 printMap();
+            } else if (cell.getPiece().getId().equals("M*")) {
+                marketPiece.leaveMarket();
             }
         } else if (cell.getPiece().getId().equals("I")) {
             System.out.println("You are not allowed to come to an invalid area!");
@@ -167,11 +169,12 @@ public class MHBoardGame extends BoardGame {
     public void goToMarket() {
         boolean quit;
         int[] rowAndColumnIndex = board.getRowAndColumnIndex();
-        MHCell cell = board.getMHBoardCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+        Cell cell = board.getMHBoardCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
 
         if (cell.getPiece() instanceof MarketPiece) {
             MarketPiece marketPiece = (MarketPiece) cell.getPiece();
             quit = marketPiece.market(player);
+            printMap();
 
             if (quit) {
                 quit();
@@ -207,7 +210,7 @@ public class MHBoardGame extends BoardGame {
 
         if (heroExists) {
             Hero hero = player.getHeroes().getHeroFromId(heroId);
-            System.out.println(hero);
+            hero.printHero();
         } else {
             System.out.println("You do not have hero " + heroId + "!");
         }
@@ -220,7 +223,7 @@ public class MHBoardGame extends BoardGame {
 
         if (heroExists) {
             Hero hero = player.getHeroes().getHeroFromId(heroId);
-            System.out.println(hero.getInventory());
+            hero.getInventory().printInventory();
         } else {
             System.out.println("You do not have hero " + heroId + "!");
         }
@@ -272,8 +275,8 @@ public class MHBoardGame extends BoardGame {
 
     @Override
     public void playGame() {
-        Scanner scan = new Scanner(System.in);
-        String userInput = "";
+        Scanner scan = new Scanner(System.in).useDelimiter("\n");
+        String userInput = "y";
         boolean isValid;
 
         while (userInput.equals("y")) {
@@ -281,7 +284,7 @@ public class MHBoardGame extends BoardGame {
             printOverallRules();
             printOverallHelp();
             initializeGame();
-            MHCell cell = board.getRandomMarketCell();
+            Cell cell = board.getRandomMarketCell();
             MHRoundHistory roundHistory = new MHRoundHistory();
             numberOfBattles = 0;
 
@@ -292,7 +295,7 @@ public class MHBoardGame extends BoardGame {
 
             while(!checkGameStatus()) {
                  do {
-                    System.out.println("Please provide a valid command:");
+                    System.out.println("\nPlease provide a valid map command:");
                     userInput = scan.next().trim().toLowerCase();
                     isValid = utility.checkValidUserResponse(userInput);
                  } while(!isValid);
@@ -340,6 +343,7 @@ public class MHBoardGame extends BoardGame {
             for (Hero hero : heroes.getHeroes()) {
                 roundHistory.addHeroScoreToRoundHistory(hero.getName(), hero.getNumberOfTimesHeroDefeatedMonster());
             }
+            statistics.addRoundHistory(roundHistory);
 
             showScore();
 
@@ -364,7 +368,6 @@ public class MHBoardGame extends BoardGame {
         int numberOfHeroesAlive = heroes.getNumberOfHeroesAlive();
         int totalNumberOfHeroesDefeated = heroes.getTotalNumberOfMonstersDefeated();
 
-
         // All heroes are still alive, the game is not over yet
         if (numberOfHeroesAlive == heroes.getHeroes().size() && totalNumberOfHeroesDefeated < numberOfMonstersToDefeat) {
             return false;
@@ -375,7 +378,7 @@ public class MHBoardGame extends BoardGame {
 
     @Override
     public void showScore() {
-        System.out.println("There were " + numberOfBattles + " battles in this round.");
+        System.out.println("\nThere were " + numberOfBattles + " battles in this round.");
         for (Hero hero : heroes.getHeroes()) {
             System.out.println("\tHero " + hero.getName() + " defeated " + hero.getNumberOfTimesHeroDefeatedMonster() + " monster(s).");
         }

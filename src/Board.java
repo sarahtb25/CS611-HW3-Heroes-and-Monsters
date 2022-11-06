@@ -9,6 +9,12 @@ public class Board {
         this.numberOfColumns = numberOfColumns;
 
         board = new Cell[numberOfRows][numberOfColumns];
+
+        for (int i = 0; i < numberOfRows; i++) {
+            for (int j = 0; j < numberOfColumns; j++) {
+                board[i][j] = new Cell();
+            }
+        }
     }
 
     public Board(int numberOfRowsAndColumns) {
@@ -54,7 +60,11 @@ public class Board {
 
             if (i < numberOfRows) {
                 for (int k = 0; k < numberOfColumns; k++) {
-                    String pieceId = board[i][k].getPiece().getId();
+                    String pieceId = " ";
+
+                    if (board[i][k].getOccupied()) {
+                        pieceId = board[i][k].getPiece().getId();
+                    }
                     System.out.print("| " + pieceId + " ");
                 }
                 System.out.println("|");

@@ -34,12 +34,12 @@ public class ArmorFactory implements ItemFactory<Armor> {
         System.out.println("|                                   ARMORS                                                  |");
         System.out.println("---------------------------------------------------------------------------------------------");
         System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.printf("%5s %10s %10s %8s %20s", "ID", "NAME", "COST", "LEVEL", "DAMAGE REDUCTION");
+        System.out.printf("%12s %12s %20s %10s %20s", "ID", "NAME", "COST", "LEVEL", "DAMAGE REDUCTION");
         System.out.println();
         System.out.println("---------------------------------------------------------------------------------------------");
 
         for(Armor armor : armors) {
-            System.out.format("%7s %14s %7s %10s %25s %13s", armor.getId(), armor.getItemName(), armor.getCost(), armor.getRequiredLevel(), armor.getDamageReduction());
+            System.out.format("%12s %20s %11s %10s %15s", armor.getId(), armor.getItemName(), armor.getCost(), armor.getRequiredLevel(), armor.getDamageReduction());
             System.out.println();
         }
 

@@ -36,12 +36,12 @@ public class WeaponFactory implements ItemFactory<Weapon> {
         System.out.println("|                                   WEAPONS                                                 |");
         System.out.println("---------------------------------------------------------------------------------------------");
         System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.printf("%5s %10s %10s %8s %20s %17s", "ID", "NAME", "COST", "LEVEL", "HANDS", "DAMAGE");
+        System.out.printf("%12s %12s %12s %12s %12s %12s", "ID", "NAME", "COST", "LEVEL", "HANDS", "DAMAGE");
         System.out.println();
         System.out.println("---------------------------------------------------------------------------------------------");
 
         for(Weapon weapon : weapons) {
-            System.out.format("%7s %14s %7s %10s %25s %13s", weapon.getId(), weapon.getItemName(), weapon.getCost(), weapon.getRequiredLevel(), weapon.getNumberOfHandsRequired(), weapon.getDamage());
+            System.out.format("%12s %13s %11s %10s %12s %13s", weapon.getId(), weapon.getItemName(), weapon.getCost(), weapon.getRequiredLevel(), weapon.getNumberOfHandsRequired(), weapon.getDamage());
             System.out.println();
         }
 

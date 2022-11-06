@@ -30,6 +30,14 @@ public class Hero extends NonPlayerCharacter {
 
     public Hero() {
         super();
+        this.mana = 1;
+        this.strength = 1;
+        this.agility = 1;
+        this.dexterity = 1;
+        this.money = 1;
+        this.experience = 1;
+        this.inventory = new Inventory();
+        this.hitPoints = 100;
     }
 
     public Hero(String name, String id, int mana, int strength, int agility, int dexterity, int money, int experience, Inventory inventory) {
@@ -326,7 +334,7 @@ public class Hero extends NonPlayerCharacter {
     }
 
     public boolean checkMoneyAndLevelToBuyItem(int cost, int requiredLevel) {
-        if (cost > money && experience < requiredLevel) return false;
+        if (cost > money || experience < requiredLevel) return false;
 
         return true;
     }
@@ -363,18 +371,44 @@ public class Hero extends NonPlayerCharacter {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Hero " + getName() + " :" +
-                "\n\tHit Points:"  + hitPoints +
-                "\n\tMana: " + mana +
-                "\n\tStrength: " + strength +
-                "\n\tAgility: " + agility +
-                "\n\tDexterity: " + dexterity +
-                "\n\tMoney: " + money +
-                "\n\tExperience: " + experience +
-                "\n\tExperience Gained: " + experienceGained + "/" + experienceNeededToLevelUp() +
-                "\n\tCurrently Equipped Items: " + currentlyEquippedItems +
-                "\n\tinventory: " + inventory;
+    public void printHero() {
+        System.out.print("\nHero " + getName() + " :" +
+                            "\n\tHit Points:"  + hitPoints +
+                            "\n\tMana: " + mana +
+                            "\n\tStrength: " + strength +
+                            "\n\tAgility: " + agility +
+                            "\n\tDexterity: " + dexterity +
+                            "\n\tMoney: " + money +
+                            "\n\tExperience: " + experience +
+                            "\n\tExperience Gained: " + experienceGained + " / " + experienceNeededToLevelUp() +
+                            "\n\tCurrently Equipped Items: ");
+
+        printCurrentlyEquippedItems();
+        System.out.println("\n\tInventory: ");
+        inventory.printInventory();
+    }
+
+    public void printCurrentlyEquippedItems() {
+        if (currentlyEquippedItems.isEmpty()) {
+            System.out.print("None");
+        } else {
+            MHUtility utility = new MHUtility();
+
+            System.out.println("\n#########################################################################################\n");
+            System.out.println("|                                   Currently Equipped Items                              |\n");
+            System.out.println("#########################################################################################\n");
+
+            List<Weapon> weapons = new ArrayList<>();
+            List<Armor> armors = new ArrayList<>();
+            for (EquippableItem item : currentlyEquippedItems) {
+                if (item instanceof Weapon) {
+                    weapons.add((Weapon) item);
+                } else if (item instanceof Armor) {
+                    armors.add((Armor) item);
+                }
+            }
+            utility.printWeapons(weapons);
+            utility.printArmors(armors);
+        }
     }
 }

@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 // Represents a player's inventory
@@ -7,6 +8,13 @@ public class Inventory {
     private List<Potion> potions;
     private List<Spell> spells;
 
+    public Inventory() {
+        weapons = new ArrayList<>();
+        armors = new ArrayList<>();
+        potions = new ArrayList<>();
+        spells = new ArrayList<>();
+    }
+    
     public Inventory(List<Weapon> weapons, List<Armor> armors, List<Potion> potions, List<Spell> spells) {
         this.weapons = weapons;
         this.armors = armors;
@@ -179,14 +187,25 @@ public class Inventory {
         return false;
     }
 
-    @Override
-    public String toString() {
-        return  "------------\n" +
-                "| Inventory |\n" +
-                "------------" +
-                "\n\tWeapons: \n" + weapons +
-                "\n\tArmors: \n" + armors +
-                "\n\tPotions: \n" + potions +
-                "\n\tSpells: \n" + spells;
+    public void printInventory() {
+        MHUtility utility = new MHUtility();
+
+        if (weapons.isEmpty() && armors.isEmpty() && spells.isEmpty() && potions.isEmpty()) {
+            System.out.print("None");
+        } else {
+            System.out.println("\n#########################################################################################\n");
+            System.out.println("|                                        Inventory                                      |\n");
+            System.out.println("#########################################################################################\n");
+            System.out.println();
+            utility.printWeapons(weapons);
+            System.out.println();
+            utility.printArmors(armors);
+            System.out.println();
+            utility.printPotions(potions);
+            System.out.println();
+            utility.printSpells(spells);
+        }
     }
+
+
 }
