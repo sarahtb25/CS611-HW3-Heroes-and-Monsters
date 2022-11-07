@@ -4,12 +4,15 @@ import java.util.List;
 
 // This class generates heroes according to the number of heroes wanted by player
 public class GenerateHeroes {
-    public static final WarriorFactory wf = new WarriorFactory();
-    public static final SorcererFactory sf = new SorcererFactory();
-    public static final PaladinFactory pf = new PaladinFactory();
+    private final WarriorFactory wf;
+    private final SorcererFactory sf;
+    private final PaladinFactory pf;
     private int numberOfHeroes;
 
     public GenerateHeroes(int numberOfHeroes) {
+        wf = new WarriorFactory();
+        sf = new SorcererFactory();
+        pf = new PaladinFactory();
         this.numberOfHeroes = numberOfHeroes;
     }
 

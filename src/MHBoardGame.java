@@ -9,7 +9,7 @@ public class MHBoardGame extends BoardGame {
     public static final int maxHero = 3;
     public static final MHHelp help = new MHHelp();
 
-    private MHBoard board = new MHBoard();
+    private MHBoard board;
     private MHStatistics statistics = new MHStatistics();
     private int numberOfHeroes = 0;
     private Heroes heroes;
@@ -271,14 +271,9 @@ public class MHBoardGame extends BoardGame {
             printOverallRules();
             printOverallHelp();
             initializeGame();
-            Cell cell = board.getRandomMarketCell();
+            regenerateMap();
             MHRoundHistory roundHistory = new MHRoundHistory();
             numberOfBattles = 0;
-
-            MarketPiece marketPiece = (MarketPiece) cell.getPiece();
-            marketPiece.beforeEnteringMarket();
-
-            printMap();
 
             while(!checkGameStatus()) {
                  do {

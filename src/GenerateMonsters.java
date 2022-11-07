@@ -3,13 +3,16 @@ import java.util.List;
 
 // This class generates monsters as needed for a cell
 public class GenerateMonsters {
-    public static final DragonFactory df = new DragonFactory();
-    public static final ExoskeletonFactory ef = new ExoskeletonFactory();
-    public static final SpiritFactory sf = new SpiritFactory();
+    private final DragonFactory df;
+    private final ExoskeletonFactory ef;
+    private final SpiritFactory sf;
     public static int numberOfTypesOfMonsters = 3;
     private int numberOfHeroes;
 
     public GenerateMonsters(int numberOfHeroes) {
+        df = new DragonFactory();
+        ef = new ExoskeletonFactory();
+        sf = new SpiritFactory();
         this.numberOfHeroes = numberOfHeroes;
     }
 
