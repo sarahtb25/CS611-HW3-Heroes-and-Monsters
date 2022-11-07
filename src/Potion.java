@@ -48,7 +48,7 @@ public class Potion extends ConsumableItem {
             print += attributesAffected.get(i) + ", ";
         }
 
-        print.substring(0, print.length() - 1);
+        print.substring(0, print.length() - 2);
         print += " by " + attributeIncrease + " points!";
 
         System.out.println(print);

@@ -5,7 +5,12 @@ public class Item {
     private int cost;
     private int requiredLevel;
 
-    public Item() {}
+    public Item() {
+        itemName = "none";
+        id = "none";
+        cost = 0;
+        requiredLevel = 0;
+    }
     public Item(String itemName, String id, int cost, int requiredLevel) {
         this.itemName = itemName;
         this.id = id;

@@ -60,4 +60,15 @@ public class PotionFactory implements ItemFactory<Potion> {
 
         return potionWanted;
     }
+
+    @Override
+    public boolean checkItemExists(String id) {
+        for (Potion potion : potions) {
+            if (potion.getId().equals(id)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

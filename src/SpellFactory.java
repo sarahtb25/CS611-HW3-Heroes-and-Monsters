@@ -78,4 +78,14 @@ public class SpellFactory implements ItemFactory<Spell> {
 
         return spellWanted;
     }
+
+    @Override
+    public boolean checkItemExists(String id) {
+        for (Spell spell : spells) {
+            if (spell.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

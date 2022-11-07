@@ -55,32 +55,56 @@ public class Battle {
                         ArmorFactory af = new ArmorFactory();
 
                         String itemId = userResponseOrBattleWinner.split(" ")[1].toUpperCase();
-                        if (itemId.contains("B") || itemId.contains("E")) {
-                            if (itemId.contains("B")) {
-                                item = wf.getItemFromId(itemId);
-                            } else if (itemId.contains("E")) {
-                                item = af.getItemFromId(itemId);
-                            }
+                        if (itemId.contains(",")) {
+                            String[] itemIds = itemId.split(",");
+                            
+                            for (int i = 0; i < itemIds.length; i++) {
+                                if (itemIds[i].contains("B") || itemIds[i].contains("E")) {
+                                    if (itemIds[i].contains("B")) {
+                                        item = wf.getItemFromId(itemIds[i]);
+                                    } else if (itemIds[i].contains("E")) {
+                                        item = af.getItemFromId(itemIds[i]);
+                                    }
 
-                            if (!item.getItemName().equals(null)) {
-                                hero.replaceAWeaponOrArmor(item);
-                                System.out.println("\nYou are currently armed with:");
-                                hero.printCurrentlyEquippedItems();
-                            } else {
-                                System.out.println("\nWeapon or armor with the ID does not exist! You just lost a turn :(");
+                                    if (!item.getId().equals("none")) {
+                                        hero.replaceAWeaponOrArmor(item);
+                                        System.out.println("\nYou are currently armed with:");
+                                        hero.printCurrentlyEquippedItems();
+                                    } else {
+                                        System.out.println("\nWeapon or armor with the ID " + itemIds[i] + " does not exist! You just lost a turn.");
+                                    }
+                                } else {
+                                    System.out.println("\nWrong item ID used! B<number> for weapon and E<number> for armor. You just lost a turn.");
+                                }
                             }
                         } else {
-                            System.out.println("\nWrong item ID used! B<number> for weapon and E<number> for armor! You just lost a turn :(");
+                            if (itemId.contains("B") || itemId.contains("E")) {
+                                if (itemId.contains("B")) {
+                                    item = wf.getItemFromId(itemId);
+                                } else if (itemId.contains("E")) {
+                                    item = af.getItemFromId(itemId);
+                                }
+
+                                if (!item.getId().equals("none")) {
+                                    hero.replaceAWeaponOrArmor(item);
+                                    System.out.println("\nYou are currently armed with:");
+                                    hero.printCurrentlyEquippedItems();
+                                } else {
+                                    System.out.println("\nWeapon or armor with the ID" + itemId + " does not exist! You just lost a turn.");
+                                }
+                            } else {
+                                System.out.println("\nWrong item ID used! B<number> for weapon and E<number> for armor. You just lost a turn.");
+                            }
                         }
                     } else if (userResponseOrBattleWinner.contains("cast ")) {
-                        String spellId = userResponseOrBattleWinner.split(" ")[1];
+                        String spellId = userResponseOrBattleWinner.split(" ")[1].toUpperCase();
                         boolean spellExists = hero.getInventory().checkIfSpellExists(spellId);
                         if (spellExists) {
                             Spell spell = hero.getInventory().getSpellFromId(spellId);
                             response = hero.castSpell(spell, monster);
                             System.out.println(response);
                         } else {
-                            System.out.println("\nSpell does not exist in " + hero.getName() + "'s inventory! You just lost a turn :(");
+                            System.out.println("\nSpell " + spellId + " does not exist in " + hero.getName() + "'s inventory! You just lost a turn.");
                         }
                     } else if (userResponseOrBattleWinner.equals("hit")) {
                         response = hero.hit(monster);
@@ -110,7 +134,7 @@ public class Battle {
         }
 
         if (!userResponseOrBattleWinner.equals("q")) {
-            if (hero.getHitPoints() <= 0) {
+            if (hero.getHitPoints() > 0) {
                 userResponseOrBattleWinner = "hero";
                 hero.updateNumberOfTimesHeroDefeatedMonster();
                 updateHeroAfterBattle(hero, monster.getLevel());

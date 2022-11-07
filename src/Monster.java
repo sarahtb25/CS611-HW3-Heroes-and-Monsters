@@ -102,6 +102,8 @@ public class Monster extends NonPlayerCharacter {
     @Override
     public String toString() {
         return "Monster " + getName() + " :" +
+                "\n\tID: " + getId() +
+                "\n\tType: " + getClass().toString().split(" ", 2)[1] +
                 "\n\tHit Points: " + hitPoint +
                 "\n\tLevel: " + level +
                 "\n\tDamage: " + damage +

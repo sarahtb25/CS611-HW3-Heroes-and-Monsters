@@ -23,7 +23,6 @@ public class Market {
         String userInput = "";
         Scanner scan = new Scanner(System.in).useDelimiter("\n");
         String itemId = "", heroId = "";
-        Hero hero;
 
         printMarketMenu();
         printHelp();
@@ -35,22 +34,39 @@ public class Market {
 
             if (userInput.contains(" buy ") || userInput.contains(" sell ")) {
                 heroId = userInput.split(" ")[0].toUpperCase();
-                itemId = userInput.split(" ")[2];
+                System.out.println("\nHero: " + heroId);
+                itemId = userInput.split(" ")[2].toUpperCase();
 
                 if (player.getHeroes().checkIfHeroExists(heroId)) {
-                    hero = player.getHeroes().getHeroFromId(heroId);
+                    Hero hero = player.getHeroes().getHeroFromId(heroId);
 
                     if (userInput.contains(" buy ")) {
-                        buyItem(hero, itemId.toUpperCase());
+                        if (itemId.contains(",")) {
+                            String[] itemIds = itemId.split(",");
+
+                            for (int i = 0; i < itemIds.length; i++) {
+                                buyItem(hero, itemIds[i]);
+                            }
+                        } else {
+                            buyItem(hero, itemId);
+                        }
                     } else {
-                        sellItem(hero, itemId.toUpperCase());
+                        if (itemId.contains(",")) {
+                            String[] itemIds = itemId.split(",");
+
+                            for (int i = 0; i < itemIds.length; i++) {
+                                sellItem(hero, itemIds[i]);
+                            }
+                        } else {
+                            sellItem(hero, itemId);
+                        }
                     }
                 } else {
                     System.out.println("You do not have Hero " + heroId + "!");
                 }
             } else if (userInput.equals("view market")) {
                 printMarketMenu();
-            } else if (userInput.equals("view heroes")) {
+            } else if (userInput.equals("i")) {
                 player.getHeroes().printHeroes();
             } else if (userInput.equals("h")) {
                 printHelp();
@@ -60,8 +76,7 @@ public class Market {
                 heroId = userInput.split(" ")[1].toUpperCase();
 
                 if (player.getHeroes().checkIfHeroExists(heroId)) {
-                    hero = player.getHeroes().getHeroFromId(heroId);
-
+                    Hero hero = player.getHeroes().getHeroFromId(heroId);
                     hero.printHero();
                 } else {
                     System.out.println("You do not have Hero " + heroId.toUpperCase() + "!");
@@ -98,48 +113,68 @@ public class Market {
         int cost;
 
         if (itemId.contains("B")) {
-            weapon = wf.getItemFromId(itemId);
-            cost = weapon.getCost();
-            canBuy = hero.checkMoneyAndLevelToBuyItem(cost, weapon.getRequiredLevel());
+            if (wf.checkItemExists(itemId)) {
+                weapon = wf.getItemFromId(itemId);
+                cost = weapon.getCost();
+                canBuy = hero.checkMoneyAndLevelToBuyItem(cost, weapon.getRequiredLevel());
 
-            if (canBuy) {
-                hero.getInventory().addWeapon(weapon);
-                hero.updateMoneyAfterBuyingItems(cost);
+                if (canBuy) {
+                    hero.getInventory().addWeapon(weapon);
+                    hero.updateMoneyAfterBuyingItems(cost);
+                    System.out.println("\nAdded weapon " + itemId + " to hero " + hero.getId() + "'s inventory");
+                } else {
+                    System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy weapon " + itemId + "!");
+                }
             } else {
-                System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this weapon!");
+                System.out.println("\nWeapon " + itemId + " does not exist!");
             }
         } else if (itemId.contains("E")) {
-            armor = af.getItemFromId(itemId);
-            cost = armor.getCost();
-            canBuy = hero.checkMoneyAndLevelToBuyItem(cost, armor.getRequiredLevel());
+            if (af.checkItemExists(itemId)) {
+                armor = af.getItemFromId(itemId);
+                cost = armor.getCost();
+                canBuy = hero.checkMoneyAndLevelToBuyItem(cost, armor.getRequiredLevel());
 
-            if (canBuy) {
-                hero.getInventory().addArmor(armor);
-                hero.updateMoneyAfterBuyingItems(cost);
+                if (canBuy) {
+                    hero.getInventory().addArmor(armor);
+                    hero.updateMoneyAfterBuyingItems(cost);
+                    System.out.println("\nAdded armor " + itemId + " to hero " + hero.getId() + "'s inventory");
+                } else {
+                    System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this armor " + itemId + "!");
+                }
             } else {
-                System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this armor!");
+                System.out.println("\nArmor " + itemId + " does not exist!");
             }
         } else if (itemId.contains("F") || itemId.contains("C") || itemId.contains("L")) {
-            spell = sf.getItemFromId(itemId);
-            cost = spell.getCost();
-            canBuy = hero.checkMoneyAndLevelToBuyItem(cost, spell.getRequiredLevel());
+            if (sf.checkItemExists(itemId)) {
+                spell = sf.getItemFromId(itemId);
+                cost = spell.getCost();
+                canBuy = hero.checkMoneyAndLevelToBuyItem(cost, spell.getRequiredLevel());
 
-            if (canBuy) {
-                hero.getInventory().addSpell(spell);
-                hero.updateMoneyAfterBuyingItems(cost);
+                if (canBuy) {
+                    hero.getInventory().addSpell(spell);
+                    hero.updateMoneyAfterBuyingItems(cost);
+                    System.out.println("\nAdded spell " + itemId + " to hero " + hero.getId() + "'s inventory");
+                } else {
+                    System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this spell " + itemId + "!");
+                }
             } else {
-                System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this spell!");
+                System.out.println("\nSpell " + itemId + " does not exist!");
             }
         } else if (itemId.contains("P")) {
-            potion = pf.getItemFromId(itemId);
-            cost = potion.getCost();
-            canBuy = hero.checkMoneyAndLevelToBuyItem(cost, potion.getRequiredLevel());
+            if(pf.checkItemExists(itemId)) {
+                potion = pf.getItemFromId(itemId);
+                cost = potion.getCost();
+                canBuy = hero.checkMoneyAndLevelToBuyItem(cost, potion.getRequiredLevel());
 
-            if (canBuy) {
-                hero.getInventory().addPotion(potion);
-                hero.updateMoneyAfterBuyingItems(cost);
+                if (canBuy) {
+                    hero.getInventory().addPotion(potion);
+                    hero.updateMoneyAfterBuyingItems(cost);
+                    System.out.println("\nAdded potion " + itemId + " to hero " + hero.getId() + "'s inventory");
+                } else {
+                    System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this potion " + itemId + "!");
+                }
             } else {
-                System.out.println("Hero " + hero.getId() + " has either not enough money or not enough experience to buy this potion!");
+                System.out.println("\nPotion " + itemId + " does not exist!");
             }
         }
     }

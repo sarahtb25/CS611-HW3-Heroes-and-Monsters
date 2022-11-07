@@ -79,12 +79,15 @@ public class CommonPiece extends MHPiece {
                which is the same as the number of heroes. Revive heroes if true.
                 */
                if ((double) numberOfHeroesWin >= (double) numberOfHeroes / 2) {
+                   System.out.println("\nReviving heroes...");
                    for (int i = 0; i < numberOfHeroes; i++) {
                        Hero hero = player.getHeroes().getHeroFromId(heroesAlive.getHeroes().get(i).getId());
                        hero.revive(startingHP.get(i), startingMana.get(i));
                    }
                }
            }
+       } else {
+           System.out.println("\nNo battles this time!");
        }
 
        return hasQuit;
@@ -92,7 +95,6 @@ public class CommonPiece extends MHPiece {
 
     public void leaveCommon() {
         setId(id);
-        System.out.println("Exiting Common area...");
     }
 
     public boolean haveMonsters() {

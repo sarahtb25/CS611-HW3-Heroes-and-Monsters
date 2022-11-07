@@ -60,4 +60,15 @@ public class WeaponFactory implements ItemFactory<Weapon> {
 
         return weaponWanted;
     }
+
+    @Override
+    public boolean checkItemExists(String id) {
+        for (Weapon weapon : weapons) {
+            if (weapon.getId().equals(id)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

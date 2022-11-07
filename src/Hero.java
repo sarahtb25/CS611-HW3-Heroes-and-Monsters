@@ -7,7 +7,7 @@ public class Hero extends NonPlayerCharacter {
     public static final double favouredSkillsLevelUpRate = 1.10;
     public static final int experienceLevelUpFactor = 10;
     public static final double manaLevelUpFactor = 1.1;
-    public static final int experienceGainedFactor = 2;
+    public static final int experienceGainedFactor = 30; // change to 2
     public static final int hitPointFactor = 100;
     public static final double dodgeChanceFactor = 0.2;
     public static final double attackDamageWithWeapon = 0.5;
@@ -377,6 +377,8 @@ public class Hero extends NonPlayerCharacter {
 
     public void printHero() {
         System.out.print("\nHero " + getName() + " :" +
+                            "\n\tID: " + getId() +
+                            "\n\tType: " + getClass().toString().split(" ", 2)[1] +
                             "\n\tHit Points:"  + hitPoints +
                             "\n\tMana: " + mana +
                             "\n\tStrength: " + strength +

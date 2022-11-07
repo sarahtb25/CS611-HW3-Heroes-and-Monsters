@@ -200,11 +200,11 @@ public class Inventory {
             System.out.println("#########################################################################################\n");
             System.out.println();
             utility.printWeapons(weapons);
-            System.out.println();
+            System.out.println("\n\n");
             utility.printArmors(armors);
-            System.out.println();
+            System.out.println("\n\n");
             utility.printPotions(potions);
-            System.out.println();
+            System.out.println("\n\n");
             utility.printSpells(spells);
         }
     }

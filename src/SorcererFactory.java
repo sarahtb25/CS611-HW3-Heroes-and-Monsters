@@ -6,14 +6,14 @@ import java.util.List;
 public class SorcererFactory implements HeroFactory<Sorcerer> {
     public static final List<String> sorcererNames = Arrays.asList("Rillifane_Rallathil", "Segojan_Earthcaller", "Reign_Havoc", "Reverie_Ashels", "Kalabar", "Skye_Soar");
     public static final List<String> sorcererIds = Arrays.asList("G0", "G1", "G2", "G3", "G4", "G5");
-    public static final List<Integer> sorcererMana = Arrays.asList(1300, 900, 800, 900, 800, 1000);
+    public static final List<Integer> sorcererMana = Arrays.asList(900, 500, 800, 700, 600, 500);
     public static final List<Integer> sorcererStrength = Arrays.asList(750, 800, 800, 800, 850, 700);
     public static final List<Integer> sorcererAgility = Arrays.asList(450, 500, 800, 700, 400, 400);
     public static final List<Integer> sorcererDexterity = Arrays.asList(500, 650, 800, 400, 600, 500);
     public static final List<Integer> sorcererMoney = Arrays.asList(9000, 5000, 8000, 7000, 6000, 5000);
     public static final List<Integer> sorcererExperience = Arrays.asList(9, 5, 8, 7, 6, 5);
     private List<Sorcerer> sorcerers = new ArrayList<>();
-    private Inventory inventory = new Inventory(new ArrayList<Weapon>(), new ArrayList<Armor>(), new ArrayList<Potion>(), new ArrayList<Spell>());
+    private Inventory inventory = new Inventory();
 
     public SorcererFactory() {
         generateHeroes();

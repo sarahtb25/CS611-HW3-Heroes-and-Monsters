@@ -34,7 +34,12 @@ public class MHRoundHistory implements RoundHistory {
 
     @Override
     public void printRoundScores() {
-        System.out.println("There were " + numberOfBattles + " battles.");
+        if (numberOfBattles == 1) {
+            System.out.println("\nThere was " + numberOfBattles + " battle in this round.");
+        } else {
+            System.out.println("\nThere were " + numberOfBattles + " battles in this round.");
+        }
+
         Set<String> heroNames = roundScores.keySet();
 
         for (String heroName : heroNames) {

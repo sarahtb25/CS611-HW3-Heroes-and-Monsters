@@ -58,4 +58,14 @@ public class ArmorFactory implements ItemFactory<Armor> {
 
         return armorWanted;
     }
+
+    @Override
+    public boolean checkItemExists(String id) {
+        for (Armor armor : armors) {
+            if (armor.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

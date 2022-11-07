@@ -6,4 +6,5 @@ public interface ItemFactory<T extends Item> {
     List<T> getItems();
     void printItems();
     T getItemFromId(String id);
+    boolean checkItemExists(String id);
 }
