@@ -68,7 +68,7 @@ public class MHBoardGame extends BoardGame {
     // Regenerate map
     public void regenerateMap() {
         board = new MHBoard();
-        Cell cell = board.getRandomMarketCell();
+        MHCell cell = (MHCell) board.getRandomMarketCell();
         MarketPiece marketPiece = (MarketPiece) cell.getPiece();
         marketPiece.beforeEnteringMarket();
 
@@ -271,7 +271,7 @@ public class MHBoardGame extends BoardGame {
             printOverallRules();
             printOverallHelp();
             initializeGame();
-            Cell cell = board.getRandomMarketCell();
+            MHCell cell = (MHCell) board.getRandomMarketCell();
             MHRoundHistory roundHistory = new MHRoundHistory();
             numberOfBattles = 0;
 

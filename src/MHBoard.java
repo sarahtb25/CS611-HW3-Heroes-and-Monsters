@@ -13,7 +13,7 @@ public class MHBoard extends Board {
 
     public MHBoard() {
         super(numberOfRowsAndCols);
-        Cell[][] board = getMHBoard();
+        MHCell[][] board = getMHBoard();
 
         for (int i = 0; i < numberOfInvalid; i++) {
             int row = (int) (Math.random() * numberOfRowsAndCols);
@@ -47,24 +47,24 @@ public class MHBoard extends Board {
         setBoard(board);
     }
 
-    public Cell[][] getMHBoard() {
-        return getBoard();
+    public MHCell[][] getMHBoard() {
+        return (MHCell[][]) getBoard();
     }
 
-    public Cell getMHBoardCell(int row, int column) {
-        return getMHBoard()[row][column];
+    public MHCell getMHBoardCell(int row, int column) {
+        return (MHCell) getMHBoard()[row][column];
     }
 
     /* When player first starts playing, place the player in a random cell
     that is either a common space or has a market
      */
-    public Cell getRandomMarketCell() {
-        Cell cellWanted;
+    public MHCell getRandomMarketCell() {
+        MHCell cellWanted;
 
         do {
             int rowIndex = (int) (Math.random() * (numberOfRowsAndCols - 1));
             int columnIndex = (int) (Math.random() * (numberOfRowsAndCols - 1));
-            cellWanted = getMHBoard()[rowIndex][columnIndex];
+            cellWanted = (MHCell) getMHBoard()[rowIndex][columnIndex];
         } while(!(cellWanted.getPiece() instanceof MarketPiece));
 
         return cellWanted;
@@ -73,7 +73,7 @@ public class MHBoard extends Board {
     @Override
     public void printBoard() {
         int rows = numberOfRowsAndCols + 1;
-        Cell[][] board = getMHBoard();
+        MHCell[][] board = (MHCell[][]) getMHBoard();
         System.out.println("\n");
 
         for (int i = 0; i < rows; i++) {
@@ -119,7 +119,7 @@ public class MHBoard extends Board {
     }
 
     public void leaveCell(int row, int column) {
-        Cell cell = getMHBoardCell(row, column);
+        MHCell cell = (MHCell) getMHBoardCell(row, column);
 
         if (cell.getPiece() instanceof CommonPiece) {
             CommonPiece commonPiece = (CommonPiece) cell.getPiece();
@@ -137,7 +137,7 @@ public class MHBoard extends Board {
     public boolean checkIfCanEnterCell(int row, int column) {
         boolean canEnter = false;
 
-        Cell cell = getMHBoardCell(row, column);
+        MHCell cell = (MHCell) getMHBoardCell(row, column);
 
         if (cell.getPiece() instanceof CommonPiece) {
             if (cell.getPiece().getId().equals("C")) {
@@ -157,7 +157,7 @@ public class MHBoard extends Board {
     public List<Boolean> enterCell(int row, int column, MHPlayer player) {
         List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
 
-        Cell cell = getMHBoardCell(row, column);
+        MHCell cell = (MHCell) getMHBoardCell(row, column);
 
         if (cell.getPiece() instanceof CommonPiece) {
             CommonPiece commonPiece = (CommonPiece) cell.getPiece();
@@ -264,7 +264,7 @@ public class MHBoard extends Board {
     public boolean goToMarket(MHPlayer player) {
         boolean quit = false;
         int[] rowAndColumnIndex = getRowAndColumnIndex();
-        Cell cell = getMHBoardCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
+        MHCell cell = (MHCell) getMHBoardCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
 
         if (cell.getPiece() instanceof MarketPiece) {
             MarketPiece marketPiece = (MarketPiece) cell.getPiece();
