@@ -2,7 +2,7 @@
 public class Cell {
     private String cellType;
     private Piece piece;
-    private Boolean isOccupied;
+    private boolean isOccupied;
 
     public Cell(String cellType, Piece piece) {
         this.cellType = cellType;
@@ -32,11 +32,11 @@ public class Cell {
         this.piece = piece;
     }
 
-    public Boolean getOccupied() {
+    public boolean getOccupied() {
         return isOccupied;
     }
 
-    public void setOccupied(Boolean occupied) {
+    public void setOccupied(boolean occupied) {
         isOccupied = occupied;
     }
 }

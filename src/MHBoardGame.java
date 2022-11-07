@@ -1,14 +1,13 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 // Represents the Monsters and Heroes game
 public class MHBoardGame extends BoardGame {
+    private static MHBoardGame game = new MHBoardGame();
     public static final int numberOfMonstersToDefeat = 100;
     public static final int minHero = 1;
     public static final int maxHero = 3;
     public static final MHHelp help = new MHHelp();
-
     private MHBoard board;
     private MHStatistics statistics = new MHStatistics();
     private int numberOfHeroes = 0;
@@ -17,8 +16,12 @@ public class MHBoardGame extends BoardGame {
     private int numberOfBattles = 0;
     private final MHUtility utility = new MHUtility();
 
-    public MHBoardGame() {
+    private MHBoardGame() {
         super();
+    }
+
+    public static MHBoardGame getGameInstance() {
+        return game;
     }
 
     public void getPlayerName() {

@@ -43,8 +43,9 @@ public class MHHelp implements Help {
                     "fight monsters.\n" +
                     "\n" +
                     "Commands allowed in battle (Not case-sensitive):\n" +
-                    "    1. Change <Weapon or Armor ID>: To update the weapon or armor a hero is or\n" +
-                    "                                    is not carrying/wearing e.g. R0 change B0\n" +
+                    "    1. Change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing e.g. R0 change B0\n" +
+                    "       To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a \n" +
+                    "       comma-separated manner e.g. R0 change B0,E0\n"  +
                     "    2. Hit: To hit the monster with the weapon the hero is carrying\n" +
                     "    3. Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0\n" +
                     "    4. I/i: To view the details of the hero and the monster engaged in battle\n" +
@@ -63,7 +64,9 @@ public class MHHelp implements Help {
                 "Commands allowed in the market (Not case-sensitive):\n" +
                 "    1. View Market: To view the items in the market\n" +
                 "    2. <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0\n" +
+                "       To buy multiple items, include the IDs in a comma-separated manner e.g. R0 buy B0,E0\n" +
                 "    3. <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0\n" +
+                "       To sell multiple items, include the IDs in a comma-separated manner e.g. R0 sell B0,E0\n" +
                 "    4. I/i: To view all the heroes you have\n" +
                 "    5. Hero <Hero ID>: To view the details of a hero\n" +
                 "    6. Q/q: To quit the game\n" +
@@ -95,7 +98,9 @@ public class MHHelp implements Help {
                 "    13. Hero <Hero ID>: To view the e.g. Hero R0\n" +
                 "    14. Regenerate Map: To create a new map e.g. if you are stuck, or just don't like the map you have\n" +
                 "    15. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing\n" +
-                "    e.g. R0 change B0";
+                "    e.g. R0 change B0\n" +
+                "    To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a \n" +
+                "    comma-separated manner e.g. R0 change B0,E0\n";
 
         System.out.println(help);
     }
@@ -127,7 +132,7 @@ public class MHHelp implements Help {
                 "        - The monsters the heroes will have to fight will be completely random, and does not depend on the hero's level\n" +
                 "2.  The game ends if:\n" +
                 "    (1) all heroes are unconscious, or\n" +
-                "    (2) all the heroes were able to defeat 100 monsters\n" +
+                "    (2) all the heroes are able to defeat 100 monsters\n" +
                 "3.  You can provide the following commands (Not case-sensitive):\n" +
                 "    (1) W/w: Move up\n" +
                 "    (2) A/a: Move left\n" +
@@ -144,7 +149,9 @@ public class MHHelp implements Help {
                 "    (13) Hero <Hero ID>: To view the e.g. Hero R0\n" +
                 "    (14) Regenerate Map: To create a new map e.g. if you are stuck, or just don't like the map you have\n" +
                 "    (15) <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing\n" +
-                "        e.g. R0 change B0";
+                "    e.g. R0 change B0\n" +
+                "    To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a \n" +
+                "    comma-separated manner e.g. R0 change B0,E0\n";
 
         System.out.println(rules);
     }
@@ -161,6 +168,8 @@ public class MHHelp implements Help {
                 "    (2) the monster runs out of hit points\n" +
                 "4.  Possible commands to use in battle (Not case-sensitive):\n" +
                 "    (1) Change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing e.g. R0 change B0\n" +
+                "        To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a \n" +
+                "        comma-separated manner e.g. R0 change B0,E0\n"  +
                 "    (2) Hit: To hit the monster with the weapon the hero is carrying\n" +
                 "    (3) Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0\n" +
                 "    (4) I/i: To view the details of the hero and the monster engaged in battle (Will not lose a turn)\n" +
@@ -297,7 +306,9 @@ public class MHHelp implements Help {
                 "6.  You can provide the following commands (Not case-sensitive):\n" +
                 "    (1) View Market: To view the items in the market\n" +
                 "    (2) <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0\n" +
+                "        To buy multiple items, include the IDs in a comma-separated manner e.g. R0 buy B0,E0\n" +
                 "    (3) <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0\n" +
+                "        To sell multiple items, include the IDs in a comma-separated manner e.g. R0 sell B0,E0\n" +
                 "    (4) I/i: To view all the heroes you have\n" +
                 "    (5) Hero <Hero ID>: To view the details of a hero\n" +
                 "    (6) Q/q: To quit the game\n" +

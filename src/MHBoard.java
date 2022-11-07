@@ -1,8 +1,5 @@
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class MHBoard extends Board {
     public static final int numberOfRowsAndCols = 8;
@@ -221,7 +218,6 @@ public class MHBoard extends Board {
     public List<Boolean> moveDown(MHPlayer player) {
         List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
         int[] rowAndColumnIndex = getRowAndColumnIndex();
-        leaveCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
 
         if (rowAndColumnIndex[0] + 1 < numberOfRowsAndCols) {
             rowAndColumnIndex[0] += 1;
@@ -269,7 +265,10 @@ public class MHBoard extends Board {
         if (cell.getPiece() instanceof MarketPiece) {
             MarketPiece marketPiece = (MarketPiece) cell.getPiece();
             quit = marketPiece.market(player);
+        } else {
+            System.out.println("\nThere is no market here!");
         }
+
         return quit;
     }
 }

@@ -191,6 +191,7 @@ public class Market {
 
                 hero.getInventory().removeWeapon(weapon);
                 hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
+                System.out.println("\nRemoved weapon " + itemId + " from hero " + hero.getId() + "'s inventory");
             } else {
                 System.out.println("Hero " + hero.getName() + " does not have weapon " + itemId + "!");
             }
@@ -203,6 +204,7 @@ public class Market {
 
                 hero.getInventory().removeArmor(armor);
                 hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
+                System.out.println("\nRemoved armor " + itemId + " from hero " + hero.getId() + "'s inventory");
             } else {
                 System.out.println("Hero " + hero.getName() + " does not have armor " + itemId + "!");
             }
