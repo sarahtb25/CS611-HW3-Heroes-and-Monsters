@@ -1,5 +1,6 @@
 import java.util.List;
 
+// Contains methods that are used across different classes in the game
 public class MHUtility implements Utility{
 
     public MHUtility() {}

@@ -1,4 +1,4 @@
-// Help for Monsters and Heroes
+// Outlines the rules and help for Monsters and Heroes
 public class MHHelp implements Help {
     @Override
     public void printIntroduction() {
@@ -217,6 +217,7 @@ public class MHHelp implements Help {
                 "12. After all the heroes who were able to battle have battled a monster, if the number of heroes who won is more\n" +
                 "    than the number of monsters, then heroes who fainted in battle are revived. They gain back 50% of\n" +
                 "    their starting hit points and their mana. However, they do not get any gold or experience.\n" +
+                "    Those who did not faint gain back 10% of their starting hit points and mana.\n" +
                 "\n" +
                 "--------------\n" +
                 "|   Heroes   |\n" +

@@ -1,3 +1,4 @@
+// Represents an armor
 public class Armor extends EquippableItem {
     private int damageReduction;
 

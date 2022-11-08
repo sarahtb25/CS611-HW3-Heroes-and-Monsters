@@ -1,6 +1,7 @@
 import java.util.Arrays;
 import java.util.List;
 
+// Represents the board used in Monsters and Heroes
 public class MHBoard extends Board {
     public static final int numberOfRowsAndCols = 8;
     public static final double proportionOfInvalid = 0.2; // 20% Invalid
@@ -100,15 +101,15 @@ public class MHBoard extends Board {
 
         for (int i = 0; i < numberOfRowsAndCols; i++) {
             for (int j = 0; j < numberOfRowsAndCols; j++) {
-                if (rowAndColumnIndex[0] != -1 && rowAndColumnIndex[1] != -1) {
+                if (getMHBoardCell(i, j).getPiece().getId().contains("*")) {
+                    rowAndColumnIndex[0] = i;
+                    rowAndColumnIndex[1] = j;
                     break;
-                } else {
-                    if (getMHBoardCell(i, j).getPiece().getId().contains("*")) {
-                        rowAndColumnIndex[0] = i;
-                        rowAndColumnIndex[1] = j;
-                        break;
-                    }
                 }
+            }
+
+            if (rowAndColumnIndex[0] != -1 && rowAndColumnIndex[1] != -1) {
+                break;
             }
         }
 

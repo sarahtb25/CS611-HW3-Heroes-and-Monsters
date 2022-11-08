@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// Represents a list of heroes
 public class Heroes {
     private List<Hero> heroes; // min. 1 and max. 3 heroes, can use instanceof to get the type of hero
 

@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/* A Monsters and Heroes game piece that is used to represent a cell as a Common Area,
+where a battle may take place depending on the player's luck
+ */
 public class CommonPiece extends MHPiece {
     public static final String name = "Common";
     public static final String id = "C";
@@ -62,7 +65,7 @@ public class CommonPiece extends MHPiece {
                monsterLevel.add(monster.getLevel());
 
                Fighters fighters = setFighters(hero, monster);
-               Battle battle = new Battle(fighters);
+               MHBattle battle = new MHBattle(fighters);
                String result = battle.fight();
                if (result.equals("q")) {
                    hasQuit = true;

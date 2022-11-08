@@ -1,3 +1,4 @@
+// An abstract class that defines what a Board Game in general needs
 public abstract class BoardGame implements Game{
     private Board board;
 

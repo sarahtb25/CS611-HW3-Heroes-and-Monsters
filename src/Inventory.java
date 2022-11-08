@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-// Represents a player's inventory
+// Represents a hero's inventory, which keeps track of the weapons, armors, potions and spells a hero has
 public class Inventory {
     private List<Weapon> weapons;
     private List<Armor> armors;

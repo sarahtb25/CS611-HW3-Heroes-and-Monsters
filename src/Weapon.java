@@ -1,3 +1,4 @@
+// Represents a weapon
 public class Weapon extends EquippableItem {
     private int numberOfHandsRequired;
     private int damage;

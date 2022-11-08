@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 // This class generates heroes according to the number of heroes wanted by player
 public class GenerateHeroes {

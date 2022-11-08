@@ -1,3 +1,4 @@
+// A Monsters and Heroes game piece that is used to represent a cell that has a market
 public class MarketPiece extends MHPiece {
     public static final String name = "Market";
     public static final String id = "M";

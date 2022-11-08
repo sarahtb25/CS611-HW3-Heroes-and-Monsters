@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
-// Represents the Monsters and Heroes game
+// Represents the Monsters and Heroes game logic
 public class MHBoardGame extends BoardGame {
     private static MHBoardGame game = new MHBoardGame();
     public static final int numberOfMonstersToDefeat = 100;
