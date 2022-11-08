@@ -178,7 +178,7 @@ public class MHBoardGame extends BoardGame {
             Hero hero = player.getHeroes().getHeroFromId(heroId);
             hero.printHero();
         } else {
-            System.out.println("You do not have hero " + heroId + "!");
+            System.out.println("\nYou do not have hero " + heroId + "!");
         }
 
     }
@@ -191,7 +191,7 @@ public class MHBoardGame extends BoardGame {
             Hero hero = player.getHeroes().getHeroFromId(heroId);
             hero.getInventory().printInventory();
         } else {
-            System.out.println("You do not have hero " + heroId + "!");
+            System.out.println("\nYou do not have hero " + heroId + "!");
         }
     }
 
@@ -207,10 +207,10 @@ public class MHBoardGame extends BoardGame {
                 Potion potion = hero.getInventory().getPotionFromId(potionId);
                 hero.drinkPotion(potion);
             } else {
-                System.out.println("Hero " + hero.getName() + " does not have potion " + potionId + " in their inventory!");
+                System.out.println("\nHero " + hero.getName() + " does not have potion " + potionId + " in their inventory!");
             }
         } else {
-            System.out.println("You do not have hero " + heroId + "!");
+            System.out.println("\nYou do not have hero " + heroId + "!");
         }
     }
 
@@ -237,7 +237,7 @@ public class MHBoardGame extends BoardGame {
                             Armor armor = hero.getInventory().getArmorFromId(itemIds[i]);
                             hero.replaceAWeaponOrArmor(armor);
                         } else {
-                            System.out.println("Hero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory!");
+                            System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory!");
                         }
                     }
                 }
@@ -254,12 +254,12 @@ public class MHBoardGame extends BoardGame {
                         Armor armor = hero.getInventory().getArmorFromId(itemId);
                         hero.replaceAWeaponOrArmor(armor);
                     } else {
-                        System.out.println("Hero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory!");
+                        System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory!");
                     }
                 }
             }
         } else {
-            System.out.println("You do not have hero " + heroId + "!");
+            System.out.println("\nYou do not have hero " + heroId + "!");
         }
     }
 
@@ -334,10 +334,10 @@ public class MHBoardGame extends BoardGame {
             showScore();
 
             if (heroes.getTotalNumberOfMonstersDefeated() >= numberOfMonstersToDefeat) {
-                System.out.println("Congratulations! You have freed the villagers of Lockwood from the monsters' tyranny!");
+                System.out.println("\nCongratulations! You have freed the villagers of Lockwood from the monsters' tyranny!");
                 quit();
             } else {
-                System.out.println("You have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N");
+                System.out.println("\nYou have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N");
                 userInput = scan.next().trim().toLowerCase();
 
                 if (userInput.equals("n")) {

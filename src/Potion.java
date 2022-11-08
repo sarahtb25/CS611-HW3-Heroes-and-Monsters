@@ -42,7 +42,7 @@ public class Potion extends ConsumableItem {
     }
 
     public void printPotionImpact(Hero hero) {
-        String print = "Hero " + hero.getName() + " increased their ";
+        String print = "\nHero " + hero.getName() + " increased their ";
 
         for (int i = 0; i < attributesAffected.size(); i++) {
             print += attributesAffected.get(i) + ", ";

@@ -301,7 +301,7 @@ public class Hero extends NonPlayerCharacter {
 
         levelUpSkills();
 
-        System.out.println("Congratulations! Hero " + getName() + " has leveled up from " + prevExperience + " to " + experience + "!");
+        System.out.println("\nCongratulations! Hero " + getName() + " has leveled up from " + prevExperience + " to " + experience + "!");
     }
 
     public void checkLevelUp() {
