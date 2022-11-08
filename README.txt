@@ -81,7 +81,7 @@ U86084310
 ---------------------------------------------------------------------------
 1. Bonus Done
    (a) Potions and Spells are multi-use items.
-   (b) Monsters and Heroes can be played for multiple rounds.
+   (b) Monsters and Heroes can be played for multiple rounds. 
 2. Please maximize terminal screen before playing. This game has been developed and tested using Java 8.
 
 ## How to compile and run
