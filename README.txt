@@ -25,16 +25,19 @@ U86084310
 14. Fighters.java: Represents the fighters (Monster and Hero) in a battle
 15. FireSpell.java: Represents a fire spell, a type of spell
 16. Game.java: An interface that represents the behaviour of a game
-17. GenerateHeroes.java: This class generates heroes in a balanced manner according to the number of heroes wanted by player
+17. GenerateHeroes.java: This class generates heroes in a balanced manner according to the number of heroes
+    wanted by player
 18. GenerateMonsters.java: This class generates monsters as needed for a cell
 19. Help.java: An interface that contains expected behaviour for a game help
-20. Hero.java: Represents a hero, a type of NonPlayerCharacter (a character that is not a player) of Monsters and Heroes
+20. Hero.java: Represents a hero, a type of NonPlayerCharacter (a character that is not a player) of
+    Monsters and Heroes
 21. Heroes.java: Represents a list of heroes
-22. HeroFactory.java: An interface that represents the expected behaviour of factories that will generate the various types of heroes 
-    e.g. Warrior, Sorcerer and Paladin
+22. HeroFactory.java: An interface that represents the expected behaviour of factories that will generate
+    the various types of heroes e.g. Warrior, Sorcerer and Paladin
 23. IceSpell.java: Represents a fire spell, a type of spell
 24. InvalidPiece.java: A Monsters and Heroes game piece that is used to represent a cell is invalid
-25. Inventory.java: Represents a hero's inventory, which keeps track of the weapons, armors, potions and spells a hero has
+25. Inventory.java: Represents a hero's inventory, which keeps track of the weapons, armors, potions and spells
+    a hero has
 26. Item.java: Represents an item that a hero can use in battle, e.g. weapon, armor, spell and potion
 27. ItemFactory.java: An interface that contains the expected behaviour for all item factories e.g. WeaponFactory, etc.
 28. LightningSpell.java: Represents a Lightning Spell, a type of spell
@@ -50,9 +53,10 @@ U86084310
 38. MHRoundHistory.java: To display the scores of a round of Monsters and Heroes
 39. MHStatistics.java: To display the scores of each round after a player chooses to quit the game
 40. MHUtility.java: Contains methods that are used across different classes in the game
-41. Monster.java: Represents a monster, a type of NonPlayerCharacter (a character that is not a player) of Monsters and Heroes
-42. MonsterFactory.java: An interface that represents the expected behaviour of factories that will generate the various types of monsters
-    e.g. Dragon, Exoskeleton and Spirit
+41. Monster.java: Represents a monster, a type of NonPlayerCharacter (a character that is not a player) of
+    Monsters and Heroes
+42. MonsterFactory.java: An interface that represents the expected behaviour of factories that will generate
+    the various types of monsters e.g. Dragon, Exoskeleton and Spirit
 43. Monsters.java: Represents monsters in a common piece
 44. NonPlayerCharacter: This class represents any character that is not a player.
     e.g. in Monsters and Heroes, Monsters and Heroes are the non player characters
@@ -62,15 +66,15 @@ U86084310
 48. Player.java: Represents a general game player
 49. Potion.java: Represents a potion, a type of ConsumableItem
 50. PotionFactory.java: Represents all possible potions
-51. RoundHistory.java: An interface that contains the expected behaviour of what a class implementing RoundHistory should do 
-    i.e. what methods are needed to keep track of the scores in each round
+51. RoundHistory.java: An interface that contains the methods needed to keep track of the scores in each round
 52. Sorcerer.java: Represents a sorcerer, a type of Hero
 53. SorcererFactory.java: Represents all possible sorcerers
 54. Spell.java: Represents a spell, a type of ConsumableItem
 55. SpellFactory.java: Represents all possible spells
 56. Spirit.java: Represents a spirit, a type of Monster
 57. SpiritFactory.java: Represents all possible spirits
-58. Statistics.java: An interface that contains the expected behaviour of how the scores of each round should be handled
+58. Statistics.java: An interface that contains the expected behaviour of how the scores of each round
+    should be handled
 59. Utility.java: An interface containing the method that is used often
 60. Warrior.java: Represents a warrior, a type of Hero
 61. WarriorFactory.java: Represents all possible warriors
