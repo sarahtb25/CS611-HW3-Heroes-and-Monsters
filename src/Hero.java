@@ -7,7 +7,7 @@ public class Hero extends NonPlayerCharacter {
     public static final double favouredSkillsLevelUpRate = 1.10;
     public static final int experienceLevelUpFactor = 10;
     public static final double manaLevelUpFactor = 1.1;
-    public static final int experienceGainedFactor = 30; // change to 2
+    public static final int experienceGainedFactor = 20;
     public static final int hitPointFactor = 100;
     public static final double dodgeChanceFactor = 0.2;
     public static final double attackDamageWithWeapon = 0.5;
@@ -245,6 +245,7 @@ public class Hero extends NonPlayerCharacter {
 
     public void drinkPotion(Potion potion) {
         potion.applyPotion(this);
+        inventory.removePotion();
     }
 
     public String castSpell(Spell spell, Monster monster) {
@@ -252,6 +253,7 @@ public class Hero extends NonPlayerCharacter {
 
         if (canUseSpell() && mana >= spell.getManaCost()) {
             response = spell.applySpell(this, monster);
+            inventory.removeSpell();
         } else {
             response = "\n" + getName() + " has not enough mana! Unable to cast " + spell.getItemName();
         }
@@ -300,7 +302,6 @@ public class Hero extends NonPlayerCharacter {
         levelUpSkills();
 
         System.out.println("Congratulations! Hero " + getName() + " has leveled up from " + prevExperience + " to " + experience + "!");
-        System.out.println(this);
     }
 
     public void checkLevelUp() {
@@ -341,6 +342,12 @@ public class Hero extends NonPlayerCharacter {
         if (cost > money || experience < requiredLevel) return false;
 
         return true;
+    }
+
+    public boolean checkItemNotPresent(String itemId) {
+        if (!inventory.checkIfWeaponExists(itemId) && !inventory.checkIfArmorExists(itemId) && !inventory.checkIfPotionExists(itemId) && !inventory.checkIfSpellExists(itemId)) return true;
+
+        return false;
     }
 
     // During battle, if spells are used against a monster

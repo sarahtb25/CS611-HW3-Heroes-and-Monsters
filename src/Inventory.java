@@ -80,17 +80,17 @@ public class Inventory {
     }
 
     public void removePotion() {
-        for (Potion potion : potions) {
-            if (potion.getNumberOfConsumptions() == 0) {
-                potions.remove(potion);
+        for (int i = 0; i < potions.size(); i++) {
+            if (potions.get(i).getNumberOfConsumptions() == 0) {
+                potions.remove(potions.get(i));
             }
         }
     }
 
     public void removeSpell() {
-        for (Spell spell : spells) {
-            if (spell.getNumberOfConsumptions() == 0) {
-                spells.remove(spell);
+        for (int i = 0; i < spells.size(); i++) {
+            if (spells.get(i).getNumberOfConsumptions() == 0) {
+                spells.remove(spells.get(i));
             }
         }
     }
@@ -148,7 +148,6 @@ public class Inventory {
     }
 
     public boolean checkIfPotionExists(String potionId) {
-        removePotion();
         for (Potion potion : potions) {
             if (potion.getId().equals(potionId)) {
                 return true;
@@ -159,7 +158,6 @@ public class Inventory {
     }
 
     public boolean checkIfSpellExists(String spellId) {
-        removeSpell();
         for (Spell spell : spells) {
             if (spell.getId().equals(spellId)) {
                 return true;

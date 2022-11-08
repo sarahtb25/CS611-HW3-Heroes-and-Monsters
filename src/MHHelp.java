@@ -65,6 +65,8 @@ public class MHHelp implements Help {
                 "    1. View Market: To view the items in the market\n" +
                 "    2. <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0\n" +
                 "       To buy multiple items, include the IDs in a comma-separated manner e.g. R0 buy B0,E0\n" +
+                "       HOARDING IS NOT ALLOWED. If a hero already has an item, the hero cannot buy another of the same \n" +
+                "       item, until the item is sold (for weapons and armors) or the item has been completely consumed (for potions and spells)\n" +
                 "    3. <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0\n" +
                 "       To sell multiple items, include the IDs in a comma-separated manner e.g. R0 sell B0,E0\n" +
                 "    4. I/i: To view all the heroes you have\n" +
@@ -204,7 +206,7 @@ public class MHHelp implements Help {
                 "    experience points.\n" +
                 "\n" +
                 "    Money gained = Monster level * 100\n" +
-                "    Experience gained = 2 * number of monster in battle, which is 1\n" +
+                "    Experience gained = 20 * number of monster in battle, which is 1\n" +
                 "\n" +
                 "11. Heroes are able to level up. Once they level up, their hit points, mana and experience level increases.\n" +
                 "    When a hero levels up all of their skills increase by 5% and their favored skills increase by an extra 5%.\n" +
@@ -308,6 +310,8 @@ public class MHHelp implements Help {
                 "    (1) View Market: To view the items in the market\n" +
                 "    (2) <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0\n" +
                 "        To buy multiple items, include the IDs in a comma-separated manner e.g. R0 buy B0,E0\n" +
+                "        HOARDING IS NOT ALLOWED. If a hero already has an item, the hero cannot buy another of the same \n" +
+                "        item, until the item is sold (for weapons and armors) or the item has been completely consumed (for potions and spells)\n" +
                 "    (3) <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0\n" +
                 "        To sell multiple items, include the IDs in a comma-separated manner e.g. R0 sell B0,E0\n" +
                 "    (4) I/i: To view all the heroes you have\n" +

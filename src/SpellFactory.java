@@ -40,30 +40,8 @@ public class SpellFactory implements ItemFactory<Spell> {
 
     @Override
     public void printItems() {
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("|                                                                    SPELLS                                                                      |");
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("%7s %17s %18s %13s %14s %9s %29s %17s", "ID", "TYPE", "NAME", "COST", "MANA COST", "LEVEL", "NUMBER OF CONSUMPTIONS", "DAMAGE");
-        System.out.println();
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
-
-        for(Spell spell : spells) {
-            String typeOfSpell = "";
-
-            if (spell instanceof FireSpell) {
-                typeOfSpell = "Fire";
-            } else if (spell instanceof IceSpell) {
-                typeOfSpell = "Ice";
-            } else if (spell instanceof LightningSpell) {
-                typeOfSpell = "Lightning";
-            }
-
-            System.out.format("%7s %15s %23s %9s %10s %12s %19s %27s", spell.getId(), typeOfSpell, spell.getItemName(), spell.getCost(), spell.getManaCost(), spell.getRequiredLevel(), spell.getNumberOfConsumptions(), spell.getDamage());
-            System.out.println();
-        }
-
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------------------------");
+        MHUtility utility = new MHUtility();
+        utility.printSpells(spells);
     }
 
     @Override

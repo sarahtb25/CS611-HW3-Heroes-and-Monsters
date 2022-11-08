@@ -55,7 +55,7 @@ public class Spell extends ConsumableItem {
             affectMonsterSkill(monster);
         }
 
-            consume();
+        consume();
 
         return response;
     }

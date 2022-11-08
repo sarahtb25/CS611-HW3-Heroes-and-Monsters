@@ -32,20 +32,8 @@ public class WeaponFactory implements ItemFactory<Weapon> {
 
     @Override
     public void printItems() {
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("|                                   WEAPONS                                                 |");
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.println("---------------------------------------------------------------------------------------------");
-        System.out.printf("%12s %12s %12s %12s %12s %12s", "ID", "NAME", "COST", "LEVEL", "HANDS", "DAMAGE");
-        System.out.println();
-        System.out.println("---------------------------------------------------------------------------------------------");
-
-        for(Weapon weapon : weapons) {
-            System.out.format("%12s %13s %11s %10s %12s %13s", weapon.getId(), weapon.getItemName(), weapon.getCost(), weapon.getRequiredLevel(), weapon.getNumberOfHandsRequired(), weapon.getDamage());
-            System.out.println();
-        }
-
-        System.out.println("----------------------------------------------------------------------------------------------");
+        MHUtility utility = new MHUtility();
+        utility.printWeapons(weapons);
     }
 
     @Override
