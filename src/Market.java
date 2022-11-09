@@ -29,7 +29,7 @@ public class Market {
 
         while(!userInput.equals("x") && !userInput.equals("q")) {
             System.out.println();
-            System.out.println("\nPlease provide a valid market command:");
+            System.out.println(ConsoleColours.GREEN + "\n[INPUT] Please provide a valid market command:" + ConsoleColours.RESET);
             userInput = scan.next().trim().toLowerCase();
 
             if (userInput.contains(" buy ") || userInput.contains(" sell ")) {
@@ -61,7 +61,7 @@ public class Market {
                         }
                     }
                 } else {
-                    System.out.println("You do not have Hero " + heroId + "!");
+                    System.out.println(ConsoleColours.RED + "\n[ERROR] You do not have Hero " + heroId + "!" + ConsoleColours.RESET);
                 }
             } else if (userInput.equals("view market")) {
                 printMarketMenu();
@@ -78,10 +78,10 @@ public class Market {
                     Hero hero = player.getHeroes().getHeroFromId(heroId);
                     hero.printHero();
                 } else {
-                    System.out.println("You do not have Hero " + heroId.toUpperCase() + "!");
+                    System.out.println(ConsoleColours.RED + "\n[ERROR] You do not have Hero " + heroId.toUpperCase() + "!" + ConsoleColours.RESET);
                 }
             } else if (!userInput.equals("x") && !userInput.equals("q")){
-                System.out.println("\nInvalid Input!");
+                System.out.println(ConsoleColours.RED + "\n[ERROR] Invalid Input!" + ConsoleColours.RESET);
             }
         }
 
@@ -122,12 +122,12 @@ public class Market {
                     if (canBuy) {
                         hero.getInventory().addWeapon(weapon);
                         hero.updateMoneyAfterBuyingItems(cost);
-                        System.out.println("\nAdded weapon " + itemId + " to hero " + hero.getId() + "'s inventory");
+                        System.out.println(ConsoleColours.CYAN + "\n[MARKET MESSAGE] Added weapon " + itemId + " to hero " + hero.getId() + "'s inventory" + ConsoleColours.RESET);
                     } else {
-                        System.out.println("\nHero " + hero.getId() + " has either not enough money or not enough experience to buy weapon " + itemId + "!");
+                        System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getId() + " has either not enough money or not enough experience to buy weapon " + itemId + "!" + ConsoleColours.RESET);
                     }
                 } else {
-                    System.out.println("\nWeapon " + itemId + " does not exist!");
+                    System.out.println(ConsoleColours.RED + "\n[ERROR] Weapon " + itemId + " does not exist!" + ConsoleColours.RESET);
                 }
             } else if (itemId.contains("E")) {
                 if (af.checkItemExists(itemId)) {
@@ -138,12 +138,12 @@ public class Market {
                     if (canBuy) {
                         hero.getInventory().addArmor(armor);
                         hero.updateMoneyAfterBuyingItems(cost);
-                        System.out.println("\nAdded armor " + itemId + " to hero " + hero.getId() + "'s inventory");
+                        System.out.println(ConsoleColours.GREEN + "\n[MARKET MESSAGE] Added armor " + itemId + " to hero " + hero.getId() + "'s inventory" + ConsoleColours.RESET);
                     } else {
-                        System.out.println("\nHero " + hero.getId() + " has either not enough money or not enough experience to buy this armor " + itemId + "!");
+                        System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getId() + " has either not enough money or not enough experience to buy this armor " + itemId + "!" + ConsoleColours.RESET);
                     }
                 } else {
-                    System.out.println("\nArmor " + itemId + " does not exist!");
+                    System.out.println(ConsoleColours.RED + "\n[ERROR] Armor " + itemId + " does not exist!" + ConsoleColours.RESET);
                 }
             } else if (itemId.contains("F") || itemId.contains("C") || itemId.contains("L")) {
                 if (sf.checkItemExists(itemId)) {
@@ -154,12 +154,12 @@ public class Market {
                     if (canBuy) {
                         hero.getInventory().addSpell(spell);
                         hero.updateMoneyAfterBuyingItems(cost);
-                        System.out.println("\nAdded spell " + itemId + " to hero " + hero.getId() + "'s inventory");
+                        System.out.println("\n[MARKET MESSAGE] Added spell " + itemId + " to hero " + hero.getId() + "'s inventory");
                     } else {
-                        System.out.println("\nHero " + hero.getId() + " has either not enough money or not enough experience to buy this spell " + itemId + "!");
+                        System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getId() + " has either not enough money or not enough experience to buy this spell " + itemId + "!" + ConsoleColours.RESET);
                     }
                 } else {
-                    System.out.println("\nSpell " + itemId + " does not exist!");
+                    System.out.println(ConsoleColours.RED + "\n[ERROR] Spell " + itemId + " does not exist!" + ConsoleColours.RESET);
                 }
             } else if (itemId.contains("P")) {
                 if (pf.checkItemExists(itemId)) {
@@ -170,16 +170,16 @@ public class Market {
                     if (canBuy) {
                         hero.getInventory().addPotion(potion);
                         hero.updateMoneyAfterBuyingItems(cost);
-                        System.out.println("\nAdded potion " + itemId + " to hero " + hero.getId() + "'s inventory");
+                        System.out.println(ConsoleColours.YELLOW + "\n[MARKET MESSAGE] Added potion " + itemId + " to hero " + hero.getId() + "'s inventory" + ConsoleColours.RESET);
                     } else {
-                        System.out.println("\nHero " + hero.getId() + " has either not enough money or not enough experience to buy this potion " + itemId + "!");
+                        System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getId() + " has either not enough money or not enough experience to buy this potion " + itemId + "!" + ConsoleColours.RESET);
                     }
                 } else {
-                    System.out.println("\nPotion " + itemId + " does not exist!");
+                    System.out.println(ConsoleColours.RED + "\n[ERROR] Potion " + itemId + " does not exist!" + ConsoleColours.RESET);
                 }
             }
         } else {
-            System.out.println("\nHero " + hero.getId() + " already has item " + itemId + "! Hoarding is not allowed.");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getId() + " already has item " + itemId + "! Hoarding is not allowed." + ConsoleColours.RESET);
         }
     }
 
@@ -195,9 +195,9 @@ public class Market {
 
                 hero.getInventory().removeWeapon(weapon);
                 hero.updateMoneyAfterSellingItems((int) (cost * SELL_ITEM_FACTOR));
-                System.out.println("\nRemoved weapon " + itemId + " from hero " + hero.getId() + "'s inventory");
+                System.out.println(ConsoleColours.CYAN + "\n[MARKET MESSAGE] Removed weapon " + itemId + " from hero " + hero.getId() + "'s inventory" + ConsoleColours.RESET);
             } else {
-                System.out.println("Hero " + hero.getName() + " does not have weapon " + itemId + "!");
+                System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getName() + " does not have weapon " + itemId + "!" + ConsoleColours.RESET);
             }
         } else if (itemId.contains("E")) {
             boolean armorExists = hero.getInventory().checkIfArmorExists(itemId);
@@ -208,12 +208,12 @@ public class Market {
 
                 hero.getInventory().removeArmor(armor);
                 hero.updateMoneyAfterSellingItems((int) (cost * SELL_ITEM_FACTOR));
-                System.out.println("\nRemoved armor " + itemId + " from hero " + hero.getId() + "'s inventory");
+                System.out.println(ConsoleColours.GREEN + "\n[MARKET MESSAGE] Removed armor " + itemId + " from hero " + hero.getId() + "'s inventory" + ConsoleColours.RESET);
             } else {
-                System.out.println("Hero " + hero.getName() + " does not have armor " + itemId + "!");
+                System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getName() + " does not have armor " + itemId + "!" + ConsoleColours.RESET);
             }
         } else {
-            System.out.println("Potions and Spells are consumable items, which cannot be sold once bought!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] Potions and Spells are consumable items, which cannot be sold once bought!" + ConsoleColours.RESET);
         }
     }
 }

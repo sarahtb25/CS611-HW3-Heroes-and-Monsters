@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 /* A Monsters and Heroes game piece that is used to represent a cell as a Common Area,
 where a battle may take place depending on the player's luck
@@ -75,6 +76,10 @@ public class CommonPiece extends MHPiece {
                        numberOfHeroesWin++;
                    }
                }
+
+               if (i < numberOfHeroes - 1){
+                   MHUtility.pause();
+               }
            }
 
            if (!hasQuit) {
@@ -82,7 +87,7 @@ public class CommonPiece extends MHPiece {
                which is the same as the number of heroes. Revive heroes if true.
                 */
                if ((double) numberOfHeroesWin >= (double) numberOfHeroes / 2) {
-                   System.out.println("\nReviving heroes...");
+                   System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] Reviving heroes..." + ConsoleColours.RESET);
                    for (int i = 0; i < numberOfHeroes; i++) {
                        Hero hero = player.getHeroes().getHeroFromId(heroesAlive.getHeroes().get(i).getId());
                        hero.revive(startingHP.get(i), startingMana.get(i));
@@ -90,7 +95,7 @@ public class CommonPiece extends MHPiece {
                }
            }
        } else {
-           System.out.println("\nNo battles this time!");
+           System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] No battles this time!" + ConsoleColours.RESET);
        }
 
        return hasQuit;
@@ -111,8 +116,9 @@ public class CommonPiece extends MHPiece {
     }
 
     public Monsters getMonsters() {
+        System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] Generating " + numberOfHeroes + " monsters..." + ConsoleColours.RESET);
         GenerateMonsters gm = new GenerateMonsters(numberOfHeroes);
-
+        System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] " + numberOfHeroes + " monsters generated" + ConsoleColours.RESET);
         return gm.getMonsters();
     }
 

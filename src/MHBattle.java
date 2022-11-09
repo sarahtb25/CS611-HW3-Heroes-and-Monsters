@@ -38,6 +38,7 @@ public class MHBattle implements Battle {
 
         printHelp();
         System.out.println("\n");
+        MHUtility.pause();
         fighters.printFightersInformation();
 
         while(!userResponseOrBattleWinner.equals("q")) {
@@ -45,7 +46,7 @@ public class MHBattle implements Battle {
                 if (turn % 2 == 0) {
                     // Player's turn
                     do {
-                        System.out.println("\nPlease enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):");
+                        System.out.println(ConsoleColours.GREEN + "\n[INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):" + ConsoleColours.RESET);
                         userResponseOrBattleWinner = scan.next().trim().toLowerCase();
                         isValid = checkUserResponse(userResponseOrBattleWinner);
                     } while (!isValid);
@@ -65,7 +66,7 @@ public class MHBattle implements Battle {
                                     equippableItem = hero.getInventory().getEquippableItemFromId(itemIds[i]);
                                     hero.replaceAWeaponOrArmor(equippableItem);
                                 } else {
-                                    System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory! You just lost a turn.");
+                                    System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory! You just lost a turn." + ConsoleColours.RESET);
                                 }
                             }
                         } else {
@@ -75,11 +76,11 @@ public class MHBattle implements Battle {
                                 equippableItem = hero.getInventory().getEquippableItemFromId(itemId);
                                 hero.replaceAWeaponOrArmor(equippableItem);
                             } else {
-                                System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory! You just lost a turn.");
+                                System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory! You just lost a turn." + ConsoleColours.RESET);
                             }
                         }
 
-                        System.out.println("\nYou are currently armed with:");
+                        System.out.println(ConsoleColours.CYAN + "\n[BATTLE MESSAGE] You are currently armed with:" + ConsoleColours.RESET);
                         hero.printCurrentlyEquippedItems();
                     } else if (userResponseOrBattleWinner.contains("cast ")) {
                         String spellId = userResponseOrBattleWinner.split(" ")[1].toUpperCase();
@@ -87,13 +88,18 @@ public class MHBattle implements Battle {
                         if (spellExists) {
                             Spell spell = hero.getInventory().getSpellFromId(spellId);
                             response = hero.castSpell(spell, monster);
-                            System.out.println(response);
+                            if (response.contains("[ERROR]")) {
+                                System.out.println("\n" + ConsoleColours.RED + response + ConsoleColours.RESET);
+                            } else {
+                                System.out.println("\n" + ConsoleColours.CYAN + response + ConsoleColours.RESET);
+                            }
+
                         } else {
-                            System.out.println("\nSpell " + spellId + " does not exist in " + hero.getName() + "'s inventory! You just lost a turn.");
+                            System.out.println(ConsoleColours.RED + "\n[ERROR] Spell " + spellId + " does not exist in " + hero.getName() + "'s inventory! You just lost a turn." + ConsoleColours.RESET);
                         }
                     } else if (userResponseOrBattleWinner.equals("hit")) {
                         response = hero.hit(monster);
-                        System.out.println(response);
+                        System.out.println(ConsoleColours.CYAN + response + ConsoleColours.RESET);
                     } else if (userResponseOrBattleWinner.equals("i")) {
                         fighters.printFightersInformation();
                         turn--; // Ensure when increment happens, it is still hero's turn
@@ -109,7 +115,7 @@ public class MHBattle implements Battle {
                 } else {
                     // Monster's turn
                     response = monster.attack(hero);
-                    System.out.println("\n" + response);
+                    System.out.println(ConsoleColours.YELLOW + "\n" + response + ConsoleColours.RESET);
                 }
 
                 turn++;

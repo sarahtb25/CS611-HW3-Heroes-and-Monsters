@@ -77,7 +77,7 @@ public class Monster extends NonPlayerCharacter {
 
         // Hero can dodge
         if (hero.getDodgeChance() >= getDamage()) {
-            response = "\nHero " + hero.getName() + " managed to dodge Monster " + getName() + "'s attack!";
+            response = "\n[BATTLE MESSAGE] Hero " + hero.getName() + " managed to dodge Monster " + getName() + "'s attack!";
         } else {
             int damageReduceAmount = hero.defend();
 
@@ -86,13 +86,13 @@ public class Monster extends NonPlayerCharacter {
 
                 if (hero.getHitPoints() - reduceHitPoints <= 0) {
                     hero.setHitPoints(noMore);
-                    response = "\nHero "  + hero.getName() + " was hit by Monster " + getName() + " and has been defeated!";
+                    response = "\n[BATTLE MESSAGE] Hero "  + hero.getName() + " was hit by Monster " + getName() + " and has been defeated!";
                 } else {
                     hero.setHitPoints(hero.getHitPoints() - reduceHitPoints);
-                    response = "\nHero " + hero.getName() + " was hit by Monster " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
+                    response = "\n[BATTLE MESSAGE] Hero " + hero.getName() + " was hit by Monster " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
                 }
             } else {
-                response = "\nHero " + hero.getName() + " has successfully defended against Monster " + getName() + "'s attack!";
+                response = "\n[BATTLE MESSAGE] Hero " + hero.getName() + " has successfully defended against Monster " + getName() + "'s attack!";
             }
         }
 
@@ -101,7 +101,7 @@ public class Monster extends NonPlayerCharacter {
 
     @Override
     public String toString() {
-        return "Monster " + getName() + " :" +
+        return "MONSTER " + getName() + " :" +
                 "\n\tID: " + getId() +
                 "\n\tType: " + getClass().toString().split(" ", 2)[1] +
                 "\n\tHit Points: " + hitPoint +

@@ -34,7 +34,7 @@ public class Spell extends ConsumableItem {
         int noMoreOfAttribute = 0;
 
         if (hero.getAttackDamageWithSpell(damage) <= monster.calculateDodge()) {
-            response = "Monster " + monster.getName() + " managed to dodge Hero " + hero.getName() + "'s spell!";
+            response = "[BATTLE MESSAGE] Monster " + monster.getName() + " managed to dodge Hero " + hero.getName() + "'s spell!";
         } else {
             int damageReduceAmount = monster.getDefense();
 
@@ -43,13 +43,13 @@ public class Spell extends ConsumableItem {
 
                 if (monster.getHitPoint() - reduceHitPoints <= 0) {
                     monster.setHitPoint(noMoreOfAttribute);
-                    response = "Monster " + monster.getName() + " has been defeated!";
+                    response = "[BATTLE MESSAGE] Monster " + monster.getName() + " has been defeated!";
                 } else {
                     monster.setHitPoint(monster.getHitPoint() - reduceHitPoints);
-                    response = "Monster " + monster.getName() + " was hit by Hero " + hero.getName() + " and lost " + reduceHitPoints + " hitpoints!";
+                    response = "[BATTLE MESSAGE] Monster " + monster.getName() + " was hit by Hero " + hero.getName() + " and lost " + reduceHitPoints + " hitpoints!";
                 }
             } else {
-                response = "Monster " + monster.getName() + " has successfully defended against Hero " + hero.getName() + "'s spell!";
+                response = "[BATTLE MESSAGE] Monster " + monster.getName() + " has successfully defended against Hero " + hero.getName() + "'s spell!";
             }
 
             affectMonsterSkill(monster);

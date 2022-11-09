@@ -8,7 +8,7 @@ public class MHHelp implements Help {
                 "\n" +
                 "A long time ago, the villagers of Lockwood were living a peaceful when one day, their village was overtaken by\n" +
                 "monsters. The monsters were tyrants and destroyed their village. With nowhere to go, they retreated into the pockets of\n" +
-                "magical forest that stood even after the monsters' attacked. The forest gave them protection, with its magic hiding the\n" +
+                "magical forest that stood even after the monsters attacked. The forest gave them protection, with its magic hiding the\n" +
                 "villagers from the monsters. The invalid areas in the map represent the pockets of magical forest, which keeps out\n" +
                 "everything and everyone. However, they are not safe. The monsters have been slowly weakening the magical forest,\n" +
                 "with the aim of eradicating every single villager.\n" +
@@ -30,7 +30,9 @@ public class MHHelp implements Help {
 
         System.out.println(helpHeader);
         printHelpMap();
+        MHUtility.pause();
         printHelpMarket();
+        MHUtility.pause();
         printHelpBattle();
     }
 
@@ -116,7 +118,9 @@ public class MHHelp implements Help {
 
         System.out.println(rulesHeader);
         printRulesMap();
+        MHUtility.pause();
         printRulesBattle();
+        MHUtility.pause();
         printRulesMarket();
     }
 
@@ -173,8 +177,8 @@ public class MHHelp implements Help {
                 "4.  Possible commands to use in battle (Not case-sensitive):\n" +
                 "    (1) Change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing e.g. R0 change B0\n" +
                 "        The item must be in the hero's inventory. Once a hero is equipped with a weapon or armor,\n" +
-                "        the hero can only replace the weapon with another weapon from the inventory, and an armor with another armor from the inventory.\n" +
-                "        To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a \n" +
+                "        the hero can only replace the weapon with another weapon from the inventory, and an armor with another armor from the\n" +
+                "        inventory. To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a \n" +
                 "        comma-separated manner e.g. R0 change B0,E0\n"  +
                 "    (2) Hit: To hit the monster with the weapon the hero is carrying\n" +
                 "    (3) Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0\n" +
@@ -185,14 +189,14 @@ public class MHHelp implements Help {
                 "5.  Commands that do not have (Will not lose a turn) means that if the item ID given does not exist,\n" +
                 "    the hero loses a turn.\n" +
                 "6.  The monsters will only attack the heroes, as they do not have items or spells to use.\n" +
-                "7.  Heroes have a dodge chance that will allow them to occasionally avoid taking damage from a monster’s attack.\n" +
+                "7.  Heroes have a dodge chance that will allow them to occasionally avoid taking damage from a monster's attack.\n" +
                 "    If the dodge chance >= monster's attack, then the monster's attack is dodged. Otherwise, the hero gets the full\n" +
                 "    brunt of the monster's attack - defence provided by the hero's armor (if any).\n" +
                 "\n" +
                 "    Hero's dodge chance = hero's agility * 0.2\n" +
                 "\n" +
                 "8.  Similarly, monsters also have a dodge chance that will allow them to occasionally avoid taking damage from\n" +
-                "    a hero’s attack. If the dodge chance >= hero's attack, then the hero's attack is dodged. Otherwise, the monster\n" +
+                "    a hero's attack. If the dodge chance >= hero's attack, then the hero's attack is dodged. Otherwise, the monster\n" +
                 "    gets the full brunt of the hero's attack - monster's defence.\n" +
                 "\n" +
                 "    Monster's dodge points = monster's dodge chance * 0.1\n" +
@@ -224,68 +228,72 @@ public class MHHelp implements Help {
                 "    than the number of monsters, then heroes who fainted in battle are revived. They gain back 50% of\n" +
                 "    their starting hit points and their mana. However, they do not get any gold or experience.\n" +
                 "    Those who did not faint gain back 10% of their starting hit points and mana.\n" +
-                "\n" +
-                "--------------\n" +
-                "|   Heroes   |\n" +
-                "--------------\n" +
-                "\n" +
-                "1. A hero has several attributes:\n" +
-                "   (1) A name\n" +
-                "   (2) A level with an amount of experience points\n" +
-                "   (3) HP (hit points, the hero’s in battle)\n" +
-                "   (4) MP (mana or magic points, for casting spells)\n" +
-                "   (5) A strength value\n" +
-                "   (6) A dexterity value\n" +
-                "   (7) An agility value\n" +
-                "   (8) An amount of gold\n" +
-                "   (9) An inventory of items\n" +
-                "   (10) The weapon and/or armor they have on them\n" +
-                "\n" +
-                "2.  A hero has a level, representing how strong (or not) that hero is. Experience points determine the hero’s level.\n" +
-                "    A hero levels up after accumulating enough experience points. A hero’s skills increase when the hero levels up.\n" +
-                "    A hero never loses experience. It accumulates over the course of the game.\n" +
-                "3.  HP (hot point): HP is the hero’s current health. The initial HP value is determined by hero’s level.\n" +
-                "\n" +
-                "    Hero's hit points = Hero's current level * 100\n" +
-                "\n" +
-                "    When a hero levels up, they have their HP set according to the same formula.\n" +
-                "\n" +
-                "4.  MP: MP (or mana) is used to cast spells.\n" +
-                "5.  Strength: A hero’s strength increases the amount of damage they deal when using a weapon.\n" +
-                "6.  Dexterity: A hero’s dexterity increases the amount of damage they deal when casting a spell.\n" +
-                "7.  Agility: A hero’s agility increases their chance to dodge a monster’s attack.\n" +
-                "8.  Money: Money is for use in the market.\n" +
-                "9.  Inventory. A hero has a collection of items that they have bought during the game. At the\n" +
-                "    start of the game, the inventory is empty. There is no maximum size of the inventory.\n" +
-                "10. There are three types of heroes, each with their own balance of skills:\n" +
-                "    (1) Warriors are favored on strength and agility.\n" +
-                "    (2) Sorcerers are favored on dexterity and agility.\n" +
-                "    (3) Paladins are favored on strength and dexterity.\n" +
-                "\n" +
-                "----------------\n" +
-                "|   Monsters   |\n" +
-                "----------------\n" +
-                "\n" +
-                "1.  A monster has several attributes:\n" +
-                "    (1) A name\n" +
-                "    (2) A level\n" +
-                "    (3) HP\n" +
-                "    (4) A base damage value\n" +
-                "    (5) A defense value\n" +
-                "    (6) A dodge ability\n" +
-                "\n" +
-                "2.  Base damage. This is a monster’s attack damage.\n" +
-                "3.  Defense. Monsters don’t wear armor, relying on their natural hides and carapaces to\n" +
-                "    protect them from the heroes’ attacks. This value reduces the amount of damage a monster\n" +
-                "    takes from a hero’s attack or spell.\n" +
-                "4.  Dodge ability. This represents how well a monster can avoid a hero’s attack. It functions in a\n" +
-                "    similar way to the hero’s agility.\n" +
-                "5.  There are three kinds of monsters, each with a favored attribute:\n" +
-                "    (1) Dragons have increased base damage.\n" +
-                "    (2) Exoskeletons have increased defense.\n" +
-                "    (3) Spirits have increased dodge ability.";
+                "\n";
+        String heroDetails = "--------------\n" +
+                            "|   Heroes   |\n" +
+                            "--------------\n" +
+                            "\n" +
+                            "1. A hero has several attributes:\n" +
+                            "   (1) A name\n" +
+                            "   (2) A level with an amount of experience points\n" +
+                            "   (3) HP (hit points, the hero's in battle)\n" +
+                            "   (4) MP (mana or magic points, for casting spells)\n" +
+                            "   (5) A strength value\n" +
+                            "   (6) A dexterity value\n" +
+                            "   (7) An agility value\n" +
+                            "   (8) An amount of gold\n" +
+                            "   (9) An inventory of items\n" +
+                            "   (10) The weapon and/or armor they have on them\n" +
+                            "\n" +
+                            "2.  A hero has a level, representing how strong (or not) that hero is. Experience points determine the hero's level.\n" +
+                            "    A hero levels up after accumulating enough experience points. A hero's skills increase when the hero levels up.\n" +
+                            "    A hero never loses experience. It accumulates over the course of the game.\n" +
+                            "3.  HP (hot point): HP is the hero's current health. The initial HP value is determined by hero's level.\n" +
+                            "\n" +
+                            "    Hero's hit points = Hero's current level * 100\n" +
+                            "\n" +
+                            "    When a hero levels up, they have their HP set according to the same formula.\n" +
+                            "\n" +
+                            "4.  MP: MP (or mana) is used to cast spells.\n" +
+                            "5.  Strength: A hero's strength increases the amount of damage they deal when using a weapon.\n" +
+                            "6.  Dexterity: A hero's dexterity increases the amount of damage they deal when casting a spell.\n" +
+                            "7.  Agility: A hero's agility increases their chance to dodge a monster's attack.\n" +
+                            "8.  Money: Money is for use in the market.\n" +
+                            "9.  Inventory. A hero has a collection of items that they have bought during the game. At the\n" +
+                            "    start of the game, the inventory is empty. There is no maximum size of the inventory.\n" +
+                            "10. There are three types of heroes, each with their own balance of skills:\n" +
+                            "    (1) Warriors are favored on strength and agility.\n" +
+                            "    (2) Sorcerers are favored on dexterity and agility.\n" +
+                            "    (3) Paladins are favored on strength and dexterity.\n" +
+                            "\n";
+        String monsterDetails = "----------------\n" +
+                        "|   Monsters   |\n" +
+                        "----------------\n" +
+                        "\n" +
+                        "1.  A monster has several attributes:\n" +
+                        "    (1) A name\n" +
+                        "    (2) A level\n" +
+                        "    (3) HP\n" +
+                        "    (4) A base damage value\n" +
+                        "    (5) A defense value\n" +
+                        "    (6) A dodge ability\n" +
+                        "\n" +
+                        "2.  Base damage. This is a monster's attack damage.\n" +
+                        "3.  Defense. Monsters don't wear armor, relying on their natural hides and carapaces to\n" +
+                        "    protect them from the heroes' attacks. This value reduces the amount of damage a monster\n" +
+                        "    takes from a hero's attack or spell.\n" +
+                        "4.  Dodge ability. This represents how well a monster can avoid a hero's attack. It functions in a\n" +
+                        "    similar way to the hero's agility.\n" +
+                        "5.  There are three kinds of monsters, each with a favored attribute:\n" +
+                        "    (1) Dragons have increased base damage.\n" +
+                        "    (2) Exoskeletons have increased defense.\n" +
+                        "    (3) Spirits have increased dodge ability.";
 
         System.out.println(rules);
+        MHUtility.pause();
+        System.out.println(heroDetails);
+        MHUtility.pause();
+        System.out.println(monsterDetails);
     }
 
     public void printRulesMarket() {
@@ -306,7 +314,7 @@ public class MHHelp implements Help {
                 "\n" +
                 "    The item will be removed from the player's inventory.\n" +
                 "4.  A successful purchase will reduce the amount of money the hero has, and the item will be transferred to\n" +
-                "    the hero’s inventory.\n" +
+                "    the hero's inventory.\n" +
                 "5.  All items have a name, a price, and a level. A hero cannot buy:\n" +
                 "    (1) an item that costs more than the money they have, or\n" +
                 "    (2) an item that is a higher level than they are.\n" +
@@ -324,43 +332,47 @@ public class MHHelp implements Help {
                 "    (7) H/h: To view possible commands for Market\n" +
                 "    (8) R/r: To view the rules of the market\n" +
                 "    (9) X/x: To exit the market and go back to the map\n" +
-                "\n" +
-                "----------------\n" +
-                "|  Item Types  |\n" +
-                "----------------\n" +
-                "\n" +
-                "1.  Armor: Armor reduces the incoming damage from a monster’s attack. A piece of armor has\n" +
-                "    a name, a price, a level, and a damage reduction value. When equipped, armor will reduce\n" +
-                "    the damage taken by the hero by its damage reduction value. A hero can equip at most one\n" +
-                "    piece of armor at a time.\n" +
-                "2.  Potions: Potions can be used by a hero in order to increase one of their statistics by some\n" +
-                "    amount. Potions are multi-use items, and each potion can be consumed a different number of times.\n" +
-                "    Potions have a name, a price, a level, and an effect amount. Using the potion should\n" +
-                "    increase the given statistic by the effect amount. There are potions for increasing hit points, mana,\n" +
-                "    strength, dexterity, and agility.\n" +
-                "3.  Spells. A spell represents a magic attack performed by a hero. A spell has a name, a price, a\n" +
-                "    level, a damage value, a mana cost, and a spell type. A hero will require at least the mana\n" +
-                "    cost amount of mana to cast the spell. Therefore, if a hero has no mana, that hero cannot cast\n" +
-                "    any spells. The damage value is used along with the hero’s dexterity value to calculate the\n" +
-                "    damage dealt during a spell cast move in a battle.\n" +
-                "\n" +
-                "    Hero’s spell damage = spell_base_damage + (dexterity/10000) * spell_base_damage\n" +
-                "\n" +
-                "    After casting a spell, the mana cost is deducted from the hero’s mana.\n" +
-                "    Spells also have an additional effect besides their damage.\n" +
-                "\n" +
-                "    The types of spell and their effects are:\n" +
-                "    (1) Ice spell: reduces the amount of damage the target can cause\n" +
-                "    (2) Fire spell: reduces the defense of the target\n" +
-                "    (3) Lightning spell: reduces the dodge chance of the target\n" +
-                "\n" +
-                "4.  Weapons: A weapon is used by a hero to attack a monster. A weapon has a name, a price, a\n" +
-                "    level, a damage value, and the number of hands required to use it. A weapon must be\n" +
-                "    equipped by the hero before it can be used. The damage value is used to calculate the\n" +
-                "    damage dealt during an attack move in a battle.\n" +
-                "\n" +
-                "    Hero's attack damage with weapon= (hero's strength + weapon_damage) * 0.05";
+                "\n";
+
+        String itemTypes = "----------------\n" +
+                        "|  Item Types  |\n" +
+                        "----------------\n" +
+                        "\n" +
+                        "1.  Armor: Armor reduces the incoming damage from a monster's attack. A piece of armor has\n" +
+                        "    a name, a price, a level, and a damage reduction value. When equipped, armor will reduce\n" +
+                        "    the damage taken by the hero by its damage reduction value. A hero can equip at most one\n" +
+                        "    piece of armor at a time.\n" +
+                        "2.  Potions: Potions can be used by a hero in order to increase one of their statistics by some\n" +
+                        "    amount. Potions are multi-use items, and each potion can be consumed a different number of times.\n" +
+                        "    Potions have a name, a price, a level, and an effect amount. Using the potion should\n" +
+                        "    increase the given statistic by the effect amount. There are potions for increasing hit points, mana,\n" +
+                        "    strength, dexterity, and agility.\n" +
+                        "3.  Spells. A spell represents a magic attack performed by a hero. A spell has a name, a price, a\n" +
+                        "    level, a damage value, a mana cost, and a spell type. A hero will require at least the mana\n" +
+                        "    cost amount of mana to cast the spell. Therefore, if a hero has no mana, that hero cannot cast\n" +
+                        "    any spells. The damage value is used along with the hero's dexterity value to calculate the\n" +
+                        "    damage dealt during a spell cast move in a battle.\n" +
+                        "\n" +
+                        "    Hero's spell damage = spell_base_damage + (dexterity/10000) * spell_base_damage\n" +
+                        "\n" +
+                        "    After casting a spell, the mana cost is deducted from the hero's mana.\n" +
+                        "    Spells also have an additional effect besides their damage.\n" +
+                        "\n" +
+                        "    The types of spell and their effects are:\n" +
+                        "    (1) Ice spell: reduces the amount of damage the target can cause\n" +
+                        "    (2) Fire spell: reduces the defense of the target\n" +
+                        "    (3) Lightning spell: reduces the dodge chance of the target\n" +
+                        "\n" +
+                        "4.  Weapons: A weapon is used by a hero to attack a monster. A weapon has a name, a price, a\n" +
+                        "    level, a damage value, and the number of hands required to use it. A weapon must be\n" +
+                        "    equipped by the hero before it can be used. The damage value is used to calculate the\n" +
+                        "    damage dealt during an attack move in a battle.\n" +
+                        "\n" +
+                        "    Hero's attack damage with weapon= (hero's strength + weapon_damage) * 0.05";
 
         System.out.println(rules);
+        MHUtility.pause();
+        System.out.println(itemTypes);
+
     }
 }

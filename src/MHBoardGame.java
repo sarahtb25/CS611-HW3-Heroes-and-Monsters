@@ -26,7 +26,7 @@ public class MHBoardGame extends BoardGame {
 
     public void getPlayerName() {
         Scanner scan = new Scanner(System.in).useDelimiter("\n");
-        System.out.println("Please enter player name:");
+        System.out.println(ConsoleColours.GREEN + "[INPUT] Please enter player name:" + ConsoleColours.RESET);
 
         String playerName = scan.next();
         player = new MHPlayer(playerName);
@@ -34,12 +34,13 @@ public class MHBoardGame extends BoardGame {
 
     public void getNumberOfHeroes() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("\nPlease input the number of heroes (minimum " + MIN_HERO + " and maximum " + MAX_HERO + "):");
+        System.out.println(ConsoleColours.GREEN + "\n[INPUT] Please input the number of heroes (minimum " + MIN_HERO + " and maximum " + MAX_HERO + "):" + ConsoleColours.RESET);
         String numberOfHeroes = scan.next();
         boolean isNumber = utility.checkIsNumber(numberOfHeroes);
 
         while(!isNumber || (Integer.parseInt(numberOfHeroes) < MIN_HERO && Integer.parseInt(numberOfHeroes) > MAX_HERO)) {
-            System.out.println("Please input the number of heroes (minimum " + MIN_HERO + " and maximum " + MAX_HERO + "):");
+            System.out.println(ConsoleColours.RED + "[ERROR] Invalid Input!" + ConsoleColours.RESET);
+            System.out.println(ConsoleColours.GREEN + "[INPUT] Please input the number of heroes (minimum " + MIN_HERO + " and maximum " + MAX_HERO + "):" + ConsoleColours.RESET);
             numberOfHeroes = scan.next();
             isNumber = utility.checkIsNumber(numberOfHeroes);
         }
@@ -48,9 +49,11 @@ public class MHBoardGame extends BoardGame {
     }
 
     public void generateHeroes(int numberOfHeroes) {
+        System.out.println(ConsoleColours.YELLOW + "[GAME MESSAGE] Generating " + numberOfHeroes + " Heroes..." + ConsoleColours.RESET);
         heroes = new Heroes();
         GenerateHeroes gh = new GenerateHeroes(numberOfHeroes);
         heroes = gh.getHeroes();
+        System.out.println(ConsoleColours.YELLOW + "[GAME MESSAGE] " + numberOfHeroes + " Heroes generated!" + ConsoleColours.RESET);
     }
 
     public void showHeroes() {
@@ -86,7 +89,7 @@ public class MHBoardGame extends BoardGame {
     // Q/q
     public void quit() {
         statistics.printStatistics();
-        System.out.println("\nQuitting game...");
+        System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] Quitting game..." + ConsoleColours.RESET);
         System.exit(1);
     }
 
@@ -178,7 +181,7 @@ public class MHBoardGame extends BoardGame {
             Hero hero = player.getHeroes().getHeroFromId(heroId);
             hero.printHero();
         } else {
-            System.out.println("\nYou do not have hero " + heroId + "!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You do not have hero " + heroId + "!" + ConsoleColours.RESET);
         }
 
     }
@@ -191,7 +194,7 @@ public class MHBoardGame extends BoardGame {
             Hero hero = player.getHeroes().getHeroFromId(heroId);
             hero.getInventory().printInventory();
         } else {
-            System.out.println("\nYou do not have hero " + heroId + "!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You do not have hero " + heroId + "!" + ConsoleColours.RESET);
         }
     }
 
@@ -207,10 +210,10 @@ public class MHBoardGame extends BoardGame {
                 Potion potion = hero.getInventory().getPotionFromId(potionId);
                 hero.drinkPotion(potion);
             } else {
-                System.out.println("\nHero " + hero.getName() + " does not have potion " + potionId + " in their inventory!");
+                System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getName() + " does not have potion " + potionId + " in their inventory!" + ConsoleColours.RESET);
             }
         } else {
-            System.out.println("\nYou do not have hero " + heroId + "!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You do not have hero " + heroId + "!" + ConsoleColours.RESET);
         }
     }
 
@@ -231,7 +234,7 @@ public class MHBoardGame extends BoardGame {
                         equippableItem = hero.getInventory().getEquippableItemFromId(itemIds[i]);
                         hero.replaceAWeaponOrArmor(equippableItem);
                     } else {
-                        System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory!");
+                        System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory!" + ConsoleColours.RESET);
                     }
                 }
             } else {
@@ -241,11 +244,11 @@ public class MHBoardGame extends BoardGame {
                     equippableItem = hero.getInventory().getEquippableItemFromId(itemId);
                     hero.replaceAWeaponOrArmor(equippableItem);
                 } else {
-                    System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory!");
+                    System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory!" + ConsoleColours.RESET);
                 }
             }
 
-            System.out.println("\nYou are currently armed with:");
+            System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] You are currently armed with:" + ConsoleColours.RESET);
             hero.printCurrentlyEquippedItems();
         } else {
             System.out.println("\nYou do not have hero " + heroId + "!");
@@ -260,7 +263,9 @@ public class MHBoardGame extends BoardGame {
 
         while (userInput.equals("y")) {
             printIntroduction();
+            MHUtility.pause();
             printOverallRules();
+            MHUtility.pause();
             printOverallHelp();
             initializeGame();
             regenerateMap();
@@ -269,10 +274,10 @@ public class MHBoardGame extends BoardGame {
 
             while(!checkGameStatus()) {
                  do {
-                    System.out.println("\nPlease provide a valid map command:");
+                    System.out.println(ConsoleColours.GREEN + "\n[INPUT] Please provide a valid map command:" + ConsoleColours.RESET);
                     userInput = scan.next().trim().toLowerCase();
                     isValid = utility.checkValidUserResponse(userInput);
-                    if (!isValid) System.out.println("\nInvalid Input!");
+                    if (!isValid) System.out.println(ConsoleColours.RED + "\n[ERROR] Invalid Input!" + ConsoleColours.RESET);
                  } while(!isValid);
 
                  if (userInput.equals("w")) {
@@ -324,11 +329,11 @@ public class MHBoardGame extends BoardGame {
             showScore();
 
             if (heroes.getTotalNumberOfMonstersDefeated() >= NUMBER_OF_MONSTERS_TO_DEFEAT) {
-                System.out.println("\nCongratulations! You have freed the villagers of Lockwood from the monsters' tyranny!");
+                System.out.println(ConsoleColours.CYAN_BOLD + "\nCongratulations! You have freed the villagers of Lockwood from the monsters' tyranny!" + ConsoleColours.RESET);
                 quit();
             } else {
                 do {
-                    System.out.println("\nYou have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N");
+                    System.out.println(ConsoleColours.RED + "\nYou have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N" + ConsoleColours.RESET);
                     userInput = scan.next().trim().toLowerCase();
                 } while (!userInput.equals("y") && !userInput.equals("n"));
 

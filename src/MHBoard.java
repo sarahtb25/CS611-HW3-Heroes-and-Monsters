@@ -84,16 +84,26 @@ public class MHBoard extends Board {
                 for (int k = 0; k < NUMBER_OF_ROWS_AND_COLS; k++) {
                     String pieceId = board[i][k].getPiece().getId();
 
-                    if (pieceId.length() == 2) {
-                        System.out.print("| " + pieceId + " ");
+                    if (pieceId.length() == 2) { // Player is here
+                        System.out.print("| " + ConsoleColours.YELLOW_BOLD + pieceId + ConsoleColours.RESET + " ");
                     } else {
-                        System.out.print("| " + pieceId + "  ");
+                        switch (pieceId) {
+                            case "M":
+                                System.out.print("| " + ConsoleColours.CYAN + pieceId + ConsoleColours.RESET + "  ");
+                                break;
+                            case "C":
+                                System.out.print("| " + ConsoleColours.YELLOW + pieceId + ConsoleColours.RESET + "  ");
+                                break;
+                            case "I":
+                                System.out.print("| " + ConsoleColours.RED + pieceId + ConsoleColours.RESET + "  ");
+                                break;
+                        }
                     }
                 }
                 System.out.println("|");
             }
         }
-        System.out.println("*: You are here\t\tI: Invalid Area\t\tM: Market\t\tC: Common Area");
+        System.out.println(ConsoleColours.YELLOW_BOLD + "*: You are here\t\t" + ConsoleColours.RED + "I: Invalid Area\t\t" + ConsoleColours.CYAN + "M: Market\t\t" + ConsoleColours.YELLOW + "C: Common Area" + ConsoleColours.RESET);
     }
 
     public int[] getRowAndColumnIndex() {
@@ -146,7 +156,7 @@ public class MHBoard extends Board {
                 canEnter = true;
             }
         } else if (cell.getPiece().getId().equals("I")) {
-            System.out.println("You are not allowed to come to an invalid area!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You are not allowed to come to an invalid area!" + ConsoleColours.RESET);
         }
 
         return canEnter;
@@ -188,7 +198,7 @@ public class MHBoard extends Board {
                 leaveCell((rowAndColumnIndex[0] + 1), rowAndColumnIndex[1]);
             }
         } else {
-            System.out.println("You cannot go outside the map!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You cannot go outside the map!" + ConsoleColours.RESET);
         }
 
         return hasQuitAndBattle;
@@ -209,7 +219,7 @@ public class MHBoard extends Board {
                 leaveCell(rowAndColumnIndex[0], (rowAndColumnIndex[1] + 1));
             }
         } else {
-            System.out.println("You cannot go outside the map!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You cannot go outside the map!" + ConsoleColours.RESET);
         }
 
         return hasQuitAndBattle;
@@ -230,7 +240,7 @@ public class MHBoard extends Board {
                 leaveCell((rowAndColumnIndex[0] - 1), rowAndColumnIndex[1]);
             }
         } else {
-            System.out.println("You cannot go outside the map!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You cannot go outside the map!" + ConsoleColours.RESET);
         }
 
         return hasQuitAndBattle;
@@ -251,7 +261,7 @@ public class MHBoard extends Board {
                 leaveCell(rowAndColumnIndex[0], (rowAndColumnIndex[1] - 1));
             }
         } else {
-            System.out.println("You cannot go outside the map!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You cannot go outside the map!" + ConsoleColours.RESET);
         }
 
         return hasQuitAndBattle;
@@ -267,7 +277,7 @@ public class MHBoard extends Board {
             MarketPiece marketPiece = (MarketPiece) cell.getPiece();
             quit = marketPiece.market(player);
         } else {
-            System.out.println("\nThere is no market here!");
+            System.out.println(ConsoleColours.RED + "\n[ERROR] There is no market here!" + ConsoleColours.RESET);
         }
 
         return quit;

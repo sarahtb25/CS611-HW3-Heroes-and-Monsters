@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Scanner;
 
 // Contains methods that are used across different classes in the game
 public class MHUtility implements Utility{
@@ -19,9 +20,15 @@ public class MHUtility implements Utility{
         return true;
     }
 
+    public static void pause() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] Press ENTER to continue" + ConsoleColours.RESET);
+        scan.nextLine();
+    }
+
     public void printWeapons(List<Weapon> weapons) {
         if (!weapons.isEmpty()) {
-            System.out.println("---------------------------------------------------------------------------------------------");
+            System.out.println(ConsoleColours.CYAN + "---------------------------------------------------------------------------------------------");
             System.out.println("|                                   WEAPONS                                                 |");
             System.out.println("---------------------------------------------------------------------------------------------");
             System.out.println("---------------------------------------------------------------------------------------------");
@@ -34,13 +41,13 @@ public class MHUtility implements Utility{
                 System.out.println();
             }
 
-            System.out.println("----------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------" + ConsoleColours.RESET);
         }
     }
 
     public void printArmors(List<Armor> armors) {
         if (!armors.isEmpty()) {
-            System.out.println("---------------------------------------------------------------------------------------------");
+            System.out.println(ConsoleColours.GREEN + "---------------------------------------------------------------------------------------------");
             System.out.println("|                                   ARMORS                                                  |");
             System.out.println("---------------------------------------------------------------------------------------------");
             System.out.println("---------------------------------------------------------------------------------------------");
@@ -53,13 +60,13 @@ public class MHUtility implements Utility{
                 System.out.println();
             }
 
-            System.out.println("----------------------------------------------------------------------------------------------");
+            System.out.println("----------------------------------------------------------------------------------------------" + ConsoleColours.RESET);
         }
     }
 
     public void printPotions(List<Potion> potions) {
         if(!potions.isEmpty()) {
-            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println(ConsoleColours.YELLOW + "-----------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("|                                                           POTIONS                                                               |");
             System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
             System.out.println("-----------------------------------------------------------------------------------------------------------------------------------");
@@ -72,7 +79,7 @@ public class MHUtility implements Utility{
                 System.out.println();
             }
 
-            System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------" + ConsoleColours.RESET);
         }
     }
 

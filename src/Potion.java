@@ -42,7 +42,7 @@ public class Potion extends ConsumableItem {
     }
 
     public void printPotionImpact(Hero hero) {
-        String print = "\nHero " + hero.getName() + " increased their ";
+        String print = "\n[GAME MESSAGE] Hero " + hero.getName() + " increased their ";
 
         for (int i = 0; i < attributesAffected.size(); i++) {
             print += attributesAffected.get(i) + ", ";
@@ -51,6 +51,6 @@ public class Potion extends ConsumableItem {
         print = print.substring(0, print.length() - 2);
         print += " by " + attributeIncrease + " points!";
 
-        System.out.println(print);
+        System.out.println(ConsoleColours.YELLOW + print + ConsoleColours.RESET);
     }
 }

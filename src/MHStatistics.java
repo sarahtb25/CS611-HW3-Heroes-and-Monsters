@@ -18,9 +18,9 @@ public class MHStatistics implements Statistics<MHRoundHistory> {
     public void printStatistics() {
         int roundNumber = 1;
         for (MHRoundHistory roundHistory : MHRoundHistories) {
-            System.out.println("\n-----------------------");
+            System.out.println(ConsoleColours.YELLOW + "\n-----------------------");
             System.out.println("|       Round " + roundNumber + "       |");
-            System.out.println("-----------------------");
+            System.out.println("-----------------------" + ConsoleColours.RESET);
             System.out.println();
             roundHistory.printRoundScores();
             roundNumber++;

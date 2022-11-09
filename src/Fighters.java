@@ -27,6 +27,7 @@ public class Fighters {
     public void printFightersInformation() {
         hero.printHero();
         System.out.println("\n\n");
+        MHUtility.pause();
         System.out.println(monster);
     }
 }

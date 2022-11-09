@@ -211,7 +211,7 @@ public class Hero extends NonPlayerCharacter {
 
         if (damage > 0) {
             if (getAttackDamageWithWeapon(damage) <= monster.calculateDodge()) {
-                response = "\nMonster " + monster.getName() + " managed to dodge Hero " + getName() + "'s attack!";
+                response = "\n[BATTLE MESSAGE] Monster " + monster.getName() + " managed to dodge Hero " + getName() + "'s attack!";
             } else {
                 int damageReduceAmount = monster.getDefense();
 
@@ -220,17 +220,17 @@ public class Hero extends NonPlayerCharacter {
 
                     if (monster.getHitPoint() - reduceHitPoints <= 0) {
                         monster.setHitPoint(noMore);
-                        response = "\nMonster " + monster.getName() + " was hit by Hero " + getName() + " and has been defeated!";
+                        response = "\n[BATTLE MESSAGE] Monster " + monster.getName() + " was hit by Hero " + getName() + " and has been defeated!";
                     } else {
                         monster.setHitPoint(monster.getHitPoint() - reduceHitPoints);
-                        response = "\nMonster " + monster.getName() + " was hit by Hero " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
+                        response = "\n[BATTLE MESSAGE] Monster " + monster.getName() + " was hit by Hero " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
                     }
                 } else {
-                    response = "\nMonster " + monster.getName() + " has successfully defended against Hero " + getName() + "'s attack!";
+                    response = "\n[BATTLE MESSAGE] Monster " + monster.getName() + " has successfully defended against Hero " + getName() + "'s attack!";
                 }
             }
         } else {
-            response = "\n Hero is not equipped with a weapon!";
+            response = "\n[BATTLE MESSAGE]  Hero is not equipped with a weapon!";
         }
 
         return response;
@@ -261,7 +261,7 @@ public class Hero extends NonPlayerCharacter {
             response = spell.applySpell(this, monster);
             inventory.removeSpell();
         } else {
-            response = "\n" + getName() + " has not enough mana! Unable to cast " + spell.getItemName();
+            response = "\n[ERROR]" + getName() + " has not enough mana! Unable to cast " + spell.getItemName();
         }
 
         return response;
@@ -307,7 +307,7 @@ public class Hero extends NonPlayerCharacter {
 
         levelUpSkills();
 
-        System.out.println("\nCongratulations! Hero " + getName() + " has leveled up from " + prevExperience + " to " + experience + "!");
+        System.out.println(ConsoleColours.YELLOW_BOLD + "\n[GAME MESSAGE] Congratulations! Hero " + getName() + " has leveled up from " + prevExperience + " to " + experience + "!" + ConsoleColours.RESET);
     }
 
     public void checkLevelUp() {
@@ -351,7 +351,17 @@ public class Hero extends NonPlayerCharacter {
     }
 
     public boolean checkItemNotPresent(String itemId) {
-        if (!inventory.checkIfWeaponExists(itemId) && !inventory.checkIfArmorExists(itemId) && !inventory.checkIfPotionExists(itemId) && !inventory.checkIfSpellExists(itemId)) return true;
+        if (!inventory.checkIfWeaponExists(itemId) && !inventory.checkIfArmorExists(itemId) && !inventory.checkIfPotionExists(itemId) && !inventory.checkIfSpellExists(itemId) && !checkIfEquippableItemExists(itemId)) return true;
+
+        return false;
+    }
+
+    public boolean checkIfEquippableItemExists(String itemId) {
+        for (EquippableItem equippableItem : currentlyEquippedItems) {
+            if (equippableItem.getId().equals(itemId)) {
+                return true;
+            }
+        }
 
         return false;
     }
@@ -389,7 +399,7 @@ public class Hero extends NonPlayerCharacter {
     }
 
     public void printHero() {
-        System.out.print("\nHero " + getName() + " :" +
+        System.out.print("\nHERO " + getName() + " :" +
                             "\n\tID: " + getId() +
                             "\n\tType: " + getClass().toString().split(" ", 2)[1] +
                             "\n\tHit Points:"  + hitPoints +
@@ -399,10 +409,11 @@ public class Hero extends NonPlayerCharacter {
                             "\n\tDexterity: " + dexterity +
                             "\n\tMoney: " + money +
                             "\n\tExperience: " + experience +
-                            "\n\tExperience Gained: " + experienceGained + " / " + experienceNeededToLevelUp() +
-                            "\n\tCurrently Equipped Items: ");
-
+                            "\n\tExperience Gained: " + experienceGained + " / " + experienceNeededToLevelUp());
+        MHUtility.pause();
+        System.out.println("\n\tCurrently Equipped Items: ");
         printCurrentlyEquippedItems();
+        MHUtility.pause();
         System.out.println("\n\tInventory: ");
         inventory.printInventory();
     }
@@ -413,9 +424,9 @@ public class Hero extends NonPlayerCharacter {
         } else {
             MHUtility utility = new MHUtility();
 
-            System.out.println("\n#########################################################################################\n");
+            System.out.println(ConsoleColours.YELLOW + "\n#########################################################################################\n");
             System.out.println("|                                   Currently Equipped Items                              |\n");
-            System.out.println("#########################################################################################\n");
+            System.out.println("#########################################################################################\n" + ConsoleColours.RESET);
 
             List<Weapon> weapons = new ArrayList<>();
             List<Armor> armors = new ArrayList<>();
