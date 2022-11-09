@@ -188,7 +188,9 @@ public class Market {
     public void sellItem(Hero hero, String itemId) {
         int cost;
 
-        if (itemId.contains("B")) {
+        if (itemId.equals("B6") || itemId.equals("E5")) {
+            System.out.println(ConsoleColours.RED + "\n[ERROR] You cannot sell a part of the hero!\nB6: Hero's fists as a weapon\nE5: Hero's body as an armor" + ConsoleColours.RESET);
+        } else if (itemId.contains("B")) {
             boolean weaponExists = hero.getInventory().checkIfWeaponExists(itemId);
 
             if (weaponExists) {

@@ -51,6 +51,7 @@ public class MHBattle implements Battle {
                         System.out.println(ConsoleColours.GREEN + "\n[INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):" + ConsoleColours.RESET);
                         userResponseOrBattleWinner = scan.next().trim().toLowerCase();
                         isValid = checkUserResponse(userResponseOrBattleWinner);
+                        if (!isValid) System.out.println(ConsoleColours.RED + "\n[ERROR] Invalid Input!" + ConsoleColours.RESET);
                     } while (!isValid);
 
                     if (userResponseOrBattleWinner.contains(" change ")) {

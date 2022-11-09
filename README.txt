@@ -93,6 +93,7 @@ U86084310
    (d) Added colours to board to distinguish the different types of pieces and messages shows to player.
    (e) Used Singleton Pattern for the Monsters and Heroes game logic.
    (f) Used Factory Design Pattern for generating the various monsters and heroes.
+   (g) Player can regenerate the map if they are not happy with their current map at any point.
 2. Please maximize terminal screen before playing. This game has been developed and tested using Java 8.
 
 ## How to compile and run
@@ -104,9 +105,7 @@ U86084310
 
 ## Input/Output Example
 ---------------------------------------------------------------------------
-<Place here an example of how the program runs. Include both its
-outputs and correctly formatted inputs. Please clearly mark the inputs.>
-e.g.:
+Output:
 #########################################################################
 |                          MONSTERS AND HEROES                          |
 #########################################################################
@@ -125,7 +124,8 @@ you will succeed.
 Good luck!
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 ---------------------------------------------------------------------------
 |                                   RULES                                  |
 ---------------------------------------------------------------------------
@@ -168,7 +168,8 @@ Good luck!
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Battle Rules   |
@@ -237,7 +238,8 @@ Good luck!
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 --------------
 |   Heroes   |
 --------------
@@ -278,7 +280,8 @@ Good luck!
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 ----------------
 |   Monsters   |
 ----------------
@@ -303,7 +306,8 @@ Good luck!
     (3) Spirits have increased dodge ability.
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Market Rules   |
@@ -344,7 +348,8 @@ Good luck!
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 ----------------
 |  Item Types  |
 ----------------
@@ -382,7 +387,8 @@ Good luck!
     Hero's attack damage with weapon = (hero's strength + weapon_damage) * 0.05
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 ---------------------------------------------------------------------------
 |                                   HELP                                  |
 ---------------------------------------------------------------------------
@@ -413,7 +419,8 @@ Commands allowed on the map (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Market Help    |
@@ -436,7 +443,8 @@ Commands allowed in the market (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Battle Help    |
@@ -459,11 +467,10 @@ Commands allowed in battle (Not case-sensitive):
     7. R/r: To view the rules of Monsters and Heroes
 
 [INPUT] Please enter player name:
-Sarah
-
-[INPUT] Please input the number of heroes (minimum 1 and maximum 3):
-2
-
+Input: Sarah
+Output: [INPUT] Please input the number of heroes (minimum 1 and maximum 3):
+Input: 2
+Output:
 [GAME MESSAGE] Generating 2 Heroes...
 
 [GAME MESSAGE] 2 Heroes generated!
@@ -499,8 +506,8 @@ Sarah
 *: You are here         I: Invalid Area         M: Market               C: Common Area
 
 [INPUT] Please provide a valid map command:
-m
-
+Input: m
+Output:
 #############################################################################################
 |                                   MARKET                                                  |
 #############################################################################################
@@ -602,8 +609,8 @@ Commands allowed in the market (Not case-sensitive):
 
 
 [INPUT] Please provide a valid market command:
-i
-
+Input: i
+Output:
 ------------------------------------------------------------------------------------------------------------------------------------
 |                                                               HEROES                                                             |
 ------------------------------------------------------------------------------------------------------------------------------------
@@ -616,8 +623,8 @@ i
 
 
 [INPUT] Please provide a valid market command:
-h5 buy b4,e2,p0,p4,p5,f3,l1
-
+Input: h5 buy b4,e2,p0,p4,p5,f3,l1
+Output:
 [MARKET MESSAGE] Added weapon B4 to hero H5's inventory
 
 [MARKET MESSAGE] Added armor E2 to hero H5's inventory
@@ -634,8 +641,8 @@ h5 buy b4,e2,p0,p4,p5,f3,l1
 
 
 [INPUT] Please provide a valid market command:
-g4 buy b2,e1,p0,p4,c3,f4
-
+Input: g4 buy b2,e1,p0,p4,c3,f4
+Output:
 [MARKET MESSAGE] Added weapon B2 to hero G4's inventory
 
 [MARKET MESSAGE] Added armor E1 to hero G4's inventory
@@ -650,8 +657,8 @@ g4 buy b2,e1,p0,p4,c3,f4
 
 
 [INPUT] Please provide a valid market command:
-x
-
+Input: x
+Output:
 [MARKET MESSAGE] Exiting Market...
 
 
@@ -675,8 +682,8 @@ x
 *: You are here         I: Invalid Area         M: Market               C: Common Area
 
 [INPUT] Please provide a valid map command:
-h5 change b4,e2
-
+Input: h5 change b4,e2
+Output:
 [GAME MESSAGE] You are currently armed with:
 
 #########################################################################################
@@ -703,8 +710,8 @@ h5 change b4,e2
 ----------------------------------------------------------------------------------------------
 
 [INPUT] Please provide a valid map command:
-g4 change b2,e1
-
+Input: g4 change b2,e1
+Output:
 [GAME MESSAGE] You are currently armed with:
 
 #########################################################################################
@@ -731,8 +738,8 @@ g4 change b2,e1
 ----------------------------------------------------------------------------------------------
 
 [INPUT] Please provide a valid map command:
-view map
-
+Input: view map
+Output:
 
 +----+----+----+----+----+----+----+----+
 | M  | I  | C  | I  | I  | C  | C  | C  |
@@ -754,8 +761,8 @@ view map
 *: You are here         I: Invalid Area         M: Market               C: Common Area
 
 [INPUT] Please provide a valid map command:
-w
-
+Input: w
+Output:
 [GAME MESSAGE] Generating 2 monsters...
 
 [GAME MESSAGE] 2 monsters generated
@@ -784,8 +791,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
-
+Input: (Press ENTER)
+Output:
 HERO Caliber_Heist :
         ID: H5
         Type: Paladin
@@ -798,7 +805,8 @@ HERO Caliber_Heist :
         Experience: 8
         Experience Gained: 0 / 80
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -826,7 +834,8 @@ HERO Caliber_Heist :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 
@@ -886,7 +895,8 @@ HERO Caliber_Heist :
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER Venom :
         ID: K10
         Type: Exoskeleton
@@ -897,20 +907,21 @@ MONSTER Venom :
         DodgeChance: 55
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Venom was hit by Hero Caliber_Heist and lost 400 hitpoints!
 
 
 [BATTLE MESSAGE] Hero Caliber_Heist has successfully defended against Monster Venom's attack!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Venom was hit by Hero Caliber_Heist and has been defeated!
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Battle Help    |
@@ -936,7 +947,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Kalabar :
         ID: G4
@@ -950,7 +962,8 @@ HERO Kalabar :
         Experience: 6
         Experience Gained: 0 / 60
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -978,7 +991,8 @@ HERO Kalabar :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 
@@ -1037,7 +1051,8 @@ HERO Kalabar :
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER Chronepsish :
         ID: K5
         Type: Exoskeleton
@@ -1048,24 +1063,24 @@ MONSTER Chronepsish :
         DodgeChance: 60
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Chronepsish was hit by Hero Kalabar and lost 225 hitpoints!
 
 
 [BATTLE MESSAGE] Hero Kalabar was hit by Monster Chronepsish and lost 50 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Chronepsish was hit by Hero Kalabar and lost 225 hitpoints!
 
 
 [BATTLE MESSAGE] Hero Kalabar was hit by Monster Chronepsish and lost 50 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Chronepsish was hit by Hero Kalabar and has been defeated!
 
 [GAME MESSAGE] Reviving heroes...
@@ -1091,8 +1106,8 @@ hit
 *: You are here         I: Invalid Area         M: Market               C: Common Area
 
 [INPUT] Please provide a valid map command:
-w
-
+Input: w
+Output:
 [GAME MESSAGE] Generating 2 monsters...
 
 [GAME MESSAGE] 2 monsters generated
@@ -1121,7 +1136,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Caliber_Heist :
         ID: H5
@@ -1135,7 +1151,8 @@ HERO Caliber_Heist :
         Experience: 8
         Experience Gained: 20 / 80
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -1163,7 +1180,8 @@ HERO Caliber_Heist :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 
@@ -1223,7 +1241,8 @@ HERO Caliber_Heist :
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER Rakkshasass :
         ID: N8
         Type: Spirit
@@ -1234,8 +1253,8 @@ MONSTER Rakkshasass :
         DodgeChance: 35
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-h5 change b6,e5
-
+Input: h5 change b6,e5
+Output:
 [BATTLE MESSAGE] You are currently armed with:
 
 #########################################################################################
@@ -1265,15 +1284,16 @@ h5 change b6,e5
 [BATTLE MESSAGE] Hero Caliber_Heist was hit by Monster Rakkshasass and lost 450 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Rakkshasass has successfully defended against Hero Caliber_Heist's attack!
 
 
 [BATTLE MESSAGE] Hero Caliber_Heist was hit by Monster Rakkshasass and has been defeated!
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Battle Help    |
@@ -1299,7 +1319,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Kalabar :
         ID: G4
@@ -1313,7 +1334,8 @@ HERO Kalabar :
         Experience: 6
         Experience Gained: 20 / 60
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -1341,7 +1363,8 @@ HERO Kalabar :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 
@@ -1400,7 +1423,8 @@ HERO Kalabar :
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER BunsenBurner :
         ID: J2
         Type: Dragon
@@ -1411,8 +1435,8 @@ MONSTER BunsenBurner :
         DodgeChance: 45
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-g4 change b6,e5
-
+Input: g4 change b6,e5
+Output:
 [BATTLE MESSAGE] You are currently armed with:
 
 #########################################################################################
@@ -1442,16 +1466,16 @@ g4 change b6,e5
 [BATTLE MESSAGE] Hero Kalabar was hit by Monster BunsenBurner and lost 300 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster BunsenBurner has successfully defended against Hero Kalabar's attack!
 
 
 [BATTLE MESSAGE] Hero Kalabar was hit by Monster BunsenBurner and lost 300 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-cast f4
-
+Input: cast f4
+Output:
 [BATTLE MESSAGE] Monster BunsenBurner has been defeated!
 
 [GAME MESSAGE] Reviving heroes...
@@ -1477,8 +1501,8 @@ cast f4
 *: You are here         I: Invalid Area         M: Market               C: Common Area
 
 [INPUT] Please provide a valid map command:
-a
-
+Input: a
+Output:
 [GAME MESSAGE] Generating 2 monsters...
 
 [GAME MESSAGE] 2 monsters generated
@@ -1507,7 +1531,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Caliber_Heist :
         ID: H5
@@ -1521,7 +1546,8 @@ HERO Caliber_Heist :
         Experience: 8
         Experience Gained: 20 / 80
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -1549,7 +1575,8 @@ HERO Caliber_Heist :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 
@@ -1609,7 +1636,8 @@ HERO Caliber_Heist :
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER Melchiresas :
         ID: N6
         Type: Spirit
@@ -1620,23 +1648,24 @@ MONSTER Melchiresas :
         DodgeChance: 75
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Melchiresas was hit by Hero Caliber_Heist and lost 125 hitpoints!
 
 
 [BATTLE MESSAGE] Hero Caliber_Heist was hit by Monster Melchiresas and lost 250 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Melchiresas was hit by Hero Caliber_Heist and lost 125 hitpoints!
 
 
 [BATTLE MESSAGE] Hero Caliber_Heist was hit by Monster Melchiresas and has been defeated!
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Battle Help    |
@@ -1662,7 +1691,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Kalabar :
         ID: G4
@@ -1676,7 +1706,8 @@ HERO Kalabar :
         Experience: 6
         Experience Gained: 40 / 60
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -1704,7 +1735,8 @@ HERO Kalabar :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 
@@ -1763,7 +1795,8 @@ HERO Kalabar :
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER Blinky :
         ID: N1
         Type: Spirit
@@ -1774,11 +1807,11 @@ MONSTER Blinky :
         DodgeChance: 35
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Blinky was hit by Hero Kalabar and has been defeated!
 
-[GAME MESSAGE] Congratulations! Hero Kalabar has leveled up from 6 to 7!
+[GAME MESSAGE] Congratulations! Hero Kalabar has leveled up from Experience Level 6 to Experience Level 7!
 
 [GAME MESSAGE] Reviving heroes...
 
@@ -1803,8 +1836,8 @@ hit
 *: You are here         I: Invalid Area         M: Market               C: Common Area
 
 [INPUT] Please provide a valid map command:
-w
-
+Input: w
+Output:
 [GAME MESSAGE] Generating 2 monsters...
 
 [GAME MESSAGE] 2 monsters generated
@@ -1833,7 +1866,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Caliber_Heist :
         ID: H5
@@ -1847,7 +1881,8 @@ HERO Caliber_Heist :
         Experience: 8
         Experience Gained: 20 / 80
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -1875,7 +1910,8 @@ HERO Caliber_Heist :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 
@@ -1935,7 +1971,8 @@ HERO Caliber_Heist :
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER St-Shargaas :
         ID: K7
         Type: Exoskeleton
@@ -1946,15 +1983,16 @@ MONSTER St-Shargaas :
         DodgeChance: 55
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster St-Shargaas has successfully defended against Hero Caliber_Heist's attack!
 
 
 [BATTLE MESSAGE] Hero Caliber_Heist was hit by Monster St-Shargaas and has been defeated!
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Battle Help    |
@@ -1980,7 +2018,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Kalabar :
         ID: G4
@@ -1994,7 +2033,8 @@ HERO Kalabar :
         Experience: 7
         Experience Gained: 0 / 70
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -2022,7 +2062,8 @@ HERO Kalabar :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 
@@ -2081,7 +2122,8 @@ HERO Kalabar :
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER BunsenBurner :
         ID: J2
         Type: Dragon
@@ -2092,24 +2134,24 @@ MONSTER BunsenBurner :
         DodgeChance: 45
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster BunsenBurner was hit by Hero Kalabar and lost 21 hitpoints!
 
 
 [BATTLE MESSAGE] Hero Kalabar was hit by Monster BunsenBurner and lost 300 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster BunsenBurner was hit by Hero Kalabar and lost 21 hitpoints!
 
 
 [BATTLE MESSAGE] Hero Kalabar was hit by Monster BunsenBurner and lost 300 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster BunsenBurner was hit by Hero Kalabar and lost 21 hitpoints!
 
 
@@ -2152,7 +2194,8 @@ There were 4 battles in this round.
 -------------------------------------------------------------------------------------------------------------------------------------
 
 You have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N
-y
+Input: y
+Output:
 #########################################################################
 |                          MONSTERS AND HEROES                          |
 #########################################################################
@@ -2171,7 +2214,8 @@ you will succeed.
 Good luck!
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 ---------------------------------------------------------------------------
 |                                   RULES                                  |
 ---------------------------------------------------------------------------
@@ -2213,303 +2257,16 @@ Good luck!
     comma-separated manner e.g. R0 change B0,E0
 
 
-[GAME MESSAGE] Press ENTER to continue
-
-
-********************
-|   Battle Rules   |
-********************
-
-1.  This is a turn-based battle, where the heroes make a move first, followed by the monster
-2.  The battle is 1-on-1 i.e. one hero vs one monster
-3.  The battle ends when
-    (1) the hero runs out of hit points, or
-    (2) the monster runs out of hit points
-4.  Possible commands to use in battle (Not case-sensitive):
-    (1) Change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing e.g. R0 change B0
-        The item must be in the hero's inventory. Once a hero is equipped with a weapon or armor,
-        the hero can only replace the weapon with another weapon from the inventory, and an armor with another armor from the
-        inventory. To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a
-        comma-separated manner e.g. R0 change B0,E0
-    (2) Hit: To hit the monster with the weapon the hero is carrying
-    (3) Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0
-    (4) I/i: To view the details of the hero and the monster engaged in battle (Will not lose a turn)
-    (5) Q/q: To quit the game
-    (6) H/h: To view possible commands for battle (Will not lose a turn)
-    (7) R/r: To view the rules of battle (Will not lose a turn)
-5.  Commands that do not have (Will not lose a turn) means that if the item ID given does not exist,
-    the hero loses a turn.
-6.  The monsters will only attack the heroes, as they do not have items or spells to use.
-7.  Heroes have a dodge chance that will allow them to occasionally avoid taking damage from a monster's attack.
-    If the dodge chance >= monster's attack, then the monster's attack is dodged. Otherwise, the hero gets the full
-    brunt of the monster's attack - defence provided by the hero's armor (if any).
-
-    Hero's dodge chance = hero's agility * 0.2
-
-8.  Similarly, monsters also have a dodge chance that will allow them to occasionally avoid taking damage from
-    a hero's attack. If the dodge chance >= hero's attack, then the hero's attack is dodged. Otherwise, the monster
-    gets the full brunt of the hero's attack - monster's defence.
-
-    Monster's dodge points = monster's dodge chance * 0.1
-
-9.  When a monster is unable to dodge the hero's spell, the monster faces a loss in skill. The skill affected
-    depends on the type of spell used.
-    The types of spell and their effects are:
-    (1) Ice spell: reduces the amount of damage the monster can cause
-    (2) Fire spell: reduces the defense of the monster
-    (3) Lightning spell: reduces the dodge chance of the monster
-
-    Skill left after getting hit by spell = (damage or defence or dodge chance, depending on type of spell) * 0.9
-
-10. If a hero wins the battle, the hero gains 10% of their starting hit point and mana. They also get money and
-    experience points.
-
-    Money gained = Monster level * 100
-    Experience gained = 20 * number of monster in battle, which is 1
-
-11. Heroes are able to level up. Once they level up, their hit points, mana and experience level increases.
-    When a hero levels up all of their skills increase by 5% and their favored skills increase by an extra 5%.
-
-    Experience points needed to level up = Hero's current level * 10
-    Hero's hit point = hero's current level * 100
-    Hero's mana after level up = Hero's mana before level up * 1.1
-    Hero's experience level after level up = Hero's experience level before level up + 1
-
-12. After all the heroes who were able to battle have battled a monster, if the number of heroes who won is more
-    than the number of monsters, then heroes who fainted in battle are revived. They gain back 50% of
-    their starting hit points and their mana. However, they do not get any gold or experience.
-    Those who did not faint gain back 10% of their starting hit points and mana.
-
-
-
-[GAME MESSAGE] Press ENTER to continue
-
---------------
-|   Heroes   |
---------------
-
-1. A hero has several attributes:
-   (1) A name
-   (2) A level with an amount of experience points
-   (3) HP (hit points, the hero's in battle)
-   (4) MP (mana or magic points, for casting spells)
-   (5) A strength value
-   (6) A dexterity value
-   (7) An agility value
-   (8) An amount of gold
-   (9) An inventory of items
-   (10) The weapon and/or armor they have on them
-
-2.  A hero has a level, representing how strong (or not) that hero is. Experience points determine the hero's level.
-    A hero levels up after accumulating enough experience points. A hero's skills increase when the hero levels up.
-    A hero never loses experience. It accumulates over the course of the game.
-3.  HP (hot point): HP is the hero's current health. The initial HP value is determined by hero's level.
-
-    Hero's hit points = Hero's current level * 100
-
-    When a hero levels up, they have their HP set according to the same formula.
-
-4.  MP: MP (or mana) is used to cast spells.
-5.  Strength: A hero's strength increases the amount of damage they deal when using a weapon.
-6.  Dexterity: A hero's dexterity increases the amount of damage they deal when casting a spell.
-7.  Agility: A hero's agility increases their chance to dodge a monster's attack.
-8.  Money: Money is for use in the market.
-9.  Inventory. A hero has a collection of items that they have bought during the game. At the
-    start of the game, the inventory is empty. There is no maximum size of the inventory.
-10. There are three types of heroes, each with their own balance of skills:
-    (1) Warriors are favored on strength and agility.
-    (2) Sorcerers are favored on dexterity and agility.
-    (3) Paladins are favored on strength and dexterity.
-
-
-
-[GAME MESSAGE] Press ENTER to continue
-
-----------------
-|   Monsters   |
-----------------
-
-1.  A monster has several attributes:
-    (1) A name
-    (2) A level
-    (3) HP
-    (4) A base damage value
-    (5) A defense value
-    (6) A dodge ability
-
-2.  Base damage. This is a monster's attack damage.
-3.  Defense. Monsters don't wear armor, relying on their natural hides and carapaces to
-    protect them from the heroes' attacks. This value reduces the amount of damage a monster
-    takes from a hero's attack or spell.
-4.  Dodge ability. This represents how well a monster can avoid a hero's attack. It functions in a
-    similar way to the hero's agility.
-5.  There are three kinds of monsters, each with a favored attribute:
-    (1) Dragons have increased base damage.
-    (2) Exoskeletons have increased defense.
-    (3) Spirits have increased dodge ability.
-
-[GAME MESSAGE] Press ENTER to continue
-
-
-********************
-|   Market Rules   |
-********************
-
-1.  The heroes can buy and sell items at any market. Items that are sold at every market are:
-    (1) Armors
-    (2) Potions
-    (3) Spells
-    (4) Weapons
-2.  Each hero has a private wallet (their gold amount) and does not share money with the other heroes.
-    Likewise, each hero has their own inventory of items that they do not share with their fellow heroes.
-3.  A hero can sell an item that is not consumable i.e. potions and spells cannot be sold.
-
-    Money earned by hero after a successful sale = 0.5 * the item's cost
-
-    The item will be removed from the player's inventory.
-4.  A successful purchase will reduce the amount of money the hero has, and the item will be transferred to
-    the hero's inventory.
-5.  All items have a name, a price, and a level. A hero cannot buy:
-    (1) an item that costs more than the money they have, or
-    (2) an item that is a higher level than they are.
-6.  You can provide the following commands (Not case-sensitive):
-    (1) View Market: To view the items in the market
-    (2) <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0
-        To buy multiple items, include the IDs in a comma-separated manner e.g. R0 buy B0,E0
-        HOARDING IS NOT ALLOWED. If a hero already has an item, the hero cannot buy another of the same
-        item, until the item is sold (for weapons and armors) or the item has been completely consumed (for potions and spells)
-    (3) <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0
-        To sell multiple items, include the IDs in a comma-separated manner e.g. R0 sell B0,E0
-    (4) I/i: To view all the heroes you have
-    (5) Hero <Hero ID>: To view the details of a hero
-    (6) Q/q: To quit the game
-    (7) H/h: To view possible commands for Market
-    (8) R/r: To view the rules of the market
-    (9) X/x: To exit the market and go back to the map
-
-
-
-[GAME MESSAGE] Press ENTER to continue
-
-----------------
-|  Item Types  |
-----------------
-
-1.  Armor: Armor reduces the incoming damage from a monster's attack. A piece of armor has
-    a name, a price, a level, and a damage reduction value. When equipped, armor will reduce
-    the damage taken by the hero by its damage reduction value. A hero can equip at most one
-    piece of armor at a time.
-2.  Potions: Potions can be used by a hero in order to increase one of their statistics by some
-    amount. Potions are multi-use items, and each potion can be consumed a different number of times.
-    Potions have a name, a price, a level, and an effect amount. Using the potion should
-    increase the given statistic by the effect amount. There are potions for increasing hit points, mana,
-    strength, dexterity, and agility.
-3.  Spells. A spell represents a magic attack performed by a hero. A spell has a name, a price, a
-    level, a damage value, a mana cost, and a spell type. A hero will require at least the mana
-    cost amount of mana to cast the spell. Therefore, if a hero has no mana, that hero cannot cast
-    any spells. The damage value is used along with the hero's dexterity value to calculate the
-    damage dealt during a spell cast move in a battle.
-
-    Hero's spell damage = spell_base_damage + (dexterity/10000) * spell_base_damage
-
-    After casting a spell, the mana cost is deducted from the hero's mana.
-    Spells also have an additional effect besides their damage.
-
-    The types of spell and their effects are:
-    (1) Ice spell: reduces the amount of damage the target can cause
-    (2) Fire spell: reduces the defense of the target
-    (3) Lightning spell: reduces the dodge chance of the target
-
-4.  Weapons: A weapon is used by a hero to attack a monster. A weapon has a name, a price, a
-    level, a damage value, and the number of hands required to use it. A weapon must be
-    equipped by the hero before it can be used. The damage value is used to calculate the
-    damage dealt during an attack move in a battle.
-
-    Hero's attack damage with weapon = (hero's strength + weapon_damage) * 0.05
-
-[GAME MESSAGE] Press ENTER to continue
-
----------------------------------------------------------------------------
-|                                   HELP                                  |
----------------------------------------------------------------------------
-
-****************
-|   Map Help   |
-****************
-
-Commands allowed on the map (Not case-sensitive):
-    1. W/w: Move up
-    2. A/a: Move left
-    3. S/s: Move down
-    4. D/d: Move right
-    5. Q/q: Quit game
-    6. I/i: Show information about the heroes
-    7. M/m: When in a place that has a Market, use M/m to go to the market
-    8. H/h: To view possible commands while using the map
-    9. R/r: To view the rules of Monsters and Heroes
-    10. View Map: To view the map
-    11. <Hero ID> Inventory: To view the inventory of a hero e.g. R0 Inventory
-    12. <Hero ID> drink <Potion ID>: To get a hero to consume a potion e.g. R0 drink P0
-    13. Hero <Hero ID>: To view the e.g. Hero R0
-    14. Regenerate Map: To create a new map e.g. if you are stuck, or just don't like the map you have
-    15. <Hero ID> change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing
-    e.g. R0 change B0
-    To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a
-    comma-separated manner e.g. R0 change B0,E0
-
-
-[GAME MESSAGE] Press ENTER to continue
-
-
-********************
-|   Market Help    |
-********************
-
-Commands allowed in the market (Not case-sensitive):
-    1. View Market: To view the items in the market
-    2. <Hero ID> buy <Item ID>: To buy an item for a hero e.g. R0 buy B0
-       To buy multiple items, include the IDs in a comma-separated manner e.g. R0 buy B0,E0
-       HOARDING IS NOT ALLOWED. If a hero already has an item, the hero cannot buy another of the same
-       item, until the item is sold (for weapons and armors) or the item has been completely consumed (for potions and spells)
-    3. <Hero ID> sell <Item ID>: To sell an item that a hero has e.g. R0 sell B0
-       To sell multiple items, include the IDs in a comma-separated manner e.g. R0 sell B0,E0
-    4. I/i: To view all the heroes you have
-    5. Hero <Hero ID>: To view the details of a hero
-    6. Q/q: To quit the game
-    7. H/h: To view possible commands for Market
-    8. R/r: To view the rules of Monsters and Heroes
-    9. X/x: To exit the market and go back to the map
-
-
-[GAME MESSAGE] Press ENTER to continue
-
-
-********************
-|   Battle Help    |
-********************
-
-A battle can occur in a common space. Depending on your luck, you may or may not have to
-fight monsters.
-
-Commands allowed in battle (Not case-sensitive):
-    1. Change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing e.g. R0 change B0
-       The item must be in the hero's inventory. Once a hero is equipped with a weapon or armor,
-       the hero can only replace the weapon with another weapon from the inventory, and an armor with another armor from the
-       inventory. To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a
-       comma-separated manner e.g. R0 change B0,E0
-    2. Hit: To hit the monster with the weapon the hero is carrying
-    3. Cast <Spell ID>: To cast a spell on the monster e.g. Cast F0
-    4. I/i: To view the details of the hero and the monster engaged in battle
-    5. Q/q: To quit the game
-    6. H/h: To view possible commands for battle
-    7. R/r: To view the rules of Monsters and Heroes
+.
+.
+.
 
 [INPUT] Please enter player name:
-Jane
-
+Input: Jane
+Output:
 [INPUT] Please input the number of heroes (minimum 1 and maximum 3):
-2
-
+Input: 2
+Output:
 [GAME MESSAGE] Generating 2 Heroes...
 
 [GAME MESSAGE] 2 Heroes generated!
@@ -2545,8 +2302,8 @@ Jane
 *: You are here         I: Invalid Area         M: Market               C: Common Area
 
 [INPUT] Please provide a valid map command:
-w
-
+Input: w
+Output:
 [GAME MESSAGE] Generating 2 monsters...
 
 [GAME MESSAGE] 2 monsters generated
@@ -2575,7 +2332,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Sehanine_Moonbow :
         ID: H1
@@ -2589,7 +2347,8 @@ HERO Sehanine_Moonbow :
         Experience: 7
         Experience Gained: 0 / 70
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -2617,7 +2376,8 @@ HERO Sehanine_Moonbow :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 None
@@ -2625,7 +2385,8 @@ None
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER Andromalius :
         ID: N2
         Type: Spirit
@@ -2636,23 +2397,24 @@ MONSTER Andromalius :
         DodgeChance: 25
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Andromalius has successfully defended against Hero Sehanine_Moonbow's attack!
 
 
 [BATTLE MESSAGE] Hero Sehanine_Moonbow was hit by Monster Andromalius and lost 450 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Andromalius has successfully defended against Hero Sehanine_Moonbow's attack!
 
 
 [BATTLE MESSAGE] Hero Sehanine_Moonbow was hit by Monster Andromalius and has been defeated!
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 ********************
 |   Battle Help    |
@@ -2678,7 +2440,8 @@ Commands allowed in battle (Not case-sensitive):
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
 HERO Kalabar :
         ID: G4
@@ -2692,7 +2455,8 @@ HERO Kalabar :
         Experience: 6
         Experience Gained: 0 / 60
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Currently Equipped Items:
 
@@ -2720,7 +2484,8 @@ HERO Kalabar :
 ----------------------------------------------------------------------------------------------
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 
         Inventory:
 None
@@ -2728,7 +2493,8 @@ None
 
 
 [GAME MESSAGE] Press ENTER to continue
-
+Input: (Press ENTER)
+Output:
 MONSTER Andrealphus :
         ID: N0
         Type: Spirit
@@ -2739,16 +2505,16 @@ MONSTER Andrealphus :
         DodgeChance: 40
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-cast f0
-
+Input: cast f0
+Output:
 [ERROR] Spell F0 does not exist in Kalabar's inventory! You just lost a turn.
 
 
 [BATTLE MESSAGE] Hero Kalabar was hit by Monster Andrealphus and lost 500 hitpoints!
 
 [INPUT] Please enter the action you would like to take (Change <Weapon or Armor ID>, Hit, Cast <Spell ID>, I/i, Q/q):
-hit
-
+Input: hit
+Output:
 [BATTLE MESSAGE] Monster Andrealphus has successfully defended against Hero Kalabar's attack!
 
 
@@ -2791,8 +2557,8 @@ There was 1 battle in this round.
 -------------------------------------------------------------------------------------------------------------------------------------
 
 You have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N
-n
-
+Input: n
+Output:
 -----------------------
 |       Round 1       |
 -----------------------

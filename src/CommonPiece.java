@@ -77,9 +77,7 @@ public class CommonPiece extends MHPiece {
                    }
                }
 
-               if (i < numberOfHeroes - 1){
-                   MHUtility.pause();
-               }
+               MHUtility.pause();
            }
 
            if (!hasQuit) {
