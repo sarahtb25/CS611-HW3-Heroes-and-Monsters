@@ -4,12 +4,12 @@ import java.util.List;
 
 // Represents all possible weapons
 public class WeaponFactory implements ItemFactory<Weapon> {
-    public static final List<String> weaponNames = Arrays.asList("Sword", "Bow", "Scythe", "Axe", "TSwords", "Dagger");
-    public static final List<String> weaponIds = Arrays.asList("B0", "B1", "B2", "B3", "B4", "B5");
-    public static final List<Integer> weaponCosts = Arrays.asList(500, 300, 1000, 550, 1400, 200);
-    public static final List<Integer> weaponLevels = Arrays.asList(1, 2, 6, 5, 8, 1);
-    public static final List<Integer> weaponDamage = Arrays.asList(800, 500, 1100, 850, 1600, 250);
-    public static final List<Integer> requiredHands = Arrays.asList(1, 2, 2, 1, 2, 1);
+    public static final List<String> WEAPON_NAMES = Arrays.asList("Sword", "Bow", "Scythe", "Axe", "TSwords", "Dagger");
+    public static final List<String> WEAPON_IDS = Arrays.asList("B0", "B1", "B2", "B3", "B4", "B5");
+    public static final List<Integer> WEAPON_COSTS = Arrays.asList(500, 300, 1000, 550, 1400, 200);
+    public static final List<Integer> WEAPON_LEVELS = Arrays.asList(1, 2, 6, 5, 8, 1);
+    public static final List<Integer> WEAPON_DAMAGE = Arrays.asList(800, 500, 1100, 850, 1600, 250);
+    public static final List<Integer> REQUIRED_HANDS = Arrays.asList(1, 2, 2, 1, 2, 1);
 
     private List<Weapon> weapons = new ArrayList<>();
 
@@ -19,8 +19,8 @@ public class WeaponFactory implements ItemFactory<Weapon> {
 
     @Override
     public void generateItems() {
-        for (int i = 0; i < weaponNames.size(); i++) {
-            Weapon weapon = new Weapon(weaponNames.get(i), weaponIds.get(i), weaponCosts.get(i), weaponLevels.get(i), requiredHands.get(i), weaponDamage.get(i));
+        for (int i = 0; i < WEAPON_NAMES.size(); i++) {
+            Weapon weapon = new Weapon(WEAPON_NAMES.get(i), WEAPON_IDS.get(i), WEAPON_COSTS.get(i), WEAPON_LEVELS.get(i), REQUIRED_HANDS.get(i), WEAPON_DAMAGE.get(i));
             weapons.add(weapon);
         }
     }

@@ -8,10 +8,10 @@ public class LightningSpell extends Spell{
     public void affectMonsterSkill(Monster monster) {
         int noMoreOfAttribute = 0;
 
-        if (monster.getDodgeChance() * Monster.skillRemainingAfterSpellFactor < 0) {
+        if (monster.getDodgeChance() * Monster.SKILL_REMAINING_AFTER_SPELL_FACTOR < 0) {
             monster.setDodgeChance(noMoreOfAttribute);
         } else {
-            monster.setDodgeChance((int) (monster.getDodgeChance() * Monster.skillRemainingAfterSpellFactor));
+            monster.setDodgeChance((int) (monster.getDodgeChance() * Monster.SKILL_REMAINING_AFTER_SPELL_FACTOR));
         }
     }
 }

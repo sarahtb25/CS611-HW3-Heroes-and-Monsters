@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 // Represents a market
 public class Market {
-    public static final double sellItemFactor = 0.5;
-    public static final MHHelp help = new MHHelp();
+    public static final double SELL_ITEM_FACTOR = 0.5;
+    private final MHHelp help = new MHHelp();
     private final WeaponFactory wf = new WeaponFactory();
     private final ArmorFactory af = new ArmorFactory();
     private final PotionFactory pf = new PotionFactory();
@@ -194,7 +194,7 @@ public class Market {
                 cost = weapon.getCost();
 
                 hero.getInventory().removeWeapon(weapon);
-                hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
+                hero.updateMoneyAfterSellingItems((int) (cost * SELL_ITEM_FACTOR));
                 System.out.println("\nRemoved weapon " + itemId + " from hero " + hero.getId() + "'s inventory");
             } else {
                 System.out.println("Hero " + hero.getName() + " does not have weapon " + itemId + "!");
@@ -207,7 +207,7 @@ public class Market {
                 cost = armor.getCost();
 
                 hero.getInventory().removeArmor(armor);
-                hero.updateMoneyAfterSellingItems((int) (cost * sellItemFactor));
+                hero.updateMoneyAfterSellingItems((int) (cost * SELL_ITEM_FACTOR));
                 System.out.println("\nRemoved armor " + itemId + " from hero " + hero.getId() + "'s inventory");
             } else {
                 System.out.println("Hero " + hero.getName() + " does not have armor " + itemId + "!");

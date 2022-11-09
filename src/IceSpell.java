@@ -8,10 +8,10 @@ public class IceSpell extends Spell {
     public void affectMonsterSkill(Monster monster) {
         int noMoreOfAttribute = 0;
 
-        if (monster.getDamage() * Monster.skillRemainingAfterSpellFactor < 0) {
+        if (monster.getDamage() * Monster.SKILL_REMAINING_AFTER_SPELL_FACTOR < 0) {
             monster.setDamage(noMoreOfAttribute);
         } else {
-            monster.setDamage((int) (getDamage() * Monster.skillRemainingAfterSpellFactor));
+            monster.setDamage((int) (getDamage() * Monster.SKILL_REMAINING_AFTER_SPELL_FACTOR));
         }
     }
 }

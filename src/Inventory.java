@@ -147,6 +147,16 @@ public class Inventory {
         return armorWanted;
     }
 
+    public EquippableItem getEquippableItemFromId(String id) {
+        if (checkIfWeaponExists(id)) {
+            return (EquippableItem) getWeaponFromId(id);
+        } else if (checkIfArmorExists(id)) {
+            return (EquippableItem) getArmorFromId(id);
+        }
+
+        return new EquippableItem();
+    }
+
     public boolean checkIfPotionExists(String potionId) {
         for (Potion potion : potions) {
             if (potion.getId().equals(potionId)) {
@@ -182,6 +192,14 @@ public class Inventory {
             if (armor.getId().equals(armorId)) {
                 return true;
             }
+        }
+
+        return false;
+    }
+
+    public boolean checkIfEquippableItemExists(String itemId) {
+        if (checkIfWeaponExists(itemId) || checkIfArmorExists(itemId)) {
+            return true;
         }
 
         return false;

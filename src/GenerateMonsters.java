@@ -6,7 +6,7 @@ public class GenerateMonsters {
     private final DragonFactory df;
     private final ExoskeletonFactory ef;
     private final SpiritFactory sf;
-    public static int numberOfTypesOfMonsters = 3;
+    public static final int NUMBER_OF_TYPES_OF_MONSTERS = 3;
     private int numberOfHeroes;
 
     public GenerateMonsters(int numberOfHeroes) {
@@ -24,7 +24,7 @@ public class GenerateMonsters {
         List<Integer> spiritIndexesAdded = new ArrayList<>();
 
         for (int i = 0; i < numberOfHeroes; i++) {
-            int index = (int) (Math.random() * numberOfTypesOfMonsters);
+            int index = (int) (Math.random() * NUMBER_OF_TYPES_OF_MONSTERS);
             String typeOfMonster = new String [] {"Dragon", "Exoskeleton", "Spirit"}[index];
 
             if (typeOfMonster.equals("Dragon")) {

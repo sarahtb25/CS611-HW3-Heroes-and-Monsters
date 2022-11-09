@@ -44,6 +44,8 @@ public class MHHelp implements Help {
                     "\n" +
                     "Commands allowed in battle (Not case-sensitive):\n" +
                     "    1. Change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing e.g. R0 change B0\n" +
+                    "       The item must be in the hero's inventory. Once a hero is equipped with a weapon or armor,\n" +
+                    "       the hero can only replace the weapon with another weapon from the inventory, and an armor with another armor from the inventory.\n" +
                     "       To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a \n" +
                     "       comma-separated manner e.g. R0 change B0,E0\n"  +
                     "    2. Hit: To hit the monster with the weapon the hero is carrying\n" +
@@ -170,6 +172,8 @@ public class MHHelp implements Help {
                 "    (2) the monster runs out of hit points\n" +
                 "4.  Possible commands to use in battle (Not case-sensitive):\n" +
                 "    (1) Change <Weapon or Armor ID>: To update the weapon or armor a hero is or is not carrying/wearing e.g. R0 change B0\n" +
+                "        The item must be in the hero's inventory. Once a hero is equipped with a weapon or armor,\n" +
+                "        the hero can only replace the weapon with another weapon from the inventory, and an armor with another armor from the inventory.\n" +
                 "        To update more than one equippable item i.e. change both weapon and armor, include the weapon and armor IDs in a \n" +
                 "        comma-separated manner e.g. R0 change B0,E0\n"  +
                 "    (2) Hit: To hit the monster with the weapon the hero is carrying\n" +

@@ -8,10 +8,10 @@ public class FireSpell extends Spell {
     public void affectMonsterSkill(Monster monster) {
         int noMoreOfAttribute = 0;
 
-        if (monster.getDefense() * Monster.skillRemainingAfterSpellFactor < 0) {
+        if (monster.getDefense() * Monster.SKILL_REMAINING_AFTER_SPELL_FACTOR < 0) {
             monster.setDefense(noMoreOfAttribute);
         } else {
-            monster.setDefense((int) (monster.getDefense() * Monster.skillRemainingAfterSpellFactor));
+            monster.setDefense((int) (monster.getDefense() * Monster.SKILL_REMAINING_AFTER_SPELL_FACTOR));
         }
     }
 }

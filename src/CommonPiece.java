@@ -6,9 +6,9 @@ import java.util.Random;
 where a battle may take place depending on the player's luck
  */
 public class CommonPiece extends MHPiece {
-    public static final String name = "Common";
-    public static final String id = "C";
-    public static final String playerId = "C*";
+    public static final String NAME = "Common";
+    public static final String ID = "C";
+    public static final String PLAYER_ID = "C*";
     private int numberOfHeroes = 0;
     private int numberOfHeroesWin = 0;
     private Monsters monsters = new Monsters();
@@ -17,7 +17,7 @@ public class CommonPiece extends MHPiece {
     private Heroes heroesAlive = new Heroes();
 
     public CommonPiece() {
-        super(name, id);
+        super(NAME, ID);
     }
 
     public int getNumberOfHeroes() {
@@ -44,7 +44,7 @@ public class CommonPiece extends MHPiece {
     public boolean enterCommon(MHPlayer player) {
         boolean hasQuit = false;
         // Represents that a player is in the common area
-        setId(playerId);
+        setId(PLAYER_ID);
         List<Integer> startingHP = new ArrayList<>();
         List<Integer> startingMana = new ArrayList<>();
         List<Integer> monsterLevel = new ArrayList<>();
@@ -97,7 +97,7 @@ public class CommonPiece extends MHPiece {
     }
 
     public void leaveCommon() {
-        setId(id);
+        setId(ID);
     }
 
     public boolean haveMonsters() {

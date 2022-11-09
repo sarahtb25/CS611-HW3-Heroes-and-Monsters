@@ -3,19 +3,19 @@ import java.util.List;
 
 // This class represents a hero
 public class Hero extends NonPlayerCharacter {
-    public static final double levelUpRate = 1.05;
-    public static final double favouredSkillsLevelUpRate = 1.10;
-    public static final int experienceLevelUpFactor = 10;
-    public static final double manaLevelUpFactor = 1.1;
-    public static final int experienceGainedFactor = 20;
-    public static final int hitPointFactor = 100;
-    public static final double dodgeChanceFactor = 0.2;
-    public static final double attackDamageWithWeapon = 0.5;
-    public static final double attackDamageWithSpell = 0.0001;
-    public static final int levelUpMoneyFactor = 100;
-    public static final int numMonsterPerBattle = 1;
-    public static final double revivalAlive = 1.1;
-    public static final double revivalUnconscious = 0.5;
+    public static final double LEVEL_UP_RATE = 1.05;
+    public static final double FAVOURED_SKILLS_LEVEL_UP_RATE = 1.10;
+    public static final int EXPERIENCE_LEVEL_UP_FACTOR = 10;
+    public static final double MANA_LEVEL_UP_FACTOR = 1.1;
+    public static final int EXPERIENCE_GAINED_FACTOR = 20;
+    public static final int HIT_POINT_FACTOR = 100;
+    public static final double DODGE_CHANCE_FACTOR = 0.2;
+    public static final double ATTACK_DAMAGE_WITH_WEAPON = 0.5;
+    public static final double ATTACK_DAMAGE_WITH_SPELL = 0.0001;
+    public static final int LEVEL_UP_MONEY_FACTOR = 100;
+    public static final int NUMBER_OF_MONSTER_PER_BATTLE = 1;
+    public static final double REVIVAL_ALIVE = 1.1;
+    public static final double REVIVAL_UNCONSCIOUS = 0.5;
     private int hitPoints;
     private int mana;
     private int strength;
@@ -49,7 +49,7 @@ public class Hero extends NonPlayerCharacter {
         this.money = money;
         this.experience = experience;
         this.inventory = inventory;
-        this.hitPoints = experience * hitPointFactor;
+        this.hitPoints = experience * HIT_POINT_FACTOR;
         this.experienceGained = 0;
         numberOfTimesHeroDefeatedMonster = 0;
     }
@@ -214,7 +214,7 @@ public class Hero extends NonPlayerCharacter {
 
                     if (monster.getHitPoint() - reduceHitPoints <= 0) {
                         monster.setHitPoint(noMore);
-                        response = "\nMonster " + monster.getName() + " has been defeated!";
+                        response = "\nMonster " + monster.getName() + " was hit by Hero " + getName() + " and has been defeated!";
                     } else {
                         monster.setHitPoint(monster.getHitPoint() - reduceHitPoints);
                         response = "\nMonster " + monster.getName() + " was hit by Hero " + getName() + " and lost " + reduceHitPoints + " hitpoints!";
@@ -275,24 +275,24 @@ public class Hero extends NonPlayerCharacter {
     }
 
     public void levelUpSkills() {
-        strength = (int) (levelUpRate * strength);
-        agility = (int) (levelUpRate * agility);
-        dexterity = (int) (levelUpRate * dexterity);
+        strength = (int) (LEVEL_UP_RATE * strength);
+        agility = (int) (LEVEL_UP_RATE * agility);
+        dexterity = (int) (LEVEL_UP_RATE * dexterity);
     }
 
     public int experienceNeededToLevelUp() {
-        return experience * experienceLevelUpFactor;
+        return experience * EXPERIENCE_LEVEL_UP_FACTOR;
     }
 
     // To be called after hero wins the battle
     public void updateExperienceGained() {
-        experienceGained += numMonsterPerBattle * experienceGainedFactor;
+        experienceGained += NUMBER_OF_MONSTER_PER_BATTLE * EXPERIENCE_GAINED_FACTOR;
         checkLevelUp();
     }
 
     public void levelUp() {
-        hitPoints = hitPoints * hitPointFactor;
-        mana = (int) (mana * manaLevelUpFactor);
+        hitPoints = hitPoints * HIT_POINT_FACTOR;
+        mana = (int) (mana * MANA_LEVEL_UP_FACTOR);
         int prevExperience = experience;
         while (experienceGained >= experienceNeededToLevelUp()) {
             experienceGained -= experienceNeededToLevelUp();
@@ -311,21 +311,21 @@ public class Hero extends NonPlayerCharacter {
     }
 
     public double getDodgeChance() {
-        return agility * dodgeChanceFactor;
+        return agility * DODGE_CHANCE_FACTOR;
     }
 
     public double getAttackDamageWithWeapon(int weapon_damage) {
-        return ((strength + weapon_damage) * attackDamageWithWeapon);
+        return ((strength + weapon_damage) * ATTACK_DAMAGE_WITH_WEAPON);
     }
 
     public int getAttackDamageWithSpell(int spell_base_damage) {
-        return (int) (spell_base_damage + (dexterity * attackDamageWithSpell * spell_base_damage));
+        return (int) (spell_base_damage + (dexterity * ATTACK_DAMAGE_WITH_SPELL * spell_base_damage));
     }
 
     // To be called after hero wins the battle
     public void updateMoneyAfterBattle(int monsterLevel) {
         if (hitPoints > 0) {
-            money += monsterLevel * levelUpMoneyFactor;
+            money += monsterLevel * LEVEL_UP_MONEY_FACTOR;
         }
     }
 
@@ -374,11 +374,11 @@ public class Hero extends NonPlayerCharacter {
     // To be called if more heroes win the battle against the monsters i.e. monsters defeated >= (int) number of heroes/2
     public void revive(int startingHP, int startingMana) {
         if (isUnconscious()) {
-            setHitPoints((int) (startingHP * revivalUnconscious));
-            setMana((int) (startingMana * revivalUnconscious));
+            setHitPoints((int) (startingHP * REVIVAL_UNCONSCIOUS));
+            setMana((int) (startingMana * REVIVAL_UNCONSCIOUS));
         } else {
-            setHitPoints((int) (startingHP * revivalAlive));
-            setMana((int) (startingMana * revivalAlive));
+            setHitPoints((int) (startingHP * REVIVAL_ALIVE));
+            setMana((int) (startingMana * REVIVAL_ALIVE));
         }
     }
 

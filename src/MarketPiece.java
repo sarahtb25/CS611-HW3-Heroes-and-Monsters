@@ -1,16 +1,16 @@
 // A Monsters and Heroes game piece that is used to represent a cell that has a market
 public class MarketPiece extends MHPiece {
-    public static final String name = "Market";
-    public static final String id = "M";
-    public static final String playerId = "M*";
+    public static final String NAME = "Market";
+    public static final String ID = "M";
+    public static final String PLAYER_ID = "M*";
     private Market market = new Market();
 
     public MarketPiece() {
-        super(name, id);
+        super(NAME, ID);
     }
 
     public void beforeEnteringMarket() {
-        setId(playerId);
+        setId(PLAYER_ID);
     }
 
     public boolean market(MHPlayer player) {
@@ -21,7 +21,7 @@ public class MarketPiece extends MHPiece {
     }
 
     public void leaveMarket() {
-        setId(id);
+        setId(ID);
     }
 
     public boolean leaveOrQuitMarket(String quit) {

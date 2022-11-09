@@ -6,8 +6,8 @@ public class Sorcerer extends Hero {
 
     @Override
     public void levelUpSkills() {
-        setStrength((int) (levelUpRate * getStrength()));
-        setAgility((int) (favouredSkillsLevelUpRate * getAgility()));
-        setDexterity((int) (favouredSkillsLevelUpRate * getDexterity()));
+        setStrength((int) (LEVEL_UP_RATE * getStrength()));
+        setAgility((int) (FAVOURED_SKILLS_LEVEL_UP_RATE * getAgility()));
+        setDexterity((int) (FAVOURED_SKILLS_LEVEL_UP_RATE * getDexterity()));
     }
 }

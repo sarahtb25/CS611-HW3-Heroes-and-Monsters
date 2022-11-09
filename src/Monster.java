@@ -1,8 +1,8 @@
 // This class represents a monster
 public class Monster extends NonPlayerCharacter {
-    public static final double dodgeChanceFactor = 0.1;
-    public static final double skillRemainingAfterSpellFactor = 0.9;
-    public static final int hitPointFactor = 100;
+    public static final double DODGE_CHANCE_FACTOR = 0.1;
+    public static final double SKILL_REMAINING_AFTER_SPELL_FACTOR = 0.9;
+    public static final int HIT_POINT_FACTOR = 100;
     private int hitPoint;
     private int level;
     private int damage;
@@ -24,7 +24,7 @@ public class Monster extends NonPlayerCharacter {
         this.damage = damage;
         this.defense = defense;
         this.dodgeChance = dodgeChance;
-        this.hitPoint = level * hitPointFactor;
+        this.hitPoint = level * HIT_POINT_FACTOR;
     }
 
     public int getHitPoint() {
@@ -64,7 +64,7 @@ public class Monster extends NonPlayerCharacter {
     }
 
     public double calculateDodge() {
-        return (dodgeChance * dodgeChanceFactor);
+        return (dodgeChance * DODGE_CHANCE_FACTOR);
     }
 
     public void setDodgeChance(int dodgeChance) {
@@ -86,7 +86,7 @@ public class Monster extends NonPlayerCharacter {
 
                 if (hero.getHitPoints() - reduceHitPoints <= 0) {
                     hero.setHitPoints(noMore);
-                    response = "\nHero " + hero.getName() + " has been defeated!";
+                    response = "\nHero "  + hero.getName() + " was hit by Monster " + getName() + " and has been defeated!";
                 } else {
                     hero.setHitPoints(hero.getHitPoints() - reduceHitPoints);
                     response = "\nHero " + hero.getName() + " was hit by Monster " + getName() + " and lost " + reduceHitPoints + " hitpoints!";

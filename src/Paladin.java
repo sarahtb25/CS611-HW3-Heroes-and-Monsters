@@ -6,8 +6,8 @@ public class Paladin extends Hero {
 
     @Override
     public void levelUpSkills() {
-        setStrength((int) (favouredSkillsLevelUpRate * getStrength()));
-        setAgility((int) (levelUpRate * getAgility()));
-        setDexterity((int) (favouredSkillsLevelUpRate * getDexterity()));
+        setStrength((int) (FAVOURED_SKILLS_LEVEL_UP_RATE * getStrength()));
+        setAgility((int) (LEVEL_UP_RATE * getAgility()));
+        setDexterity((int) (FAVOURED_SKILLS_LEVEL_UP_RATE * getDexterity()));
     }
 }

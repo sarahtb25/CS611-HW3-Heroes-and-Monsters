@@ -4,10 +4,10 @@ import java.util.Scanner;
 // Represents the Monsters and Heroes game logic
 public class MHBoardGame extends BoardGame {
     private static MHBoardGame game = new MHBoardGame();
-    public static final int numberOfMonstersToDefeat = 100;
-    public static final int minHero = 1;
-    public static final int maxHero = 3;
-    public static final MHHelp help = new MHHelp();
+    public static final int NUMBER_OF_MONSTERS_TO_DEFEAT = 100;
+    public static final int MIN_HERO = 1;
+    public static final int MAX_HERO = 3;
+    private final MHHelp help = new MHHelp();
     private MHBoard board;
     private MHStatistics statistics = new MHStatistics();
     private int numberOfHeroes = 0;
@@ -34,12 +34,12 @@ public class MHBoardGame extends BoardGame {
 
     public void getNumberOfHeroes() {
         Scanner scan = new Scanner(System.in);
-        System.out.println("\nPlease input the number of heroes (minimum " + minHero + " and maximum " + maxHero + "):");
+        System.out.println("\nPlease input the number of heroes (minimum " + MIN_HERO + " and maximum " + MAX_HERO + "):");
         String numberOfHeroes = scan.next();
         boolean isNumber = utility.checkIsNumber(numberOfHeroes);
 
-        while(!isNumber || (Integer.parseInt(numberOfHeroes) < minHero && Integer.parseInt(numberOfHeroes) > maxHero)) {
-            System.out.println("Please input the number of heroes (minimum " + minHero + " and maximum " + maxHero + "):");
+        while(!isNumber || (Integer.parseInt(numberOfHeroes) < MIN_HERO && Integer.parseInt(numberOfHeroes) > MAX_HERO)) {
+            System.out.println("Please input the number of heroes (minimum " + MIN_HERO + " and maximum " + MAX_HERO + "):");
             numberOfHeroes = scan.next();
             isNumber = utility.checkIsNumber(numberOfHeroes);
         }
@@ -216,8 +216,8 @@ public class MHBoardGame extends BoardGame {
 
     // <Hero ID> change <Weapon or Armor ID>
     public void changeWeaponOrArmor(String heroId, String itemId) {
-        boolean weaponExists;
-        boolean armorExists;
+        boolean equippableItemExists;
+        EquippableItem equippableItem;
         Hero hero = player.getHeroes().getHeroFromId(heroId);
 
         if (hero.getId().equals(heroId)) {
@@ -225,39 +225,28 @@ public class MHBoardGame extends BoardGame {
                 String[] itemIds = itemId.split(",");
 
                 for (int i = 0; i < itemIds.length; i++) {
-                    weaponExists = hero.getInventory().checkIfWeaponExists(itemIds[i]);
+                    equippableItemExists = hero.getInventory().checkIfEquippableItemExists(itemIds[i]);
 
-                    if (weaponExists) {
-                        Weapon weapon = hero.getInventory().getWeaponFromId(itemIds[i]);
-                        hero.replaceAWeaponOrArmor(weapon);
+                    if (equippableItemExists) {
+                        equippableItem = hero.getInventory().getEquippableItemFromId(itemIds[i]);
+                        hero.replaceAWeaponOrArmor(equippableItem);
                     } else {
-                        armorExists = hero.getInventory().checkIfArmorExists(itemIds[i]);
-
-                        if (armorExists) {
-                            Armor armor = hero.getInventory().getArmorFromId(itemIds[i]);
-                            hero.replaceAWeaponOrArmor(armor);
-                        } else {
-                            System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory!");
-                        }
+                        System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory!");
                     }
                 }
             } else {
-                weaponExists = hero.getInventory().checkIfWeaponExists(itemId);
+                equippableItemExists = hero.getInventory().checkIfEquippableItemExists(itemId);
 
-                if (weaponExists) {
-                    Weapon weapon = hero.getInventory().getWeaponFromId(itemId);
-                    hero.replaceAWeaponOrArmor(weapon);
+                if (equippableItemExists) {
+                    equippableItem = hero.getInventory().getEquippableItemFromId(itemId);
+                    hero.replaceAWeaponOrArmor(equippableItem);
                 } else {
-                    armorExists = hero.getInventory().checkIfArmorExists(itemId);
-
-                    if (armorExists) {
-                        Armor armor = hero.getInventory().getArmorFromId(itemId);
-                        hero.replaceAWeaponOrArmor(armor);
-                    } else {
-                        System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory!");
-                    }
+                    System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory!");
                 }
             }
+
+            System.out.println("\nYou are currently armed with:");
+            hero.printCurrentlyEquippedItems();
         } else {
             System.out.println("\nYou do not have hero " + heroId + "!");
         }
@@ -283,6 +272,7 @@ public class MHBoardGame extends BoardGame {
                     System.out.println("\nPlease provide a valid map command:");
                     userInput = scan.next().trim().toLowerCase();
                     isValid = utility.checkValidUserResponse(userInput);
+                    if (!isValid) System.out.println("\nInvalid Input!");
                  } while(!isValid);
 
                  if (userInput.equals("w")) {
@@ -333,12 +323,14 @@ public class MHBoardGame extends BoardGame {
 
             showScore();
 
-            if (heroes.getTotalNumberOfMonstersDefeated() >= numberOfMonstersToDefeat) {
+            if (heroes.getTotalNumberOfMonstersDefeated() >= NUMBER_OF_MONSTERS_TO_DEFEAT) {
                 System.out.println("\nCongratulations! You have freed the villagers of Lockwood from the monsters' tyranny!");
                 quit();
             } else {
-                System.out.println("\nYou have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N");
-                userInput = scan.next().trim().toLowerCase();
+                do {
+                    System.out.println("\nYou have failed to free the villagers of Lockwood from the monsters' tyranny! Would you like to try again? Y/N");
+                    userInput = scan.next().trim().toLowerCase();
+                } while (!userInput.equals("y") && !userInput.equals("n"));
 
                 if (userInput.equals("n")) {
                     quit();
@@ -355,7 +347,7 @@ public class MHBoardGame extends BoardGame {
         int totalNumberOfHeroesDefeated = heroes.getTotalNumberOfMonstersDefeated();
 
         // Some heroes are still alive and the heroes have not defeated all the monsters yet, the game is not over yet
-        if (numberOfHeroesAlive > 0 && totalNumberOfHeroesDefeated < numberOfMonstersToDefeat) {
+        if (numberOfHeroesAlive > 0 && totalNumberOfHeroesDefeated < NUMBER_OF_MONSTERS_TO_DEFEAT) {
             return false;
         }
 

@@ -3,19 +3,19 @@ import java.util.List;
 
 // Represents the board used in Monsters and Heroes
 public class MHBoard extends Board {
-    public static final int numberOfRowsAndCols = 8;
-    public static final double proportionOfInvalid = 0.2; // 20% Invalid
-    public static final int numberOfInvalid = (int) (proportionOfInvalid * numberOfRowsAndCols * numberOfRowsAndCols);
-    public static final double proportionOfMarket = 0.3; // 30% Market
-    public static final int numberOfMarket = (int) (proportionOfMarket * numberOfRowsAndCols * numberOfRowsAndCols);
+    public static final int NUMBER_OF_ROWS_AND_COLS = 8;
+    public static final double PROPORTION_OF_INVALID = 0.2; // 20% Invalid
+    public static final int NUMBER_OF_INVALID = (int) (PROPORTION_OF_INVALID * NUMBER_OF_ROWS_AND_COLS * NUMBER_OF_ROWS_AND_COLS);
+    public static final double PROPORTION_OF_MARKET = 0.3; // 30% Market
+    public static final int NUMBER_OF_MARKET = (int) (PROPORTION_OF_MARKET * NUMBER_OF_ROWS_AND_COLS * NUMBER_OF_ROWS_AND_COLS);
 
     public MHBoard() {
-        super(numberOfRowsAndCols);
+        super(NUMBER_OF_ROWS_AND_COLS);
         Cell[][] board = getMHBoard();
 
-        for (int i = 0; i < numberOfInvalid; i++) {
-            int row = (int) (Math.random() * numberOfRowsAndCols);
-            int col = (int) (Math.random() * numberOfRowsAndCols);
+        for (int i = 0; i < NUMBER_OF_INVALID; i++) {
+            int row = (int) (Math.random() * NUMBER_OF_ROWS_AND_COLS);
+            int col = (int) (Math.random() * NUMBER_OF_ROWS_AND_COLS);
 
             if (!board[row][col].getOccupied()) {
                 board[row][col].setPiece(new InvalidPiece());
@@ -23,9 +23,9 @@ public class MHBoard extends Board {
             }
         }
 
-        for (int i = 0; i < numberOfMarket; i++) {
-            int row = (int) (Math.random() * numberOfRowsAndCols);
-            int col = (int) (Math.random() * numberOfRowsAndCols);
+        for (int i = 0; i < NUMBER_OF_MARKET; i++) {
+            int row = (int) (Math.random() * NUMBER_OF_ROWS_AND_COLS);
+            int col = (int) (Math.random() * NUMBER_OF_ROWS_AND_COLS);
 
             if (!board[row][col].getOccupied()) {
                 board[row][col].setPiece(new MarketPiece());
@@ -33,8 +33,8 @@ public class MHBoard extends Board {
             }
         }
 
-        for (int row = 0; row < numberOfRowsAndCols; row++) {
-            for (int col = 0; col < numberOfRowsAndCols; col++) {
+        for (int row = 0; row < NUMBER_OF_ROWS_AND_COLS; row++) {
+            for (int col = 0; col < NUMBER_OF_ROWS_AND_COLS; col++) {
                 if (!board[row][col].getOccupied()) {
                     board[row][col].setPiece(new CommonPiece());
                     board[row][col].setOccupied(true);
@@ -60,8 +60,8 @@ public class MHBoard extends Board {
         Cell cellWanted;
 
         do {
-            int rowIndex = (int) (Math.random() * (numberOfRowsAndCols - 1));
-            int columnIndex = (int) (Math.random() * (numberOfRowsAndCols - 1));
+            int rowIndex = (int) (Math.random() * (NUMBER_OF_ROWS_AND_COLS - 1));
+            int columnIndex = (int) (Math.random() * (NUMBER_OF_ROWS_AND_COLS - 1));
             cellWanted = getMHBoard()[rowIndex][columnIndex];
         } while(!(cellWanted.getPiece() instanceof MarketPiece));
 
@@ -70,18 +70,18 @@ public class MHBoard extends Board {
 
     @Override
     public void printBoard() {
-        int rows = numberOfRowsAndCols + 1;
+        int rows = NUMBER_OF_ROWS_AND_COLS + 1;
         Cell[][] board = getMHBoard();
         System.out.println("\n");
 
         for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < numberOfRowsAndCols; j++) {
+            for (int j = 0; j < NUMBER_OF_ROWS_AND_COLS; j++) {
                 System.out.print("+----");
             }
             System.out.println("+");
 
-            if (i < numberOfRowsAndCols) {
-                for (int k = 0; k < numberOfRowsAndCols; k++) {
+            if (i < NUMBER_OF_ROWS_AND_COLS) {
+                for (int k = 0; k < NUMBER_OF_ROWS_AND_COLS; k++) {
                     String pieceId = board[i][k].getPiece().getId();
 
                     if (pieceId.length() == 2) {
@@ -99,8 +99,8 @@ public class MHBoard extends Board {
     public int[] getRowAndColumnIndex() {
         int[] rowAndColumnIndex = {-1, -1};
 
-        for (int i = 0; i < numberOfRowsAndCols; i++) {
-            for (int j = 0; j < numberOfRowsAndCols; j++) {
+        for (int i = 0; i < NUMBER_OF_ROWS_AND_COLS; i++) {
+            for (int j = 0; j < NUMBER_OF_ROWS_AND_COLS; j++) {
                 if (getMHBoardCell(i, j).getPiece().getId().contains("*")) {
                     rowAndColumnIndex[0] = i;
                     rowAndColumnIndex[1] = j;
@@ -220,7 +220,7 @@ public class MHBoard extends Board {
         List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
         int[] rowAndColumnIndex = getRowAndColumnIndex();
 
-        if (rowAndColumnIndex[0] + 1 < numberOfRowsAndCols) {
+        if (rowAndColumnIndex[0] + 1 < NUMBER_OF_ROWS_AND_COLS) {
             rowAndColumnIndex[0] += 1;
             boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
 //            System.out.println("Can Go DOWN? " + canEnter);
@@ -241,7 +241,7 @@ public class MHBoard extends Board {
         List<Boolean> hasQuitAndBattle = Arrays.asList(false, false);
         int[] rowAndColumnIndex = getRowAndColumnIndex();
 
-        if (rowAndColumnIndex[1] + 1 < numberOfRowsAndCols) {
+        if (rowAndColumnIndex[1] + 1 < NUMBER_OF_ROWS_AND_COLS) {
             rowAndColumnIndex[1] += 1;
             boolean canEnter = checkIfCanEnterCell(rowAndColumnIndex[0], rowAndColumnIndex[1]);
 //            System.out.println("Can Go RIGHT? " + canEnter);

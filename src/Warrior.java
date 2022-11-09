@@ -6,8 +6,8 @@ public class Warrior extends Hero {
 
     @Override
     public void levelUpSkills() {
-        setStrength((int) (favouredSkillsLevelUpRate * getStrength()));
-        setAgility((int) (favouredSkillsLevelUpRate * getAgility()));
-        setDexterity((int) (levelUpRate * getDexterity()));
+        setStrength((int) (FAVOURED_SKILLS_LEVEL_UP_RATE * getStrength()));
+        setAgility((int) (FAVOURED_SKILLS_LEVEL_UP_RATE * getAgility()));
+        setDexterity((int) (LEVEL_UP_RATE * getDexterity()));
     }
 }

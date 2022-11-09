@@ -3,7 +3,7 @@ import java.util.Scanner;
 // Represents a battle between a hero and a monster
 public class MHBattle implements Battle {
     private Fighters fighters;
-    public static final MHHelp help = new MHHelp();
+    private final MHHelp help = new MHHelp();
 
     public MHBattle(Fighters fighters) {
         this.fighters = fighters;
@@ -50,53 +50,37 @@ public class MHBattle implements Battle {
                         isValid = checkUserResponse(userResponseOrBattleWinner);
                     } while (!isValid);
 
-                    if (userResponseOrBattleWinner.contains("change ")) {
-                        EquippableItem item = new EquippableItem();
-                        WeaponFactory wf = new WeaponFactory();
-                        ArmorFactory af = new ArmorFactory();
+                    if (userResponseOrBattleWinner.contains(" change ")) {
+                        EquippableItem equippableItem;
+                        boolean equippableItemExists;
 
-                        String itemId = userResponseOrBattleWinner.split(" ")[1].toUpperCase();
+                        String itemId = userResponseOrBattleWinner.split(" ")[2].toUpperCase();
                         if (itemId.contains(",")) {
                             String[] itemIds = itemId.split(",");
 
                             for (int i = 0; i < itemIds.length; i++) {
-                                if (itemIds[i].contains("B") || itemIds[i].contains("E")) {
-                                    if (itemIds[i].contains("B")) {
-                                        item = wf.getItemFromId(itemIds[i]);
-                                    } else if (itemIds[i].contains("E")) {
-                                        item = af.getItemFromId(itemIds[i]);
-                                    }
+                                equippableItemExists = hero.getInventory().checkIfEquippableItemExists(itemIds[i]);
 
-                                    if (!item.getId().equals("none")) {
-                                        hero.replaceAWeaponOrArmor(item);
-                                        System.out.println("\nYou are currently armed with:");
-                                        hero.printCurrentlyEquippedItems();
-                                    } else {
-                                        System.out.println("\nWeapon or armor with the ID " + itemIds[i] + " does not exist! You just lost a turn.");
-                                    }
+                                if (equippableItemExists) {
+                                    equippableItem = hero.getInventory().getEquippableItemFromId(itemIds[i]);
+                                    hero.replaceAWeaponOrArmor(equippableItem);
                                 } else {
-                                    System.out.println("\nWrong item ID used! B<number> for weapon and E<number> for armor. You just lost a turn.");
+                                    System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemIds[i] + " in their inventory! You just lost a turn.");
                                 }
                             }
                         } else {
-                            if (itemId.contains("B") || itemId.contains("E")) {
-                                if (itemId.contains("B")) {
-                                    item = wf.getItemFromId(itemId);
-                                } else if (itemId.contains("E")) {
-                                    item = af.getItemFromId(itemId);
-                                }
+                            equippableItemExists = hero.getInventory().checkIfEquippableItemExists(itemId);
 
-                                if (!item.getId().equals("none")) {
-                                    hero.replaceAWeaponOrArmor(item);
-                                    System.out.println("\nYou are currently armed with:");
-                                    hero.printCurrentlyEquippedItems();
-                                } else {
-                                    System.out.println("\nWeapon or armor with the ID" + itemId + " does not exist! You just lost a turn.");
-                                }
+                            if (equippableItemExists) {
+                                equippableItem = hero.getInventory().getEquippableItemFromId(itemId);
+                                hero.replaceAWeaponOrArmor(equippableItem);
                             } else {
-                                System.out.println("\nWrong item ID used! B<number> for weapon and E<number> for armor. You just lost a turn.");
+                                System.out.println("\nHero " + hero.getName() + " does not have weapon or armor " + itemId + " in their inventory! You just lost a turn.");
                             }
                         }
+
+                        System.out.println("\nYou are currently armed with:");
+                        hero.printCurrentlyEquippedItems();
                     } else if (userResponseOrBattleWinner.contains("cast ")) {
                         String spellId = userResponseOrBattleWinner.split(" ")[1].toUpperCase();
                         boolean spellExists = hero.getInventory().checkIfSpellExists(spellId);
