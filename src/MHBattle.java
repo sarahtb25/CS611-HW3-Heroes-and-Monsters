@@ -32,6 +32,8 @@ public class MHBattle implements Battle {
         String userResponseOrBattleWinner = "";
         String response = "";
         int turn = 0;
+        int numberOfTimesHeroSuccessfullyDefendsAgainstMonster = 0;
+        int numberOfTimesMonsterSuccessfullyDefendsAgainstHero = 0;
         boolean isValid;
         Hero hero = fighters.getHero();
         Monster monster = fighters.getMonster();
@@ -99,6 +101,9 @@ public class MHBattle implements Battle {
                         }
                     } else if (userResponseOrBattleWinner.equals("hit")) {
                         response = hero.hit(monster);
+                        if (response.contains("has successfully defended against")) {
+                            numberOfTimesHeroSuccessfullyDefendsAgainstMonster++;
+                        }
                         System.out.println(ConsoleColours.CYAN + response + ConsoleColours.RESET);
                     } else if (userResponseOrBattleWinner.equals("i")) {
                         fighters.printFightersInformation();
@@ -115,7 +120,15 @@ public class MHBattle implements Battle {
                 } else {
                     // Monster's turn
                     response = monster.attack(hero);
+                    if (response.contains("has successfully defended against")) {
+                        numberOfTimesMonsterSuccessfullyDefendsAgainstHero++;
+                    }
                     System.out.println(ConsoleColours.YELLOW + "\n" + response + ConsoleColours.RESET);
+                }
+
+                if (numberOfTimesHeroSuccessfullyDefendsAgainstMonster >= 4 && numberOfTimesMonsterSuccessfullyDefendsAgainstHero >= 4) {
+                    System.out.println(ConsoleColours.CYAN + "\n[BATTLE MESSAGE] Oh dear...looks like hero " + hero.getName() + " and monster " + monster.getName() + " are evenly matched.\nIt's a tie!" + ConsoleColours.RESET);
+                    break;
                 }
 
                 turn++;
@@ -125,7 +138,9 @@ public class MHBattle implements Battle {
         }
 
         if (!userResponseOrBattleWinner.equals("q")) {
-            if (hero.getHitPoints() > 0) {
+            if (numberOfTimesHeroSuccessfullyDefendsAgainstMonster >= 4 && numberOfTimesMonsterSuccessfullyDefendsAgainstHero >= 4) {
+                userResponseOrBattleWinner = "tie";
+            }else if (hero.getHitPoints() > 0) {
                 userResponseOrBattleWinner = "hero";
                 hero.updateNumberOfTimesHeroDefeatedMonster();
                 updateHeroAfterBattle(hero, monster.getLevel());
@@ -134,7 +149,12 @@ public class MHBattle implements Battle {
             }
         }
 
-        // contains q if user quits the game, or hero if hero wins the game, or monster if monster wins the game
+        /* contains
+           q if user quits the game,
+           tie if hero and monster both manages to successfully defends against each other's attack for more than 3 times
+           hero if hero wins the game, or
+           monster if monster wins the game
+         */
         return userResponseOrBattleWinner;
     }
 
