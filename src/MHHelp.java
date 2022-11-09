@@ -368,7 +368,7 @@ public class MHHelp implements Help {
                         "    equipped by the hero before it can be used. The damage value is used to calculate the\n" +
                         "    damage dealt during an attack move in a battle.\n" +
                         "\n" +
-                        "    Hero's attack damage with weapon= (hero's strength + weapon_damage) * 0.05";
+                        "    Hero's attack damage with weapon = (hero's strength + weapon_damage) * 0.05";
 
         System.out.println(rules);
         MHUtility.pause();
