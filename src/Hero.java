@@ -38,6 +38,9 @@ public class Hero extends NonPlayerCharacter {
         this.experience = 1;
         this.inventory = new Inventory();
         this.hitPoints = 100;
+        // Add fists and body to currently equipped weapons
+        currentlyEquippedItems.add(new WeaponFactory().getItemFromId("B6"));
+        currentlyEquippedItems.add(new ArmorFactory().getItemFromId("E5"));
     }
 
     public Hero(String name, String id, int mana, int strength, int agility, int dexterity, int money, int experience, Inventory inventory) {
@@ -52,6 +55,9 @@ public class Hero extends NonPlayerCharacter {
         this.hitPoints = experience * HIT_POINT_FACTOR;
         this.experienceGained = 0;
         numberOfTimesHeroDefeatedMonster = 0;
+        // Add fists and body to currently equipped weapons
+        currentlyEquippedItems.add(new WeaponFactory().getItemFromId("B6"));
+        currentlyEquippedItems.add(new ArmorFactory().getItemFromId("E5"));
     }
 
     public int getHitPoints() {
