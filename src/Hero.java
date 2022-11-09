@@ -351,12 +351,12 @@ public class Hero extends NonPlayerCharacter {
     }
 
     public boolean checkItemNotPresent(String itemId) {
-        if (!inventory.checkIfWeaponExists(itemId) && !inventory.checkIfArmorExists(itemId) && !inventory.checkIfPotionExists(itemId) && !inventory.checkIfSpellExists(itemId) && !checkIfEquippableItemExists(itemId)) return true;
+        if (!inventory.checkIfItemExists(itemId) && !checkIfEquippableItemExistsInCurrentlyEquippedItems(itemId)) return true;
 
         return false;
     }
 
-    public boolean checkIfEquippableItemExists(String itemId) {
+    public boolean checkIfEquippableItemExistsInCurrentlyEquippedItems(String itemId) {
         for (EquippableItem equippableItem : currentlyEquippedItems) {
             if (equippableItem.getId().equals(itemId)) {
                 return true;

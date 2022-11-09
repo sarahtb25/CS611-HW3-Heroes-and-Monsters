@@ -177,6 +177,14 @@ public class Inventory {
         return false;
     }
 
+    public boolean checkIfItemExists(String itemId) {
+        if(checkIfWeaponExists(itemId) || checkIfArmorExists(itemId) || checkIfPotionExists(itemId) || checkIfSpellExists(itemId)) {
+            return true;
+        }
+
+        return false;
+    }
+
     public boolean checkIfWeaponExists(String weaponId) {
         for (Weapon weapon : weapons) {
             if (weapon.getId().equals(weaponId)) {
