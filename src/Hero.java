@@ -261,7 +261,7 @@ public class Hero extends NonPlayerCharacter {
             response = spell.applySpell(this, monster);
             inventory.removeSpell();
         } else {
-            response = "\n[ERROR]" + getName() + " has not enough mana! Unable to cast " + spell.getItemName();
+            response = "\n[ERROR] " + getName() + " has not enough mana! Unable to cast " + spell.getItemName();
         }
 
         return response;

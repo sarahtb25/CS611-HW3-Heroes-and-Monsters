@@ -25,7 +25,7 @@ public class MarketPiece extends MHPiece {
     }
 
     public boolean leaveOrQuitMarket(String quit) {
-        System.out.println(ConsoleColours.YELLOW + "[MARKET MESSAGE] Exiting Market..." + ConsoleColours.RESET);
+        System.out.println(ConsoleColours.YELLOW + "\n[MARKET MESSAGE] Exiting Market..." + ConsoleColours.RESET);
 
         // exiting market only, not the game
         if (quit.equals("x")) {

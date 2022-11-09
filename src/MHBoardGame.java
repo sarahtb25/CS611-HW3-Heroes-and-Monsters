@@ -39,8 +39,8 @@ public class MHBoardGame extends BoardGame {
         boolean isNumber = utility.checkIsNumber(numberOfHeroes);
 
         while(!isNumber || (Integer.parseInt(numberOfHeroes) < MIN_HERO && Integer.parseInt(numberOfHeroes) > MAX_HERO)) {
-            System.out.println(ConsoleColours.RED + "[ERROR] Invalid Input!" + ConsoleColours.RESET);
-            System.out.println(ConsoleColours.GREEN + "[INPUT] Please input the number of heroes (minimum " + MIN_HERO + " and maximum " + MAX_HERO + "):" + ConsoleColours.RESET);
+            System.out.println(ConsoleColours.RED + "\n[ERROR] Invalid Input!" + ConsoleColours.RESET);
+            System.out.println(ConsoleColours.GREEN + "\n[INPUT] Please input the number of heroes (minimum " + MIN_HERO + " and maximum " + MAX_HERO + "):" + ConsoleColours.RESET);
             numberOfHeroes = scan.next();
             isNumber = utility.checkIsNumber(numberOfHeroes);
         }
@@ -49,11 +49,11 @@ public class MHBoardGame extends BoardGame {
     }
 
     public void generateHeroes(int numberOfHeroes) {
-        System.out.println(ConsoleColours.YELLOW + "[GAME MESSAGE] Generating " + numberOfHeroes + " Heroes..." + ConsoleColours.RESET);
+        System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] Generating " + numberOfHeroes + " Heroes..." + ConsoleColours.RESET);
         heroes = new Heroes();
         GenerateHeroes gh = new GenerateHeroes(numberOfHeroes);
         heroes = gh.getHeroes();
-        System.out.println(ConsoleColours.YELLOW + "[GAME MESSAGE] " + numberOfHeroes + " Heroes generated!" + ConsoleColours.RESET);
+        System.out.println(ConsoleColours.YELLOW + "\n[GAME MESSAGE] " + numberOfHeroes + " Heroes generated!" + ConsoleColours.RESET);
     }
 
     public void showHeroes() {
@@ -69,6 +69,7 @@ public class MHBoardGame extends BoardGame {
         getNumberOfHeroes();
         generateHeroes(numberOfHeroes);
         setPlayerHeroes();
+        printHeroesInformation();
     }
 
     // Regenerate map
@@ -289,6 +290,13 @@ public class MHBoardGame extends BoardGame {
                  } else if (userInput.equals("d")) {
                      moveRight();
                  } else if (userInput.equals("q")) {
+                     roundHistory.setNumberOfBattles(numberOfBattles);
+                     for (Hero hero : heroes.getHeroes()) {
+                         roundHistory.addHeroScoreToRoundHistory(hero.getName(), hero.getNumberOfTimesHeroDefeatedMonster());
+                     }
+                     statistics.addRoundHistory(roundHistory);
+
+                     showScore();
                      quit();
                  } else if (userInput.equals("h")) {
                      printHelp();

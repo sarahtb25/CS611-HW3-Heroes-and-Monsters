@@ -4,6 +4,10 @@ public class FireSpell extends Spell {
         super(itemName, id, cost, requiredLevel, numberOfConsumptions, damage, manaCost);
     }
 
+    public FireSpell(FireSpell fireSpell) {
+        super(fireSpell.getItemName(), fireSpell.getId(), fireSpell.getCost(), fireSpell.getRequiredLevel(), fireSpell.getNumberOfConsumptions(), fireSpell.getDamage(), fireSpell.getManaCost());
+    }
+
     @Override
     public void affectMonsterSkill(Monster monster) {
         int noMoreOfAttribute = 0;

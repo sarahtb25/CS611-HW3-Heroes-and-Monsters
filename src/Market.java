@@ -177,6 +177,8 @@ public class Market {
                 } else {
                     System.out.println(ConsoleColours.RED + "\n[ERROR] Potion " + itemId + " does not exist!" + ConsoleColours.RESET);
                 }
+            } else {
+                System.out.println(ConsoleColours.RED + "\n[ERROR] Item " + itemId + " does not exist!" + ConsoleColours.RESET);
             }
         } else {
             System.out.println(ConsoleColours.RED + "\n[ERROR] Hero " + hero.getId() + " already has item " + itemId + "! Hoarding is not allowed." + ConsoleColours.RESET);

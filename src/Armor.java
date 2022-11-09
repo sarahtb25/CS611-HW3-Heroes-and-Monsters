@@ -4,6 +4,11 @@ public class Armor extends EquippableItem {
 
     public Armor() {}
 
+    public Armor(Armor armor) {
+        super(armor.getItemName(), armor.getId(), armor.getCost(), armor.getRequiredLevel());
+        this.damageReduction = armor.getDamageReduction();
+    }
+
     public Armor(String itemName, String id, int cost, int requiredLevel, int damageReduction) {
         super(itemName, id, cost, requiredLevel);
         this.damageReduction = damageReduction;

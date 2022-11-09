@@ -5,6 +5,12 @@ public class Weapon extends EquippableItem {
 
     public Weapon() {}
 
+    public Weapon(Weapon weapon) {
+        super(weapon.getItemName(), weapon.getId(), weapon.getCost(), weapon.getRequiredLevel());
+        this.numberOfHandsRequired = weapon.getNumberOfHandsRequired();
+        this.damage = weapon.getDamage();
+    }
+
     public Weapon(String itemName, String id, int cost, int requiredLevel, int numberOfHandsRequired, int damage) {
         super(itemName, id, cost, requiredLevel);
         this.numberOfHandsRequired = numberOfHandsRequired;

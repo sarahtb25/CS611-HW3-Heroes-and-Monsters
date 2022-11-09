@@ -5,6 +5,11 @@ public class Spell extends ConsumableItem {
 
     public Spell() {}
 
+    public Spell(Spell spell) {
+        super(spell.getItemName(), spell.getId(), spell.getCost(), spell.getRequiredLevel(), spell.getNumberOfConsumptions());
+        this.damage = spell.getDamage();
+        this.manaCost = spell.getManaCost();
+    }
     public Spell(String itemName, String id, int cost, int requiredLevel, int numberOfConsumptions, int damage, int manaCost) {
         super(itemName, id, cost, requiredLevel, numberOfConsumptions);
         this.damage = damage;

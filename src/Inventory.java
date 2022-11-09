@@ -55,20 +55,26 @@ public class Inventory {
     }
 
     public void addWeapon(Weapon weapon) {
-        weapons.add(weapon);
+        weapons.add(new Weapon(weapon));
     }
 
     public void addArmor(Armor armor) {
-        armors.add(armor);
+        armors.add(new Armor(armor));
     }
 
     // Potions and Spells are consumable items and cannot be sold
     public void addPotion(Potion potion) {
-        potions.add(potion);
+        potions.add(new Potion(potion));
     }
 
     public void addSpell(Spell spell) {
-        spells.add(spell);
+        if (spell instanceof FireSpell) {
+            spells.add(new FireSpell((FireSpell)spell));
+        } else if (spell instanceof LightningSpell) {
+            spells.add(new LightningSpell((LightningSpell) spell));
+        } else if (spell instanceof IceSpell) {
+            spells.add(new IceSpell((IceSpell) spell));
+        }
     }
 
     public void removeWeapon(Weapon weapon) {

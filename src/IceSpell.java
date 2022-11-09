@@ -4,6 +4,10 @@ public class IceSpell extends Spell {
         super(itemName, id, cost, requiredLevel, numberOfConsumptions, damage, manaCost);
     }
 
+    public IceSpell(IceSpell iceSpell) {
+        super(iceSpell.getItemName(), iceSpell.getId(), iceSpell.getCost(), iceSpell.getRequiredLevel(), iceSpell.getNumberOfConsumptions(), iceSpell.getDamage(), iceSpell.getManaCost());
+    }
+
     @Override
     public void affectMonsterSkill(Monster monster) {
         int noMoreOfAttribute = 0;

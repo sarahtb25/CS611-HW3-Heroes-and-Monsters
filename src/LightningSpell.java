@@ -4,6 +4,10 @@ public class LightningSpell extends Spell{
         super(itemName, id, cost, requiredLevel, numberOfConsumptions, damage, manaCost);
     }
 
+    public LightningSpell(LightningSpell lightningSpell) {
+        super(lightningSpell.getItemName(), lightningSpell.getId(), lightningSpell.getCost(), lightningSpell.getRequiredLevel(), lightningSpell.getNumberOfConsumptions(), lightningSpell.getDamage(), lightningSpell.getManaCost());
+    }
+
     @Override
     public void affectMonsterSkill(Monster monster) {
         int noMoreOfAttribute = 0;

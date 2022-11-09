@@ -7,6 +7,12 @@ public class Potion extends ConsumableItem {
 
     public Potion() {}
 
+    public Potion(Potion potion) {
+        super(potion.getItemName(), potion.getId(), potion.getCost(), potion.getRequiredLevel(), potion.getNumberOfConsumptions());
+        this.attributeIncrease = potion.getAttributeIncrease();
+        this.attributesAffected = potion.getAttributesAffected();
+    }
+
     public Potion(String itemName, String id, int cost, int requiredLevel, int numberOfConsumptions, int attributeIncrease, List<String> attributesAffected) {
         super(itemName, id, cost, requiredLevel, numberOfConsumptions);
         this.attributeIncrease = attributeIncrease;
