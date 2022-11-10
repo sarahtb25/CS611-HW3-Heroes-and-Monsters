@@ -100,8 +100,9 @@ U86084310
 ---------------------------------------------------------------------------
 1. Navigate to the directory "HW3" after unzipping the files
 2. Run the following instructions:
-   javac -d out src/*.java
-   java -cp out Main
+   mkdir bin
+   javac -d bin src/*.java
+   java -cp bin Main
 
 ## Input/Output Example
 ---------------------------------------------------------------------------
