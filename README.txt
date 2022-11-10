@@ -90,10 +90,11 @@ U86084310
    (b) Monsters and Heroes can be played for multiple rounds.
    (c) The number of battles and the number of monsters by each hero in each round is tracked and printed
        when the player quits the game.
-   (d) Added colours to board to distinguish the different types of pieces and messages shows to player.
+   (d) Added colours to board to distinguish the different types of pieces and messages shown to player.
    (e) Used Singleton Pattern for the Monsters and Heroes game logic.
    (f) Used Factory Design Pattern for generating the various monsters and heroes.
-   (g) Player can regenerate the map if they are not happy with their current map at any point.
+   (g) Player can regenerate the map if they are not happy with their current map.
+   (h) If heroes win, fainted heroes are revived.
 2. Please maximize terminal screen before playing. This game has been developed and tested using Java 8.
 
 ## How to compile and run
