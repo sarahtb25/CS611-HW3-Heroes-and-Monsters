@@ -95,6 +95,11 @@ U86084310
    (f) Used Factory Design Pattern for generating the various monsters and heroes.
    (g) Player can regenerate the map if they are not happy with their current map.
    (h) If heroes win, fainted heroes are revived.
+   (i) The heroes win a round of Monsters and Heroes if they can collectively defeat 100 monsters without all
+       of them losing their hitpoints.
+   (j) If a hero and a monster are able to defend each other's hits/attacks 4 times
+       i.e. hero is able to successfully defend against a monster's attack 4 times and monster is able to successfully
+       defend against a hero's attack (with weapon) 4 times, the battle is a tie.
 2. Please maximize terminal screen before playing. This game has been developed and tested using Java 8.
 
 ## How to compile and run
